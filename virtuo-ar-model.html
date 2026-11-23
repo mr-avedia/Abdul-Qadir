@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Virtuo AR — 5-Year Financial Model | Abdul Qadir Avedia</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --accent:#16a34a;--accent2:#22c55e;--accent3:#4ade80;
+  --glow:rgba(34,197,94,.22);--glow-sm:rgba(34,197,94,.09);
+  --red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;
+  --r:14px;
+}
+[data-theme="light"]{
+  --bg:#f8fffe;--bg2:#dcfce7;--surface:#ffffff;
+  --border:rgba(22,163,74,.22);--border-h:rgba(22,163,74,.45);
+  --txt:#0c1f12;--txt2:#1e3d28;--muted:#4a7360;
+  --nav-bg:rgba(248,255,254,.93);
+  --sh:0 2px 16px rgba(22,163,74,.09);--sh2:0 8px 32px rgba(22,163,74,.16);
+  --card-bg:#ffffff;--table-stripe:#e8faf0;
+}
+[data-theme="dark"]{
+  --bg:#020e05;--bg2:#061209;--surface:#0a1c0e;
+  --border:rgba(34,197,94,.1);--border-h:rgba(34,197,94,.28);
+  --txt:#edfff2;--txt2:#c4f0d0;--muted:#6acf8a;
+  --nav-bg:rgba(2,14,5,.94);
+  --sh:0 2px 16px rgba(0,0,0,.5);--sh2:0 10px 40px rgba(0,0,0,.55);
+  --card-bg:#0a1c0e;--table-stripe:#061209;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;transition:background .4s,color .4s;}
+::-webkit-scrollbar{width:3px;height:3px;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  height:58px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  background:var(--nav-bg);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  transition:background .4s,border-color .4s;
+}
+.tb-left{display:flex;align-items:center;gap:.9rem;}
+.tb-back{
+  display:flex;align-items:center;gap:.4rem;
+  font-size:.76rem;font-weight:700;color:var(--muted);
+  padding:.38rem .85rem;border-radius:8px;
+  border:1.5px solid var(--border);background:var(--glow-sm);
+  text-decoration:none;transition:all .2s;
+}
+.tb-back:hover{color:var(--accent);border-color:var(--accent);background:var(--glow);}
+.tb-back svg{transition:transform .2s;}
+.tb-back:hover svg{transform:translateX(-2px);}
+.tb-title{
+  font-size:.82rem;font-weight:800;letter-spacing:-.02em;color:var(--txt);
+  display:flex;align-items:center;gap:.5rem;
+}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--glow)}50%{box-shadow:0 0 0 5px var(--glow)}}
+.tb-right{display:flex;align-items:center;gap:.6rem;}
+.tb-badge{
+  font-size:.65rem;font-weight:700;padding:.2rem .65rem;border-radius:99px;
+  background:var(--glow-sm);color:var(--accent);border:1px solid var(--border);
+  text-transform:uppercase;letter-spacing:.07em;
+}
+/* dark toggle */
+.dark-btn{
+  width:46px;height:25px;border-radius:99px;
+  background:var(--bg2);border:1.5px solid var(--border);
+  position:relative;cursor:pointer;transition:background .3s,border-color .3s;
+}
+.dark-knob{
+  position:absolute;top:2px;left:2px;
+  width:19px;height:19px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 1px 4px var(--glow);
+}
+[data-theme="dark"] .dark-knob{transform:translateX(19px);}
+.knob-sun{display:flex;align-items:center;justify-content:center;}
+.knob-moon{display:none;align-items:center;justify-content:center;}
+[data-theme="dark"] .knob-sun{display:none;}
+[data-theme="dark"] .knob-moon{display:flex;}
+
+/* ── HERO ── */
+.hero{
+  padding:3.5rem 5% 2.5rem;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-30%;right:-5%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,var(--glow-sm) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.22rem .8rem;border-radius:99px;
+  background:var(--glow-sm);border:1px solid var(--border);
+  font-size:.65rem;font-weight:700;color:var(--accent);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.2rem;
+}
+.hero-eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);animation:pulse 1.8s infinite;}
+.hero-h1{
+  font-size:clamp(2.2rem,5vw,4rem);font-weight:900;
+  line-height:.95;letter-spacing:-.04em;
+  color:var(--txt);margin-bottom:.7rem;
+}
+.hero-h1 .g{
+  background:linear-gradient(135deg,var(--accent),var(--accent3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:.9rem;color:var(--muted);max-width:600px;margin-bottom:1.8rem;}
+/* verdict chips */
+.verdict-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:2rem;}
+.vchip{
+  display:flex;flex-direction:column;
+  padding:.6rem .8rem;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);
+  box-shadow:var(--sh);transition:all .22s;
+}
+.vchip:hover{border-color:var(--accent);transform:translateY(-1px);}
+.vchip-top{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;color:var(--txt2);margin-bottom:.3rem;}
+.vchip .vc-ico{display:flex;align-items:center;flex-shrink:0;}
+.vchip .vc-val{color:var(--accent);font-size:.7rem;font-weight:800;padding-left:1.8rem;}
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.8rem;}
+@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.kpi-grid{grid-template-columns:repeat(2,1fr);}}
+.kpi{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.1rem 1rem;
+  position:relative;overflow:hidden;
+  transition:all .25s;box-shadow:var(--sh);
+}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3.5px;background:var(--kpi-color,linear-gradient(90deg,var(--accent),var(--accent3)));}
+.kpi:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:var(--sh2);}
+.kpi-lbl{font-size:.6rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem;}
+.kpi-val{font-size:1.35rem;font-weight:900;letter-spacing:-.04em;color:var(--kpi-txt,var(--accent));line-height:1;}
+.kpi-val.neg{color:var(--red);}
+.kpi-sub{font-size:.6rem;color:var(--muted);margin-top:.25rem;}
+.kpi-badge{
+  display:inline-block;font-size:.58rem;font-weight:700;
+  padding:.1rem .45rem;border-radius:99px;margin-top:.3rem;
+}
+.kpi-badge.up{background:rgba(34,197,94,.1);color:var(--accent);}
+.kpi-badge.warn{background:rgba(245,158,11,.1);color:var(--amber);}
+
+/* ── MAIN LAYOUT ── */
+.main{padding:2.5rem 5%;max-width:1600px;margin:0 auto;}
+.section{margin-bottom:3rem;}
+.sec-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;padding-left:.8rem;border-left:3px solid var(--accent);}
+.sec-icon{
+  width:34px;height:34px;border-radius:9px;
+  background:var(--glow-sm);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.sec-title{font-size:.82rem;font-weight:800;letter-spacing:-.01em;color:var(--txt);}
+.sec-sub{font-size:.7rem;color:var(--muted);margin-top:.1rem;}
+.divider{height:1px;background:var(--border);margin-bottom:1.4rem;}
+
+/* ── CHARTS ROW ── */
+.charts-row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin-bottom:1rem;}
+@media(max-width:1100px){.charts-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.charts-row{grid-template-columns:1fr;}}
+.chart-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.3rem;
+  box-shadow:var(--sh);transition:border-color .25s,box-shadow .25s;
+}
+.chart-card:hover{border-color:var(--border-h);box-shadow:var(--sh2);}
+.chart-title{font-size:.7rem;font-weight:800;color:var(--txt);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.3rem;}
+.chart-sub{font-size:.62rem;color:var(--muted);margin-bottom:1rem;}
+.chart-wrap{position:relative;}
+
+/* ── TABLES ── */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--sh);}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+thead th{
+  background:var(--bg2);color:var(--accent);
+  font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+  padding:.75rem 1rem;text-align:right;white-space:nowrap;border-bottom:1px solid var(--border);
+}
+thead th:first-child{text-align:left;}
+tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--glow-sm);}
+tbody tr.stripe{background:var(--table-stripe);}
+tbody tr:not(.stripe):not(.section-row):not(.total-row){background:var(--surface);}
+tbody tr.section-row td{
+  font-size:.68rem;font-weight:800;color:var(--accent);
+  text-transform:uppercase;letter-spacing:.09em;
+  padding:.55rem 1rem .25rem;background:var(--glow-sm);
+  border-top:1px solid var(--border);
+}
+tbody tr.total-row td{
+  font-weight:800;color:var(--txt);
+  background:var(--bg2);border-top:2px solid var(--border);
+  padding:.85rem 1rem;
+}
+tbody tr.total-row td:not(:first-child){color:var(--accent);}
+tbody tr.neg-row td:not(:first-child){color:var(--red);font-weight:700;}
+td{padding:.68rem 1rem;color:var(--txt2);text-align:right;white-space:nowrap;}
+td:first-child{text-align:left;color:var(--txt);font-weight:500;}
+td.pos{color:var(--accent);font-weight:700;}
+td.neg{color:var(--red);font-weight:700;}
+td.muted{color:var(--muted);}
+
+/* year header */
+.yr-head{color:var(--accent)!important;font-weight:900!important;}
+
+/* ── 2-col layout ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:768px){.two-col{grid-template-columns:1fr !important;}}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+@media(max-width:1100px){.three-col{grid-template-columns:1fr 1fr;}}
+@media(max-width:768px){.three-col{grid-template-columns:1fr !important;}}
+
+/* ── VERDICT CARD ── */
+.verdict-card{
+  background:linear-gradient(135deg,var(--accent),#15803d);
+  border-radius:var(--r);padding:1.8rem 1.5rem;
+  color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 8px 32px var(--glow);
+  min-width:0;
+}
+.verdict-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.verdict-card::after{
+  content:'';position:absolute;bottom:-60px;left:-30px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+}
+.verdict-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75;margin-bottom:.5rem;}
+.verdict-val{font-size:2.2rem;font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:.3rem;}
+.verdict-desc{font-size:.75rem;opacity:.8;line-height:1.5;}
+.verdict-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.2rem;position:relative;z-index:1;}
+.verdict-item{background:rgba(255,255,255,.12);border-radius:10px;padding:.8rem 1rem;}
+.verdict-item-lbl{font-size:.6rem;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.09em;margin-bottom:.25rem;}
+.verdict-item-val{font-size:1.1rem;font-weight:900;letter-spacing:-.03em;}
+
+/* ── RATIO TABLE ROWS ── */
+.r-row{display:grid;grid-template-columns:1fr 70px 70px;align-items:center;padding:.45rem 1rem;border-bottom:1px solid var(--border);background:var(--surface);}
+.r-row:last-child{border-bottom:none;}
+.r-row.stripe{background:var(--table-stripe);}
+.r-name{font-size:.73rem;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.r-v1{font-size:.73rem;font-weight:700;text-align:center;white-space:nowrap;}
+.r-v5{font-size:.73rem;font-weight:700;text-align:center;white-space:nowrap;}
+
+/* ── FCFF ROWS ── */
+.f-row{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding:.4rem .9rem;border-bottom:1px solid var(--border);}
+.f-row:last-child{border-bottom:none;}
+.f-row.stripe{background:var(--table-stripe);}
+.f-yr{font-size:.7rem;font-weight:600;color:var(--muted);}
+.f-nopat{font-size:.7rem;font-weight:600;text-align:right;}
+.f-fcff{font-size:.7rem;font-weight:700;text-align:right;}
+
+/* ── SENSITIVITY ROWS ── */
+.sens-row{display:flex;align-items:center;gap:.6rem;}
+.sens-rate{font-size:.65rem;font-weight:700;color:var(--muted);width:32px;flex-shrink:0;}
+.sens-bar-w{flex:1;height:8px;background:var(--border);border-radius:3px;overflow:hidden;}
+.sens-val{font-size:.65rem;font-weight:700;color:var(--txt2);width:38px;text-align:right;flex-shrink:0;}
+.ratio-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1.2rem 1.3rem;
+  box-shadow:var(--sh);transition:all .25s;overflow:hidden;
+}
+.ratio-card:hover{border-color:var(--border-h);box-shadow:var(--sh2);}
+.ratio-lbl{font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.6rem;}
+.ratio-row{
+  display:grid;
+  grid-template-columns:1fr 50px 50px;
+  align-items:center;gap:.3rem;margin-bottom:.4rem;min-width:0;
+}
+.ratio-name{font-size:.76rem;color:var(--txt2);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ratio-yr{text-align:center;}
+.ratio-yr-lbl{font-size:.55rem;color:var(--muted);display:block;}
+.ratio-yr-val{font-size:.76rem;font-weight:700;color:var(--txt);white-space:nowrap;display:block;text-align:center;}
+.ratio-yr-val.pos{color:var(--accent);}
+.ratio-yr-val.neg{color:var(--red);}
+
+/* ── HIGHLIGHTS ── */
+.highlight-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;}
+.hl-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:1rem 1.1rem;
+  box-shadow:var(--sh);transition:all .25s;
+  border-top:3px solid var(--hl-color, var(--accent));
+  position:relative;overflow:hidden;
+}
+.hl-item::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--hl-grad, linear-gradient(90deg,var(--accent),var(--accent3)));}
+.hl-item:hover{border-color:var(--hl-color, var(--accent));transform:translateY(-2px);box-shadow:var(--sh2);}
+.hl-label{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:.35rem;}
+.hl-val{font-size:1.05rem;font-weight:900;letter-spacing:-.03em;color:var(--txt);margin-bottom:.28rem;line-height:1;}
+.hl-desc{font-size:.62rem;color:var(--muted);line-height:1.45;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 5%;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;
+}
+.foot-l{font-size:.72rem;color:var(--muted);}
+.foot-l b{color:var(--accent);}
+.foot-r{display:flex;gap:.5rem;align-items:center;}
+.foot-tag{font-size:.62rem;font-weight:600;padding:.18rem .55rem;border-radius:99px;background:var(--glow-sm);color:var(--accent);border:1px solid var(--border);}
+
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+.rv.on{opacity:1;transform:none;}
+
+/* ── PAGE ENTRY ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes countUp{from{opacity:0;transform:translateY(10px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 0 var(--glow)}50%{box-shadow:0 0 18px 4px var(--glow)}}
+
+/* Topbar */
+.topbar{animation:fadeUp .5s cubic-bezier(.22,1,.36,1) 0s both;}
+
+/* Hero entrance */
+.hero-eyebrow{animation:slideRight .6s cubic-bezier(.22,1,.36,1) .1s both;}
+.hero-h1{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) .2s both;}
+.hero-sub{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) .32s both;}
+.verdict-row{animation:fadeUp .7s cubic-bezier(.22,1,.36,1) .42s both;}
+
+/* KPI cards staggered pop */
+.kpi:nth-child(1){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) .5s both;}
+.kpi:nth-child(2){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) .6s both;}
+.kpi:nth-child(3){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) .7s both;}
+.kpi:nth-child(4){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) .8s both;}
+.kpi:nth-child(5){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) .9s both;}
+.kpi:nth-child(6){animation:popIn .55s cubic-bezier(.34,1.56,.64,1) 1.0s both;}
+.kpi-val{animation:countUp .6s cubic-bezier(.22,1,.36,1) 1.1s both;}
+
+/* Verdict chips stagger */
+.vchip:nth-child(1){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .42s both;}
+.vchip:nth-child(2){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .50s both;}
+.vchip:nth-child(3){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .58s both;}
+.vchip:nth-child(4){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .66s both;}
+.vchip:nth-child(5){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .74s both;}
+.vchip:nth-child(6){animation:fadeUp .5s cubic-bezier(.22,1,.36,1) .82s both;}
+
+
+
+/* Table rows stagger on scroll reveal */
+.rv.on tbody tr{animation:fadeUp .4s cubic-bezier(.22,1,.36,1) both;}
+.rv.on tbody tr:nth-child(1){animation-delay:.04s}
+.rv.on tbody tr:nth-child(2){animation-delay:.08s}
+.rv.on tbody tr:nth-child(3){animation-delay:.12s}
+.rv.on tbody tr:nth-child(4){animation-delay:.16s}
+.rv.on tbody tr:nth-child(5){animation-delay:.20s}
+.rv.on tbody tr:nth-child(6){animation-delay:.24s}
+.rv.on tbody tr:nth-child(7){animation-delay:.28s}
+.rv.on tbody tr:nth-child(8){animation-delay:.32s}
+.rv.on tbody tr:nth-child(9){animation-delay:.36s}
+.rv.on tbody tr:nth-child(10){animation-delay:.40s}
+
+/* Highlight cards stagger */
+.rv.on .hl-item:nth-child(1){animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .05s both;}
+.rv.on .hl-item:nth-child(2){animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .15s both;}
+.rv.on .hl-item:nth-child(3){animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .25s both;}
+.rv.on .hl-item:nth-child(4){animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .35s both;}
+
+/* Ratio rows stagger */
+.rv.on .r-row{animation:fadeUp .35s cubic-bezier(.22,1,.36,1) both;}
+.rv.on .r-row:nth-child(1){animation-delay:.05s}
+.rv.on .r-row:nth-child(2){animation-delay:.10s}
+.rv.on .r-row:nth-child(3){animation-delay:.15s}
+.rv.on .r-row:nth-child(4){animation-delay:.20s}
+.rv.on .r-row:nth-child(5){animation-delay:.25s}
+.rv.on .r-row:nth-child(6){animation-delay:.30s}
+
+
+/* ── SENSITIVITY TABLE ── */
+.sens-table{width:100%;border-collapse:collapse;font-size:.75rem;}
+.sens-table th,.sens-table td{padding:.6rem .9rem;text-align:center;border:1px solid var(--border);}
+.sens-table th{background:var(--bg2);font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.sens-table td{background:var(--surface);}
+.sens-table td.highlight-cell{background:var(--glow-sm);color:var(--accent);font-weight:700;border-color:var(--accent);}
+
+@media(max-width:768px){.cf-charts-grid{grid-template-columns:1fr!important;}.fcff-npv-grid{grid-template-columns:1fr!important;}}
+@media(max-width:768px){
+  /* Navbar — only back + toggle */
+  .topbar{height:52px;padding:0 4%;}
+  .tb-title{display:none !important;}
+  .tb-badge{display:none !important;}
+  .tb-back{font-size:.72rem;padding:.32rem .7rem;white-space:nowrap;}
+  .tb-right{gap:.4rem;}
+
+  /* Hero */
+  .hero{padding:1.6rem 4% 1.6rem;}
+  .hero-eyebrow{font-size:.6rem;padding:.18rem .6rem;}
+  .hero-h1{font-size:2rem;line-height:1.05;margin-bottom:.6rem;}
+  .hero-sub{font-size:.8rem;margin-bottom:1.2rem;}
+
+  /* Verdict chips — 2 col */
+  .verdict-row{grid-template-columns:repeat(3,1fr);gap:.35rem;margin-bottom:1.2rem;}
+  .vchip{font-size:.63rem;padding:.45rem .6rem;}
+  .vc-val{font-size:.62rem;}
+  .vc-ico{font-size:.8rem;}
+  .vc-val{font-size:.62rem;}
+
+  /* KPI grid — 2 col */
+  .kpi-grid{grid-template-columns:repeat(2,1fr);gap:.55rem;}
+  .kpi{padding:.8rem .7rem;}
+  .kpi-val{font-size:1.1rem;}
+  .kpi-lbl{font-size:.55rem;}
+
+  /* Main */
+  .main{padding:1.4rem 4%;}
+  .section{margin-bottom:2rem;}
+
+  /* Charts */
+  .charts-row{grid-template-columns:1fr;gap:.7rem;}
+  .chart-card{padding:1rem;}
+
+  /* Tables */
+  .tbl-wrap{border-radius:10px;}
+  table{font-size:.68rem;}
+  thead th{padding:.5rem .65rem;font-size:.54rem;}
+  td{padding:.48rem .65rem;}
+  td:first-child{min-width:140px;max-width:180px;white-space:normal;word-break:break-word;}
+
+  /* All multi-col → single col */
+  .two-col,.three-col{grid-template-columns:1fr !important;gap:.7rem;}
+  .charts-row{grid-template-columns:1fr !important;}
+
+  /* Ratio card — table style instead of flex rows */
+  .ratio-card{padding:.9rem 1rem;overflow-x:auto;}
+  .ratio-row{
+    display:grid;
+    grid-template-columns:1fr 52px 52px;
+    gap:.3rem;align-items:center;
+    margin-bottom:.4rem;
+  }
+  .ratio-name{font-size:.68rem;white-space:normal;line-height:1.3;}
+  .ratio-val-row{display:contents;}
+  .ratio-yr{text-align:center;min-width:0;}
+  .ratio-yr-lbl{font-size:.5rem;}
+  .ratio-yr-val{font-size:.7rem;}
+
+  /* Highlight grid */
+  .highlight-grid{grid-template-columns:repeat(2,1fr);}
+  .hl-item{font-size:.72rem;}
+
+  /* Verdict card */
+  .verdict-card{padding:1.3rem;}
+  .verdict-val{font-size:1.65rem;}
+  .verdict-desc{font-size:.7rem;}
+  .verdict-grid{grid-template-columns:1fr 1fr;gap:.55rem;margin-top:.85rem;}
+  .verdict-item{padding:.6rem .7rem;}
+  .verdict-item-val{font-size:.92rem;}
+  .verdict-item-lbl{font-size:.55rem;}
+
+  /* Sensitivity table */
+  .sens-table th,.sens-table td{padding:.35rem .4rem;font-size:.6rem;}
+
+  /* Ratio section grids → single col on mobile */
+  .ratio-section-top{grid-template-columns:1fr !important;}
+  .ratio-section-bot{grid-template-columns:1fr !important;}
+
+  /* Footer */
+  footer{padding:1.2rem 4%;flex-direction:column;align-items:flex-start;gap:.6rem;}
+  .foot-r{flex-wrap:wrap;}
+
+  /* Sec head */
+  .sec-head{gap:.5rem;margin-bottom:1rem;}
+  .sec-icon{width:28px;height:28px;font-size:.85rem;}
+  .sec-title{font-size:.76rem;}
+  .sec-sub{font-size:.62rem;}
+}
+/* ════════════════════════════════════════════
+   ✦ MODERN POLISH LAYER — full index effect set
+   gradient · glass · reveal · spotlight · grain
+   · sheen · section shimmer · spring motion
+════════════════════════════════════════════ */
+
+/* floating ambient blobs behind hero */
+.hero{position:relative;}
+.hero::after{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(38% 38% at 16% 26%,var(--glow),transparent 70%),
+    radial-gradient(34% 34% at 84% 22%,var(--glow-sm),transparent 70%);
+  filter:blur(8px);animation:blobfloat 15s ease-in-out infinite alternate;
+}
+@keyframes blobfloat{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(2%,-2%,0) scale(1.05);}
+  100%{transform:translate3d(-2%,2%,0) scale(1.02);}
+}
+.hero>*{position:relative;z-index:1;}
+
+/* animated gradient on hero accent word */
+.hero-h1 .g{
+  background:linear-gradient(100deg,var(--accent),var(--accent3),var(--accent2),var(--accent));
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:hueslide 6s ease infinite;
+}
+@keyframes hueslide{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* glassmorphism + spring lift on KPI cards */
+.kpi{
+  background:linear-gradient(135deg,var(--glow-sm),transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  transition:transform .4s cubic-bezier(.18,.89,.32,1.28),border-color .25s,box-shadow .35s;
+}
+.kpi:hover{transform:translateY(-6px) scale(1.015);}
+
+/* cursor spotlight glow on cards */
+.kpi,.chart-card,.vchip{position:relative;}
+.kpi::after,.chart-card::after,.vchip::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+  opacity:0;transition:opacity .3s;
+  background:radial-gradient(160px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%);
+}
+.kpi:hover::after,.chart-card:hover::after,.vchip:hover::after{opacity:1;}
+
+/* chart + vchip spring lift */
+.chart-card{transition:transform .4s cubic-bezier(.18,.89,.32,1.28),border-color .25s,box-shadow .35s;}
+.chart-card:hover{transform:translateY(-5px);}
+.vchip{transition:transform .3s cubic-bezier(.18,.89,.32,1.28),border-color .22s,box-shadow .25s;}
+.vchip:hover{transform:translateY(-3px);box-shadow:var(--sh2);}
+
+/* upgraded scroll-reveal spring */
+.rv{transition:opacity .7s ease,transform .7s cubic-bezier(.18,.89,.32,1.28);}
+
+/* section heading: animated gradient accent bar + shimmer underline */
+.sec-head{border-left:3px solid transparent!important;
+  border-image:linear-gradient(180deg,var(--accent),var(--accent3)) 1;}
+.sec-title{position:relative;display:inline-block;padding-bottom:.3rem;}
+.sec-title::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:38px;
+  background:linear-gradient(90deg,var(--accent),var(--accent3),transparent);
+  background-size:200% 100%;animation:hueslide 4s ease infinite;border-radius:2px;
+}
+
+/* back button shine sweep on hover */
+.tb-back{position:relative;overflow:hidden;}
+.tb-back::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,var(--glow),transparent);
+  transform:skewX(-20deg);transition:left .5s;
+}
+.tb-back:hover::after{left:150%;}
+
+/* table rows smoother hover */
+tbody tr{transition:background .2s,box-shadow .2s;}
+tbody tr:hover{box-shadow:inset 3px 0 0 var(--accent);}
+
+/* subtle grain texture */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* accessibility: respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .rv{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <div class="tb-left">
+    <a href="index.html" class="tb-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="tb-title">
+      <div class="tb-dot"></div>
+      Virtuo AR — 5-Year Financial Model
+    </div>
+  </div>
+  <div class="tb-right">
+    <span class="tb-badge">PKR · 2025–2029</span>
+    <div class="dark-btn" onclick="toggleTheme()" title="Toggle dark mode">
+      <div class="dark-knob">
+        <span class="knob-sun"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></span>
+        <span class="knob-moon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>Financial Model · Virtual Try-On & 3D Clothing</div>
+  <h1 class="hero-h1">Virtuo <span class="g">AR</span><br>Financial Model</h1>
+  <p class="hero-sub">5-Year Growth-Driven 3-Statement Model · Subscription + Project Revenue · PKR · 2025–2029 · NPV / IRR / WACC / DCF</p>
+
+  <div class="verdict-row">
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Balance Sheet</div><span class="vc-val">All 5 Years</span></div>
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Cash Flow</div><span class="vc-val">Reconciled</span></div>
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Breakeven</div><span class="vc-val">Year 2026</span></div>
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 3 Statements</div><span class="vc-val">IS · BS · CF</span></div>
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> NPV / IRR</div><span class="vc-val">Calculated</span></div>
+    <div class="vchip"><div class="vchip-top"><span class="vc-ico"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="8" fill="#16a34a"/><polyline points="4.5,8.5 7,11 11.5,5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> WACC</div><span class="vc-val">25% CAPM</span></div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#16a34a,#22c55e);">
+      <div class="kpi-lbl">5-Yr Revenue</div>
+      <div class="kpi-val" style="color:var(--txt);">245.5M</div>
+      <div class="kpi-sub">PKR cumulative</div>
+      <span class="kpi-badge up">↑ Strong</span>
+    </div>
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#ef4444,#f87171);">
+      <div class="kpi-lbl">5-Yr Net Income</div>
+      <div class="kpi-val" style="color:var(--txt);">79.2M</div>
+      <div class="kpi-sub">PKR cumulative</div>
+      <span class="kpi-badge up">↑ Profitable</span>
+    </div>
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#3b82f6,#60a5fa);">
+      <div class="kpi-lbl">Y5 Cash Balance</div>
+      <div class="kpi-val" style="color:var(--txt);">74.6M</div>
+      <div class="kpi-sub">PKR at Year 5</div>
+      <span class="kpi-badge up"> Strong</span>
+    </div>
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#f59e0b,#fcd34d);">
+      <div class="kpi-lbl">NPV</div>
+      <div class="kpi-val" style="color:var(--txt);">71.1M</div>
+      <div class="kpi-sub">PKR · WACC 25%</div>
+      <span class="kpi-badge up">NPV &gt; 0</span>
+    </div>
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#8b5cf6,#c4b5fd);">
+      <div class="kpi-lbl">IRR</div>
+      <div class="kpi-val" style="color:var(--txt);">88.3%</div>
+      <div class="kpi-sub">vs WACC 25%</div>
+      <span class="kpi-badge up">+63.3% spread</span>
+    </div>
+    <div class="kpi" style="--kpi-color:linear-gradient(90deg,#16a34a,#4ade80);">
+      <div class="kpi-lbl">Payback</div>
+      <div class="kpi-val" style="color:var(--txt);">2 Yrs</div>
+      <div class="kpi-sub">MOIC 21.3x</div>
+      <span class="kpi-badge up">↑ Fast ROI</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- REVENUE CHARTS -->
+  <div class="section rv">
+    <div class="sec-head">
+      
+      <div><div class="sec-title">Revenue & Profitability Overview</div><div class="sec-sub">Annual P&L summary · 2025–2029 · PKR</div></div>
+    </div>
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-title">Revenue vs Gross Profit vs Net Income</div>
+        <div class="chart-sub">Annual figures (PKR) — All 5 years</div>
+        <div class="chart-wrap"><canvas id="plChart" height="200"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Revenue Mix</div>
+        <div class="chart-sub">Subscription vs Project — Y5</div>
+        <div class="chart-wrap"><canvas id="mixChart" height="200"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Margin Trends</div>
+        <div class="chart-sub">Gross / EBIT / Net Margin %</div>
+        <div class="chart-wrap"><canvas id="marginChart" height="200"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P&L TABLE -->
+  <div class="section rv" style="transition-delay:.08s">
+    <div class="sec-head">
+      
+      <div><div class="sec-title">Income Statement</div><div class="sec-sub">Annual P&L · PKR · 2025–2029</div></div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th class="yr-head">2025</th>
+            <th class="yr-head">2026</th>
+            <th class="yr-head">2027</th>
+            <th class="yr-head">2028</th>
+            <th class="yr-head">2029</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">Revenue</td></tr>
+          <tr><td>Subscription Revenue — Pakistan</td><td>900,000</td><td>2,160,000</td><td>4,752,000</td><td>7,560,000</td><td>12,480,000</td></tr>
+          <tr class="stripe"><td>Subscription Revenue — International</td><td>840,000</td><td>2,520,000</td><td>6,720,000</td><td>13,440,000</td><td>24,300,000</td></tr>
+          <tr><td>Project Revenue — Pakistan</td><td>2,880,000</td><td>6,480,000</td><td>12,000,000</td><td>19,800,000</td><td>28,800,000</td></tr>
+          <tr class="stripe"><td>Project Revenue — International</td><td>1,800,000</td><td>6,120,000</td><td>14,400,000</td><td>27,600,000</td><td>49,920,000</td></tr>
+          <tr class="total-row"><td>TOTAL REVENUE</td><td>6,420,000</td><td>17,280,000</td><td>37,872,000</td><td>68,400,000</td><td>115,500,000</td></tr>
+
+          <tr class="section-row"><td colspan="6">Cost of Revenue</td></tr>
+          <tr><td>Direct Tech & Rendering Costs (25%)</td><td>1,605,000</td><td>4,320,000</td><td>9,468,000</td><td>17,100,000</td><td>28,875,000</td></tr>
+          <tr class="total-row"><td>GROSS PROFIT</td><td>4,815,000</td><td>12,960,000</td><td>28,404,000</td><td>51,300,000</td><td>86,625,000</td></tr>
+          <tr><td class="muted">Gross Margin %</td><td class="pos">75.0%</td><td class="pos">75.0%</td><td class="pos">75.0%</td><td class="pos">75.0%</td><td class="pos">75.0%</td></tr>
+
+          <tr class="section-row"><td colspan="6">Operating Expenses</td></tr>
+          <tr><td>Salaries & Benefits</td><td>4,320,000</td><td>6,240,000</td><td>8,400,000</td><td>11,700,000</td><td>15,360,000</td></tr>
+          <tr class="stripe"><td>Technology & Software</td><td>1,260,000</td><td>1,500,000</td><td>1,740,000</td><td>2,100,000</td><td>2,460,000</td></tr>
+          <tr><td>Marketing & Promotions</td><td>600,000</td><td>960,000</td><td>1,440,000</td><td>1,800,000</td><td>2,160,000</td></tr>
+          <tr class="stripe"><td>Office & Administration</td><td>480,000</td><td>600,000</td><td>720,000</td><td>840,000</td><td>960,000</td></tr>
+          <tr><td>Electricity & Utilities</td><td>300,000</td><td>360,000</td><td>420,000</td><td>480,000</td><td>540,000</td></tr>
+          <tr class="stripe"><td>Miscellaneous</td><td>240,000</td><td>300,000</td><td>360,000</td><td>420,000</td><td>480,000</td></tr>
+          <tr><td>Repair & Maintenance</td><td>—</td><td>30,000</td><td>50,004</td><td>80,004</td><td>30,000</td></tr>
+          <tr class="stripe"><td>Depreciation</td><td>298,810</td><td>298,810</td><td>298,810</td><td>352,143</td><td>352,143</td></tr>
+          <tr><td>Pre-Operating & Legal (Y1 only)</td><td>100,000</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr class="total-row"><td>TOTAL OPERATING EXPENSES</td><td>7,598,810</td><td>10,288,810</td><td>13,428,814</td><td>17,772,147</td><td>22,342,143</td></tr>
+
+          <tr class="neg-row"><td>EBIT — Operating Profit/(Loss)</td><td class="neg">(2,783,810)</td><td class="pos">2,671,190</td><td class="pos">14,975,186</td><td class="pos">33,527,853</td><td class="pos">64,282,857</td></tr>
+          <tr><td class="muted">EBIT Margin %</td><td class="neg">-43.4%</td><td class="pos">15.5%</td><td class="pos">39.5%</td><td class="pos">49.0%</td><td class="pos">55.7%</td></tr>
+
+          <tr class="section-row"><td colspan="6">Tax & Net Income</td></tr>
+          <tr><td>Tax Expense (29% on profit only)</td><td>—</td><td>774,645</td><td>4,342,804</td><td>9,723,077</td><td>18,642,029</td></tr>
+          <tr class="total-row"><td>NET INCOME / (LOSS)</td><td class="neg">(2,783,810)</td><td class="pos">1,896,545</td><td class="pos">10,632,382</td><td class="pos">23,804,776</td><td class="pos">45,640,829</td></tr>
+          <tr><td class="muted">Net Margin %</td><td class="neg">-43.4%</td><td class="pos">11.0%</td><td class="pos">28.1%</td><td class="pos">34.8%</td><td class="pos">39.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REVENUE DETAIL -->
+  <div class="section rv" style="transition-delay:.1s">
+    <div class="sec-head">
+      
+      <div><div class="sec-title">Revenue Schedule</div><div class="sec-sub">Subscription + Project breakdown · PKR</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.8rem;">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Subscription Revenue</th><th class="yr-head">2025</th><th class="yr-head">2026</th><th class="yr-head">2027</th><th class="yr-head">2028</th><th class="yr-head">2029</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="6">Pakistan</td></tr>
+            <tr><td>Clients (Count)</td><td>5</td><td>12</td><td>22</td><td>35</td><td>52</td></tr>
+            <tr class="stripe"><td>Monthly Fee (PKR)</td><td>15,000</td><td>15,000</td><td>18,000</td><td>18,000</td><td>20,000</td></tr>
+            <tr><td>Annual Revenue</td><td>900,000</td><td>2,160,000</td><td>4,752,000</td><td>7,560,000</td><td>12,480,000</td></tr>
+            <tr class="section-row"><td colspan="6">International</td></tr>
+            <tr><td>Clients (Count)</td><td>2</td><td>6</td><td>14</td><td>28</td><td>45</td></tr>
+            <tr class="stripe"><td>Monthly Fee (PKR)</td><td>35,000</td><td>35,000</td><td>40,000</td><td>40,000</td><td>45,000</td></tr>
+            <tr><td>Annual Revenue</td><td>840,000</td><td>2,520,000</td><td>6,720,000</td><td>13,440,000</td><td>24,300,000</td></tr>
+            <tr class="total-row"><td>TOTAL SUB REVENUE</td><td>1,740,000</td><td>4,680,000</td><td>11,472,000</td><td>21,000,000</td><td>36,780,000</td></tr>
+            <tr><td class="muted">% of Total Revenue</td><td>27.1%</td><td>27.1%</td><td>30.3%</td><td>30.7%</td><td>31.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Project Revenue</th><th class="yr-head">2025</th><th class="yr-head">2026</th><th class="yr-head">2027</th><th class="yr-head">2028</th><th class="yr-head">2029</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="6">Pakistan</td></tr>
+            <tr><td>Orders/Month</td><td>3</td><td>6</td><td>10</td><td>15</td><td>20</td></tr>
+            <tr class="stripe"><td>Avg Fee/Project (PKR)</td><td>80,000</td><td>90,000</td><td>100,000</td><td>110,000</td><td>120,000</td></tr>
+            <tr><td>Annual Revenue</td><td>2,880,000</td><td>6,480,000</td><td>12,000,000</td><td>19,800,000</td><td>28,800,000</td></tr>
+            <tr class="section-row"><td colspan="6">International</td></tr>
+            <tr><td>Orders/Month</td><td>1</td><td>3</td><td>6</td><td>10</td><td>16</td></tr>
+            <tr class="stripe"><td>Avg Fee/Project (PKR)</td><td>150,000</td><td>170,000</td><td>200,000</td><td>230,000</td><td>260,000</td></tr>
+            <tr><td>Annual Revenue</td><td>1,800,000</td><td>6,120,000</td><td>14,400,000</td><td>27,600,000</td><td>49,920,000</td></tr>
+            <tr class="total-row"><td>TOTAL PROJECT REVENUE</td><td>4,680,000</td><td>12,600,000</td><td>26,400,000</td><td>47,400,000</td><td>78,720,000</td></tr>
+            <tr><td class="muted">% of Total Revenue</td><td>72.9%</td><td>72.9%</td><td>69.7%</td><td>69.3%</td><td>68.2%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASH FLOW -->
+  <div class="section rv" style="transition-delay:.12s">
+    <div class="sec-head">
+      
+      <div><div class="sec-title">Cash Flow Statement</div><div class="sec-sub">Indirect Method · PKR · 2025–2029</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.8rem;">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Cash Flow</th><th class="yr-head">2025</th><th class="yr-head">2026</th><th class="yr-head">2027</th><th class="yr-head">2028</th><th class="yr-head">2029</th></tr></thead>
+          <tbody>
+            <tr class="section-row"><td colspan="6">Operating Activities</td></tr>
+            <tr><td>Cash from Customers</td><td class="pos">5,892,329</td><td class="pos">16,387,397</td><td class="pos">36,179,507</td><td class="pos">65,890,849</td><td class="pos">111,628,767</td></tr>
+            <tr class="stripe"><td>Salaries Paid</td><td class="neg">(4,320,000)</td><td class="neg">(6,240,000)</td><td class="neg">(8,400,000)</td><td class="neg">(11,700,000)</td><td class="neg">(15,360,000)</td></tr>
+            <tr><td>Tech & Software Paid</td><td class="neg">(1,260,000)</td><td class="neg">(1,500,000)</td><td class="neg">(1,740,000)</td><td class="neg">(2,100,000)</td><td class="neg">(2,460,000)</td></tr>
+            <tr class="stripe"><td>Marketing Paid</td><td class="neg">(600,000)</td><td class="neg">(960,000)</td><td class="neg">(1,440,000)</td><td class="neg">(1,800,000)</td><td class="neg">(2,160,000)</td></tr>
+            <tr><td>Other Operating Costs</td><td class="neg">(1,120,000)</td><td class="neg">(1,290,000)</td><td class="neg">(1,551,004)</td><td class="neg">(1,820,004)</td><td class="neg">(2,010,000)</td></tr>
+            <tr class="stripe"><td>Direct Delivery Costs</td><td class="neg">(1,605,000)</td><td class="neg">(4,320,000)</td><td class="neg">(9,468,000)</td><td class="neg">(17,100,000)</td><td class="neg">(28,875,000)</td></tr>
+            <tr><td>Income Tax Paid</td><td>—</td><td class="neg">(774,645)</td><td class="neg">(4,342,804)</td><td class="neg">(9,723,077)</td><td class="neg">(18,642,029)</td></tr>
+            <tr class="stripe"><td>Change in Accounts Payable</td><td class="pos">624,560</td><td class="pos">221,096</td><td class="pos">258,082</td><td class="pos">356,986</td><td class="pos">375,616</td></tr>
+            <tr class="total-row"><td>NET CASH FROM OPERATIONS</td><td class="neg">(2,388,112)</td><td class="pos">1,523,848</td><td class="pos">9,496,781</td><td class="pos">22,004,754</td><td class="pos">42,497,355</td></tr>
+            <tr class="section-row"><td colspan="6">Investing Activities</td></tr>
+            <tr><td>Purchase of Fixed Assets (CapEx)</td><td class="neg">(1,050,000)</td><td>—</td><td>—</td><td class="neg">(960,000)</td><td>—</td></tr>
+            <tr class="total-row"><td>NET CASH FROM INVESTING</td><td class="neg">(1,050,000)</td><td>—</td><td>—</td><td class="neg">(960,000)</td><td>—</td></tr>
+            <tr class="section-row"><td colspan="6">Financing Activities</td></tr>
+            <tr><td>Equity Capital Injection</td><td class="pos">3,500,000</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr class="total-row"><td>NET CASH FROM FINANCING</td><td class="pos">3,500,000</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr class="total-row" style="border-top:2px solid var(--accent)"><td>CLOSING CASH BALANCE</td><td>61,888</td><td class="pos">1,585,736</td><td class="pos">11,082,518</td><td class="pos">32,127,272</td><td class="pos">74,624,627</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;" class="cf-charts-grid">
+        <div class="chart-card">
+          <div class="chart-title">Cash Flow Trend</div>
+          <div class="chart-sub">Operating · Investing · Closing (PKR)</div>
+          <div class="chart-wrap"><canvas id="cfChart" height="200"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Closing Cash Balance</div>
+          <div class="chart-sub">PKR · Year by Year Growth</div>
+          <div class="chart-wrap"><canvas id="cashChart" height="200"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BALANCE SHEET -->
+  <div class="section rv" style="transition-delay:.14s">
+    <div class="sec-head">
+      
+      <div><div class="sec-title">Balance Sheet</div><div class="sec-sub">End of Year · PKR · All 5 years balanced </div></div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Balance Sheet</th><th class="yr-head">2025</th><th class="yr-head">2026</th><th class="yr-head">2027</th><th class="yr-head">2028</th><th class="yr-head">2029</th></tr></thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">Assets</td></tr>
+          <tr><td>Cash & Cash Equivalents</td><td>61,888</td><td class="pos">1,585,736</td><td class="pos">11,082,518</td><td class="pos">32,127,272</td><td class="pos">74,624,627</td></tr>
+          <tr class="stripe"><td>Accounts Receivable</td><td>527,671</td><td>1,420,274</td><td>3,112,767</td><td>5,621,918</td><td>9,493,151</td></tr>
+          <tr class="total-row"><td>TOTAL CURRENT ASSETS</td><td>589,560</td><td>3,006,010</td><td>14,195,285</td><td>37,749,190</td><td>84,117,778</td></tr>
+          <tr><td>Fixed Assets — Gross</td><td>1,050,000</td><td>1,050,000</td><td>1,050,000</td><td>2,010,000</td><td>2,010,000</td></tr>
+          <tr class="stripe"><td>Accumulated Depreciation</td><td class="neg">(298,810)</td><td class="neg">(597,619)</td><td class="neg">(896,429)</td><td class="neg">(1,248,571)</td><td class="neg">(1,600,714)</td></tr>
+          <tr><td>Net Fixed Assets</td><td>751,190</td><td>452,381</td><td>153,571</td><td>761,429</td><td>409,286</td></tr>
+          <tr class="total-row"><td>TOTAL ASSETS</td><td>1,340,750</td><td>3,458,391</td><td>14,348,856</td><td>38,510,619</td><td>84,527,064</td></tr>
+
+          <tr class="section-row"><td colspan="6">Liabilities & Equity</td></tr>
+          <tr><td>Accounts Payable</td><td>624,560</td><td>845,656</td><td>1,103,738</td><td>1,460,724</td><td>1,836,341</td></tr>
+          <tr class="total-row"><td>TOTAL CURRENT LIABILITIES</td><td>624,560</td><td>845,656</td><td>1,103,738</td><td>1,460,724</td><td>1,836,341</td></tr>
+          <tr><td>Share Capital</td><td>3,500,000</td><td>3,500,000</td><td>3,500,000</td><td>3,500,000</td><td>3,500,000</td></tr>
+          <tr class="stripe"><td>Retained Earnings</td><td class="neg">(2,783,810)</td><td class="neg">(887,264)</td><td class="pos">9,745,118</td><td class="pos">33,549,895</td><td class="pos">79,190,723</td></tr>
+          <tr class="total-row"><td>TOTAL EQUITY</td><td>716,190</td><td>2,612,736</td><td>13,245,118</td><td>37,049,895</td><td>82,690,723</td></tr>
+          <tr class="total-row" style="border-top:2px solid var(--accent)"><td>TOTAL LIABILITIES & EQUITY</td><td>1,340,750</td><td>3,458,391</td><td>14,348,856</td><td>38,510,619</td><td>84,527,064</td></tr>
+          <tr><td class="muted">Balance Check</td><td class="pos"> Zero</td><td class="pos"> Zero</td><td class="pos"> Zero</td><td class="pos"> Zero</td><td class="pos"> Zero</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RATIO ANALYSIS + VERDICT -->
+  <div class="section rv" style="transition-delay:.16s">
+    <div class="sec-head">
+      <div><div class="sec-title">Financial Ratio Analysis & Investment Verdict</div><div class="sec-sub">Key metrics · FCFF · NPV · IRR · Sensitivity</div></div>
+    </div>
+
+    <!-- 1. Ratio Table -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin-bottom:.8rem;">
+      <div style="display:grid;grid-template-columns:1fr 70px 70px;background:var(--bg2);padding:.5rem 1rem;border-bottom:1px solid var(--border);">
+        <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--txt);">Metric</span>
+        <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--txt2);text-align:center;">Y1 (2025)</span>
+        <span style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);text-align:center;">Y5 (2029)</span>
+      </div>
+      <div style="padding:.38rem 1rem;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);background:var(--bg2);border-bottom:1px solid var(--border);;font-size:.68rem;font-weight:800;color:var(--txt);">Profitability Ratios</div>
+      <div class="r-row"><span class="r-name">Gross Margin</span><span class="r-v1 pos">75%</span><span class="r-v5 pos">75%</span></div>
+      <div class="r-row stripe"><span class="r-name">EBIT Margin</span><span class="r-v1 neg">-43.4%</span><span class="r-v5 pos">55.7%</span></div>
+      <div class="r-row"><span class="r-name">Net Margin</span><span class="r-v1 neg">-43.4%</span><span class="r-v5 pos">39.5%</span></div>
+      <div class="r-row stripe"><span class="r-name">ROE</span><span class="r-v1 neg">-389%</span><span class="r-v5 pos">55.2%</span></div>
+      <div class="r-row"><span class="r-name">ROA</span><span class="r-v1 neg">-208%</span><span class="r-v5 pos">54.0%</span></div>
+      <div style="padding:.38rem 1rem;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);;font-size:.68rem;font-weight:800;color:var(--txt);">Liquidity Ratios</div>
+      <div class="r-row stripe"><span class="r-name">Current Ratio</span><span class="r-v1 neg">0.94x</span><span class="r-v5 pos">45.8x</span></div>
+      <div class="r-row"><span class="r-name">Quick Ratio</span><span class="r-v1 neg">0.10x</span><span class="r-v5 pos">40.6x</span></div>
+    </div>
+
+    <!-- 2. Verdict Card -->
+    <div class="verdict-card" style="margin-bottom:.8rem;">
+      <div class="verdict-title">Investment Verdict</div>
+      <div class="verdict-val">STRONG BUY</div>
+      <div class="verdict-desc">IRR massively outperforms WACC. NPV positive. 2-year payback. 21x MOIC.</div>
+      <div class="verdict-grid">
+        <div class="verdict-item"><div class="verdict-item-lbl">NPV</div><div class="verdict-item-val">PKR 71.1M</div></div>
+        <div class="verdict-item"><div class="verdict-item-lbl">IRR</div><div class="verdict-item-val">88.3%</div></div>
+        <div class="verdict-item"><div class="verdict-item-lbl">WACC</div><div class="verdict-item-val">25.0%</div></div>
+        <div class="verdict-item"><div class="verdict-item-lbl">IRR−WACC</div><div class="verdict-item-val">+63.3%</div></div>
+        <div class="verdict-item"><div class="verdict-item-lbl">Payback</div><div class="verdict-item-val">2 Years</div></div>
+        <div class="verdict-item"><div class="verdict-item-lbl">MOIC</div><div class="verdict-item-val">21.3x</div></div>
+      </div>
+    </div>
+
+    <!-- 3. FCFF + NPV Sensitivity side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;" class="fcff-npv-grid">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;">
+        <div style="padding:.5rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">FCFF — Free Cash Flow to Firm</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg2);border-bottom:1px solid var(--border);">
+          <div style="padding:.38rem 1rem;font-size:.56rem;font-weight:700;text-transform:uppercase;color:var(--muted);">Year</div>
+          <div style="padding:.38rem 1rem;font-size:.56rem;font-weight:700;text-transform:uppercase;color:var(--muted);text-align:right;">NOPAT</div>
+          <div style="padding:.38rem 1rem;font-size:.56rem;font-weight:700;text-transform:uppercase;color:var(--accent);text-align:right;">FCFF</div>
+        </div>
+        <div class="f-row"><span class="f-yr">2025</span><span class="f-nopat neg">(2.78M)</span><span class="f-fcff neg">(3.44M)</span></div>
+        <div class="f-row stripe"><span class="f-yr">2026</span><span class="f-nopat pos">1.90M</span><span class="f-fcff pos">1.52M</span></div>
+        <div class="f-row"><span class="f-yr">2027</span><span class="f-nopat pos">10.6M</span><span class="f-fcff pos">9.50M</span></div>
+        <div class="f-row stripe"><span class="f-yr">2028</span><span class="f-nopat pos">23.8M</span><span class="f-fcff pos">21.0M</span></div>
+        <div class="f-row"><span class="f-yr">2029</span><span class="f-nopat pos">45.6M</span><span class="f-fcff pos">42.5M</span></div>
+        <div class="f-row" style="background:var(--glow-sm);border-top:2px solid var(--accent);"><span class="f-yr" style="font-weight:800;color:var(--txt);">5-Yr Total</span><span class="f-nopat pos" style="font-weight:800;">79.2M</span><span class="f-fcff pos" style="font-weight:800;">71.1M</span></div>
+      </div>
+
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;">
+        <div style="padding:.5rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border);font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);">NPV Sensitivity — Discount Rate</div>
+        <div style="padding:.85rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;">
+          <div class="sens-row"><span class="sens-rate">10%</span><div class="sens-bar-w"><div style="height:100%;width:100%;background:rgba(22,163,74,.2);border-radius:3px;"></div></div><span class="sens-val">46.0M</span></div>
+          <div class="sens-row"><span class="sens-rate">15%</span><div class="sens-bar-w"><div style="height:100%;width:82%;background:rgba(22,163,74,.3);border-radius:3px;"></div></div><span class="sens-val">37.6M</span></div>
+          <div class="sens-row"><span class="sens-rate">20%</span><div class="sens-bar-w"><div style="height:100%;width:67%;background:rgba(22,163,74,.45);border-radius:3px;"></div></div><span class="sens-val">30.9M</span></div>
+          <div class="sens-row" style="background:var(--glow-sm);border-radius:6px;padding:.22rem .4rem;"><span class="sens-rate" style="color:var(--accent);font-weight:800;display:inline-flex;align-items:center;gap:.2rem;">25% <svg width="10" height="10" viewBox="0 0 24 24" fill="#16a34a"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span><div class="sens-bar-w"><div style="height:100%;width:56%;background:var(--accent);border-radius:3px;"></div></div><span class="sens-val" style="color:var(--accent);font-weight:800;">25.6M</span></div>
+          <div class="sens-row"><span class="sens-rate">30%</span><div class="sens-bar-w"><div style="height:100%;width:46%;background:rgba(22,163,74,.3);border-radius:3px;"></div></div><span class="sens-val">21.4M</span></div>
+          <div class="sens-row"><span class="sens-rate">35%</span><div class="sens-bar-w"><div style="height:100%;width:39%;background:rgba(22,163,74,.2);border-radius:3px;"></div></div><span class="sens-val">18.0M</span></div>
+          <div style="font-size:.58rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.45rem;margin-top:.1rem;">WACC = 25% · All values in PKR</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODEL HIGHLIGHTS -->
+  <div class="section rv" style="transition-delay:.18s">
+    <div class="sec-head">
+      <div><div class="sec-title">Model Highlights & Key Assumptions</div><div class="sec-sub">Financial assumptions driving the model</div></div>
+    </div>
+    <div class="highlight-grid">
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#16a34a,#22c55e);--hl-color:#16a34a;">
+        <div class="hl-label">Gross Margin</div>
+        <div class="hl-val">75%</div>
+        <div class="hl-desc">Maintained across all 5 years — Cost = 25% Revenue</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#3b82f6,#60a5fa);--hl-color:#3b82f6;">
+        <div class="hl-label">Headcount Growth</div>
+        <div class="hl-val">6 → 16</div>
+        <div class="hl-desc">Avg salary PKR 60,000–80,000/month</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#f59e0b,#fcd34d);--hl-color:#f59e0b;">
+        <div class="hl-label">AR/AP Cycle</div>
+        <div class="hl-val">30 Days</div>
+        <div class="hl-desc">Industry standard payment terms</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#ef4444,#f87171);--hl-color:#ef4444;">
+        <div class="hl-label">Corporate Tax</div>
+        <div class="hl-val">29%</div>
+        <div class="hl-desc">Pakistan statutory — profitable years only</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#8b5cf6,#c4b5fd);--hl-color:#8b5cf6;">
+        <div class="hl-label">Starting Equity</div>
+        <div class="hl-val">PKR 3.5M</div>
+        <div class="hl-desc">Founder injection — no debt financing</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#16a34a,#4ade80);--hl-color:#16a34a;">
+        <div class="hl-label">CapEx Replacement</div>
+        <div class="hl-val">Y4 (2028)</div>
+        <div class="hl-desc">Hardware replaced at +20% cost — PKR 960K</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#f59e0b,#fcd34d);--hl-color:#f59e0b;">
+        <div class="hl-label">Depreciation</div>
+        <div class="hl-val">Straight-line</div>
+        <div class="hl-desc">Hardware 3 yrs · Furniture & Equipment 7 yrs</div>
+      </div>
+      <div class="hl-item" style="--hl-grad:linear-gradient(90deg,#3b82f6,#60a5fa);--hl-color:#3b82f6;">
+        <div class="hl-label">Revenue Mix</div>
+        <div class="hl-val">Sub + Project</div>
+        <div class="hl-desc">Subscription 27–32% · Project 68–73%</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-l">
+    <b>Abdul Qadir Avedia</b> · Accounts & Finance Executive · Power BI · Financial Modeling · MBA Finance — Bahria University
+  </div>
+  <div class="foot-r">
+    <span class="foot-tag">PKR</span>
+    <span class="foot-tag">2025–2029</span>
+    <span class="foot-tag">3-Statement Model</span>
+    <span class="foot-tag">NPV / IRR / WACC</span>
+  </div>
+</footer>
+
+<script>
+// ── THEME TOGGLE ──
+function toggleTheme(){
+  const html = document.documentElement;
+  const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  html.dataset.theme = next;
+  localStorage.setItem('vt-theme', next);
+  updateCharts();
+}
+const saved = localStorage.getItem('vt-theme');
+if(saved) document.documentElement.dataset.theme = saved;
+
+// ── SCROLL REVEAL ──
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on'); });
+},{threshold:0.06});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+
+// ── CURSOR SPOTLIGHT on cards ──
+document.addEventListener('mousemove',function(e){
+  var c=e.target.closest('.kpi,.chart-card,.vchip');
+  if(!c)return;
+  var r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+
+// ── CHART HELPERS ──
+function isDark(){ return document.documentElement.dataset.theme === 'dark'; }
+function gc(){ return isDark() ? 'rgba(100,207,138,.08)' : 'rgba(22,163,74,.05)'; }
+function textColor(){ return isDark() ? '#6acf8a' : '#4a7360'; }
+function gridColor(){ return isDark() ? 'rgba(34,197,94,.08)' : 'rgba(22,163,74,.08)'; }
+
+const YEARS = ['2025','2026','2027','2028','2029'];
+const GREEN = '#22c55e'; const GREEN2 = '#16a34a'; const GREEN3 = '#4ade80';
+const RED = '#ef4444'; const AMBER = '#f59e0b'; const BLUE = '#3b82f6';
+
+const chartDefaults = () => ({
+  animation:{
+    duration: 1000,
+    easing: 'easeOutQuart',
+    delay: ctx => ctx.dataIndex * 80
+  },
+  plugins:{
+    legend:{ labels:{ color: textColor(), font:{family:"'DM Sans',sans-serif",size:11}, boxWidth:10, padding:14 } }
+  },
+  scales:{
+    x:{ ticks:{ color: textColor(), font:{family:"'DM Sans',sans-serif",size:10} }, grid:{ color: gridColor() } },
+    y:{ ticks:{ color: textColor(), font:{family:"'DM Sans',sans-serif",size:10},
+        callback: v => v >= 1e6 ? (v/1e6).toFixed(0)+'M' : v >= 1e3 ? (v/1e3).toFixed(0)+'K' : v
+      }, grid:{ color: gridColor() } }
+  }
+});
+
+let charts = {};
+
+function buildCharts(){
+  const isDk = isDark();
+  // P&L Chart
+  if(charts.pl) charts.pl.destroy();
+  charts.pl = new Chart(document.getElementById('plChart').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels: YEARS,
+      datasets:[
+        { label:'Total Revenue', data:[6420000,17280000,37872000,68400000,115500000], backgroundColor: 'rgba(22,163,74,.55)', borderColor: '#16A34A', borderWidth:2, borderRadius:5 },
+        { label:'Gross Profit', data:[4815000,12960000,28404000,51300000,86625000], backgroundColor: 'rgba(22,163,74,.88)', borderColor: '#14532d', borderWidth:2, borderRadius:5 },
+        { label:'Net Income', data:[-2783810,1896545,10632382,23804776,45640829], backgroundColor: [-2783810,1896545,10632382,23804776,45640829].map(v=>v<0?'rgba(239,68,68,.75)':'rgba(22,163,74,.7)'), borderColor: [-2783810,1896545,10632382,23804776,45640829].map(v=>v<0?RED:'#16A34A'), borderWidth:2, borderRadius:5 }
+      ]
+    },
+    options:{ ...chartDefaults(), responsive:true }
+  });
+
+  // Revenue Mix Donut
+  if(charts.mix) charts.mix.destroy();
+  charts.mix = new Chart(document.getElementById('mixChart').getContext('2d'),{
+    type:'doughnut',
+    data:{
+      labels:['Subscription (Y5)','Project (Y5)'],
+      datasets:[{
+        data:[36780000,78720000],
+        backgroundColor:['rgba(22,163,74,.6)','rgba(22,163,74,.92)'],
+        borderColor:['#16A34A','#14532d'], borderWidth:2
+      }]
+    },
+    options:{
+      responsive:true, cutout:'65%',
+      plugins:{ legend:{ position:'bottom', labels:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10}, boxWidth:10 } } }
+    }
+  });
+
+  // Margin trends
+  if(charts.margin) charts.margin.destroy();
+  charts.margin = new Chart(document.getElementById('marginChart').getContext('2d'),{
+    type:'line',
+    data:{
+      labels: YEARS,
+      datasets:[
+        { label:'Gross Margin', data:[75,75,75,75,75], borderColor:'#16A34A', backgroundColor:'transparent', tension:.4, borderWidth:2.5, pointRadius:3 },
+        { label:'EBIT Margin', data:[-43.4,15.5,39.5,49.0,55.7], borderColor:AMBER, backgroundColor:'transparent', tension:.4, borderWidth:2.5, pointRadius:3 },
+        { label:'Net Margin', data:[-43.4,11.0,28.1,34.8,39.5], borderColor:BLUE, backgroundColor:'transparent', tension:.4, borderWidth:2.5, pointRadius:3 }
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{ legend:{ labels:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10}, boxWidth:10 } } },
+      scales:{
+        x:{ ticks:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10} }, grid:{ color:gridColor() } },
+        y:{ ticks:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10}, callback:v=>v+'%' }, grid:{ color:gridColor() } }
+      }
+    }
+  });
+
+  // Cash Flow
+  if(charts.cf) charts.cf.destroy();
+  charts.cf = new Chart(document.getElementById('cfChart').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels: YEARS,
+      datasets:[
+        { label:'Operating CF', data:[-2388112,1523848,9496781,22004754,42497355], backgroundColor:[-2388112,1523848,9496781,22004754,42497355].map(v=>v<0?'rgba(239,68,68,.75)':'rgba(22,163,74,.75)'), borderColor:[-2388112,1523848,9496781,22004754,42497355].map(v=>v<0?RED:'#16A34A'), borderWidth:2, borderRadius:4 },
+        { label:'Investing CF', data:[-1050000,0,0,-960000,0], backgroundColor:'rgba(245,158,11,.35)', borderColor:AMBER, borderWidth:2, borderRadius:4 }
+      ]
+    },
+    options:{ ...chartDefaults(), responsive:true }
+  });
+
+  // Closing cash line
+  if(charts.cash) charts.cash.destroy();
+  charts.cash = new Chart(document.getElementById('cashChart').getContext('2d'),{
+    type:'line',
+    data:{
+      labels: YEARS,
+      datasets:[{
+        label:'Closing Cash (PKR)',
+        data:[61888,1585736,11082518,32127272,74624627],
+        borderColor:'#16A34A', backgroundColor:'rgba(22,163,74,.18)',
+        fill:true, tension:.4, borderWidth:2.5, pointRadius:4,
+        pointBackgroundColor:'#16A34A'
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{ legend:{ labels:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10}, boxWidth:10 } } },
+      scales:{
+        x:{ ticks:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10} }, grid:{ color:gridColor() } },
+        y:{ ticks:{ color:textColor(), font:{family:"'DM Sans',sans-serif",size:10}, callback:v=>v>=1e6?(v/1e6).toFixed(0)+'M':v>=1e3?(v/1e3).toFixed(0)+'K':v }, grid:{ color:gridColor() } }
+      }
+    }
+  });
+}
+
+function updateCharts(){ buildCharts(); }
+
+// ── KPI COUNTER ANIMATION ──
+function animateCounter(el, target, suffix, duration){
+  duration = duration || 1400;
+  var start = performance.now();
+  var isFloat = target % 1 !== 0;
+  function step(now){
+    var p = Math.min((now - start) / duration, 1);
+    var ease = 1 - Math.pow(1 - p, 4);
+    var val = target * ease;
+    el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+    if(p < 1) requestAnimationFrame(step);
+    else el.textContent = (isFloat ? target.toFixed(1) : target) + suffix;
+  }
+  requestAnimationFrame(step);
+}
+
+function runKpiCounters(){
+  var kpis = [
+    { sel:'.kpi:nth-child(1) .kpi-val', val:245.5, suffix:'M' },
+    { sel:'.kpi:nth-child(2) .kpi-val', val:79.2,  suffix:'M' },
+    { sel:'.kpi:nth-child(3) .kpi-val', val:74.6,  suffix:'M' },
+    { sel:'.kpi:nth-child(4) .kpi-val', val:71.1,  suffix:'M' },
+    { sel:'.kpi:nth-child(5) .kpi-val', val:88.3,  suffix:'%' },
+    { sel:'.kpi:nth-child(6) .kpi-val', val:2,     suffix:' Yrs' }
+  ];
+  kpis.forEach(function(k, i){
+    var el = document.querySelector(k.sel);
+    if(el) setTimeout(function(){ animateCounter(el, k.val, k.suffix); }, 500 + i * 100);
+  });
+}
+
+// Build on load
+document.addEventListener('DOMContentLoaded', function(){
+  buildCharts();
+  runKpiCounters();
+});
+</script>
+</body>
+</html>

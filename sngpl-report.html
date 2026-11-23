@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SNGPL — Behavioral Finance Report · Abdul Qadir Avadia</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--g:#16a34a;--gd:#14532d;--gp:#dcfce7;--ink:#111;--ink2:#2d2d2d;--ink3:#444;--muted:#666;--paper:#fafaf8;--paper2:#f0fdf4;--border:rgba(22,163,74,.18);--border-h:rgba(22,163,74,.4);--sh:0 2px 14px rgba(22,163,74,.08);--sh2:0 8px 32px rgba(22,163,74,.14);--r:10px;--red:#dc2626;--amber:#d97706;--blue:#2563eb;}
+[data-theme="dark"]{--paper:#020e05;--paper2:#061209;--ink:#ecfdf5;--ink2:#bbf7d0;--ink3:#86efac;--muted:#4ade80;--border:rgba(34,197,94,.12);--border-h:rgba(34,197,94,.3);--sh:0 2px 14px rgba(0,0,0,.5);--sh2:0 8px 32px rgba(0,0,0,.6);--gd:#16a34a;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;overflow-x:hidden;transition:background .35s,color .35s;}
+::-webkit-scrollbar{width:3px;height:3px;}::-webkit-scrollbar-thumb{background:var(--g);border-radius:2px;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:99;background:rgba(250,250,248,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:.55rem 5%;display:flex;align-items:center;justify-content:space-between;transition:background .35s,border-color .35s;}
+[data-theme="dark"] .nav{background:rgba(3,10,4,.95);}
+.nav-left{display:flex;align-items:center;gap:.9rem;}
+.nav-back{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;color:var(--muted);padding:.3rem .75rem;border-radius:6px;border:1.5px solid var(--border);background:rgba(22,163,74,.05);text-decoration:none;transition:all .2s;}
+.nav-back:hover{color:var(--g);border-color:var(--g);}
+.nav-title{font-size:.82rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.nav-title span{color:var(--g);}
+.nav-right{display:flex;align-items:center;gap:.6rem;}
+.dark-btn{width:44px;height:24px;border-radius:99px;background:var(--paper2);border:1.5px solid var(--border);position:relative;cursor:pointer;transition:all .3s;}
+.dark-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;transition:transform .35s;}
+[data-theme="dark"] .dark-knob{transform:translateX(20px);}
+.ks,.km{display:flex;} [data-theme="dark"] .ks{display:none;} .km{display:none;} [data-theme="dark"] .km{display:flex;}
+
+/* HERO */
+.hero{background:linear-gradient(145deg,#071a0c 0%,#0d2e15 55%,#16a34a 100%);padding:5rem 8% 3.5rem;position:relative;overflow:hidden;min-height:62vh;display:flex;flex-direction:column;justify-content:space-between;}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:rgba(74,222,128,.05);}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:rgba(22,163,74,.04);}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  padding:.3rem .7rem;border-radius:99px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.85);margin-bottom:1.2rem;animation:slideRight .6s ease .1s both;
+}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite;}
+.hero-h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;margin-bottom:.6rem;animation:fadeUp .7s ease .2s both;}
+.hero-h1 em{color:#4ade80;font-style:italic;}
+.hero-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:2rem;animation:fadeUp .7s ease .3s both;max-width:580px;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.6rem;animation:fadeUp .7s ease .4s both;}
+.hmeta{display:flex;align-items:center;gap:.35rem;font-size:.68rem;font-weight:600;color:rgba(255,255,255,.45);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:.28rem .7rem;border-radius:99px;}
+
+/* hero KPI row — matches TechEmpire .hl-grid pattern */
+.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.6rem;}
+.hero-kpi{border-left:2px solid rgba(255,255,255,.12);padding-left:.9rem;}
+.hero-kpi-val{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1;}
+.hero-kpi-lbl{font-size:.57rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.38);margin-top:.2rem;}
+.hero-kpi-note{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:.3rem;line-height:1.4;}
+.hmeta svg{opacity:.6;}
+
+/* BODY */
+.body{max-width:1080px;margin:0 auto;padding:0 5%;}
+.sec{padding:2.8rem 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none;}
+.sec-label{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;}
+.sec-label::after{content:'';width:18px;height:1px;background:var(--g);}
+.sec-h{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:800;color:var(--gd);line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;}
+[data-theme="dark"] .sec-h{color:var(--ink2);}
+.sec-h em{color:var(--g);font-style:italic;}
+.prose p{font-size:.85rem;color:var(--ink3);line-height:1.85;margin-bottom:.8rem;}
+.prose p:last-child{margin-bottom:0;}
+
+/* CARDS */
+.card{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.4rem;transition:border-color .2s,box-shadow .2s;}
+.card:hover{border-color:var(--border-h);box-shadow:var(--sh);}
+.card-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g);margin-bottom:.6rem;}
+
+/* HIGHLIGHT STRIP */
+.hl-strip{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem 1.8rem;margin-bottom:1.2rem;box-shadow:var(--sh);}
+.hl-strip-title{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.hl-item{border-left:3px solid var(--g);padding-left:1rem;background:var(--paper);border-radius:0 8px 8px 0;padding:.9rem .9rem .9rem 1rem;border:1px solid var(--border);border-left:3px solid var(--g);}
+.hl-val{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.03em;}
+.hl-lbl{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-top:.3rem;}
+.hl-chg{font-size:.65rem;font-weight:600;margin-top:.35rem;line-height:1.5;}
+.hl-chg.up{color:var(--g);}
+.hl-chg.dn{color:var(--red);}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+/* Balance Sheet: stack Assets above Equity & Liabilities on desktop */
+.bs-stack{grid-template-columns:1fr;}
+.bs-stack>div:first-child{order:2;}
+.bs-stack>div:last-child{order:1;margin-bottom:1.4rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+thead th{background:var(--gd);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.6rem .9rem;text-align:right;white-space:nowrap;}
+thead th:first-child{text-align:left;}
+tbody tr{border-bottom:1px solid var(--paper2);transition:background .12s;}
+tbody tr:hover{background:rgba(22,163,74,.04);}
+tbody tr:last-child{border-bottom:none;}
+td{padding:.55rem .9rem;color:var(--ink3);text-align:right;}
+td:first-child{text-align:left;color:var(--ink);font-weight:500;}
+tr.grp td{background:var(--paper2);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--g);padding:.35rem .9rem;border-top:1px solid var(--border);}
+tr.sub td{background:rgba(22,163,74,.06);font-weight:700;}
+tr.sub td:not(:first-child){color:var(--gd);}
+[data-theme="dark"] tr.sub td:not(:first-child){color:#4ade80;}
+tr.tot{background:var(--gd)!important;}
+tr.tot td{color:#fff!important;font-weight:700;padding:.6rem .9rem;}
+td.pos{color:var(--g)!important;font-weight:600;}
+td.neg{color:var(--red)!important;font-weight:600;}
+td.yr{color:var(--g)!important;font-weight:800;}
+td.ind{padding-left:1.8rem!important;}
+
+/* ANALYSIS TOOLTIP */
+.td-note{position:relative;text-align:center;}
+.note-icon{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.25);color:var(--g);font-size:.65rem;font-weight:800;cursor:default;transition:background .2s;}
+tr.tot .note-icon{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff;}
+.note-icon:hover{background:rgba(22,163,74,.22);}
+.note-tip{visibility:hidden;opacity:0;position:absolute;right:calc(100% + 8px);top:50%;transform:translateY(-50%);background:var(--gd);color:#fff;font-size:.67rem;font-weight:500;line-height:1.55;padding:.5rem .75rem;border-radius:7px;white-space:nowrap;z-index:50;pointer-events:none;transition:opacity .18s;box-shadow:0 4px 16px rgba(0,0,0,.18);}
+.note-tip::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--gd);}
+.td-note:hover .note-tip{visibility:visible;opacity:1;}
+
+/* RATIO CARD */
+.ratio-card{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.ratio-head{background:var(--gd);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.5rem .9rem;}
+.ratio-row{display:grid;grid-template-columns:1fr 72px 72px 90px;align-items:center;gap:.5rem;padding:.55rem .9rem;border-bottom:1px solid var(--border);font-size:.75rem;}
+.ratio-row:last-child{border-bottom:none;}
+.ratio-row:nth-child(even){background:rgba(22,163,74,.03);}
+.ratio-name{color:var(--ink2);font-weight:500;}
+.ratio-val{text-align:right;font-weight:700;}
+.ratio-val.pos{color:var(--g);}
+.ratio-val.neg{color:var(--red);}
+.chg-badge{font-size:.6rem;font-weight:700;padding:.28rem .6rem;border-radius:6px;text-align:center;white-space:nowrap;line-height:1.4;display:inline-flex;align-items:center;justify-content:center;gap:.2rem;}
+.chg-badge.up{background:rgba(22,163,74,.12);color:var(--g);border:1px solid rgba(22,163,74,.2);}
+.chg-badge.dn{background:rgba(220,38,38,.08);color:var(--red);border:1px solid rgba(220,38,38,.18);}
+.chg-badge.neu{background:var(--paper2);color:var(--muted);border:1px solid var(--border);}
+
+/* ANNOUNCEMENT CARDS */
+.ann-card{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;position:relative;overflow:hidden;transition:all .25s;}
+.ann-card:hover{border-color:var(--border-h);box-shadow:var(--sh);}
+.ann-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--ann-color,var(--g));}
+.ann-date{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.35rem;}
+.ann-title{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.35;}
+.ann-body{font-size:.75rem;color:var(--muted);line-height:1.7;margin-bottom:.6rem;}
+.ann-biases{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem;}
+.bias-tag{font-size:.58rem;font-weight:700;padding:.12rem .45rem;border-radius:3px;}
+.bias-tag.ov{background:rgba(37,99,235,.1);color:var(--blue);}
+.bias-tag.hr{background:rgba(124,58,237,.1);color:#7c3aed;}
+.bias-tag.la{background:rgba(220,38,38,.1);color:var(--red);}
+.bias-tag.rc{background:rgba(217,119,6,.1);color:var(--amber);}
+.bias-tag.cf{background:rgba(22,163,74,.1);color:var(--g);}
+.bias-tag.an{background:rgba(15,118,110,.1);color:#0f766e;}
+.bias-tag.oc{background:rgba(147,51,234,.1);color:#9333ea;}
+.bias-tag.sq{background:rgba(100,116,139,.1);color:#64748b;}
+.bias-tag.av{background:rgba(180,83,0,.1);color:#b45309;}
+.ann-impact{display:flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:600;}
+.impact-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.impact-dot.pos{background:var(--g);}
+.impact-dot.neg{background:var(--red);}
+.impact-dot.neu{background:var(--muted);}
+
+/* PRICE MINI */
+.price-mini{display:flex;align-items:center;gap:.5rem;font-size:.7rem;}
+.pm-item{text-align:center;}
+.pm-val{font-weight:800;color:var(--ink);font-size:.82rem;}
+.pm-lbl{color:var(--muted);font-size:.6rem;}
+.pm-arr{color:var(--muted);font-size:.8rem;}
+
+/* BIAS BOX */
+.bias-box{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.2rem;}
+.bias-box-title{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;padding-bottom:.45rem;border-bottom:1px solid var(--border);}
+.bias-item{display:flex;align-items:flex-start;gap:.55rem;margin-bottom:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.bias-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.bias-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.bias-name{font-size:.75rem;font-weight:700;color:var(--ink);margin-bottom:.15rem;}
+.bias-desc{font-size:.7rem;color:var(--muted);line-height:1.6;}
+
+/* STRATEGY CARDS */
+.strat-card{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;border-top:3px solid var(--sc,var(--g));transition:all .25s;}
+.strat-card:hover{border-color:var(--sc,var(--g));box-shadow:var(--sh);transform:translateY(-2px);}
+.strat-num{font-size:1.4rem;font-weight:900;color:var(--sc,var(--g));opacity:.25;line-height:1;margin-bottom:.3rem;}
+.strat-title{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:.35rem;}
+.strat-desc{font-size:.73rem;color:var(--muted);line-height:1.7;}
+
+/* RISK GRID */
+.risk-item{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;}
+.risk-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem;}
+.risk-title{font-size:.78rem;font-weight:700;color:var(--ink);}
+.risk-pill{font-size:.58rem;font-weight:700;padding:.12rem .45rem;border-radius:2px;text-transform:uppercase;letter-spacing:.06em;}
+.risk-pill.h{background:#fee2e2;color:#991b1b;}
+.risk-pill.m{background:#fef3c7;color:#92400e;}
+.risk-pill.l{background:#dcfce7;color:#14532d;}
+.risk-desc{font-size:.72rem;color:var(--muted);line-height:1.65;}
+
+/* CHART CARD */
+.chart-card{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;}
+.chart-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gd);margin-bottom:.2rem;}
+[data-theme="dark"] .chart-title{color:var(--ink2);}
+.chart-sub{font-size:.6rem;color:var(--muted);margin-bottom:.9rem;}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.4);padding:1.2rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.62rem;margin-top:3rem;}
+footer strong{color:rgba(255,255,255,.7);}
+
+@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr!important;}.hl-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.g2,.g3,.g4,.hl-grid{grid-template-columns:1fr!important;}.hero{padding:3rem 5% 2.5rem;min-height:auto;}.hero-kpis{grid-template-columns:1fr 1fr;}}
+
+/* PROGRESS BAR */
+.progress-bar{position:fixed;top:0;left:0;height:2.5px;background:linear-gradient(90deg,var(--g),#4ade80);width:0%;z-index:999;transition:width .1s;}
+
+/* SECTION NAV PILLS */
+
+
+/* PRINT BUTTON */
+.print-btn{font-size:.62rem;font-weight:700;color:#fff;background:var(--g);border:none;padding:.28rem .8rem;border-radius:6px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;}
+.print-btn:hover{background:var(--gd);}
+
+/* BIAS FREQUENCY */
+.freq-bar-wrap{display:flex;flex-direction:column;gap:.45rem;}
+.freq-row{display:flex;align-items:center;gap:.6rem;}
+.freq-label{font-size:.68rem;font-weight:600;color:var(--ink2);width:140px;flex-shrink:0;}
+.freq-track{flex:1;height:10px;background:var(--paper2);border-radius:99px;overflow:hidden;border:1px solid var(--border);}
+.freq-fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.freq-count{font-size:.68rem;font-weight:800;color:var(--ink);width:28px;text-align:right;}
+
+/* ANNOUNCEMENT FILTER TABS */
+.ann-filters{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1rem;}
+.ann-filter{font-size:.62rem;font-weight:700;padding:.25rem .7rem;border-radius:99px;border:1.5px solid var(--border);color:var(--muted);cursor:pointer;background:transparent;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.ann-filter:hover{border-color:var(--g);color:var(--g);}
+.ann-filter.active{background:var(--g);color:#fff;border-color:var(--g);}
+
+/* SENTIMENT BADGE */
+.sentiment{display:inline-flex;align-items:center;gap:.3rem;font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:3px;margin-bottom:.5rem;}
+.sentiment.pos{background:rgba(22,163,74,.1);color:var(--g);}
+.sentiment.neg{background:rgba(220,38,38,.1);color:var(--red);}
+.sentiment.neu{background:var(--paper2);color:var(--muted);}
+
+/* BACK TO TOP */
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(22,163,74,.3);opacity:0;transform:translateY(8px);transition:all .3s;z-index:100;}
+.btt.show{opacity:1;transform:translateY(0);}
+.btt:hover{background:var(--gd);}
+
+/* KEY FINDINGS BANNER */
+.findings-banner{margin-bottom:2.5rem;}
+.findings-banner-inner{border:1px solid rgba(22,163,74,.2);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(22,163,74,.1);}
+.findings-banner-hd{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.4rem 1.8rem;background:#f0fdf4;border-bottom:2px solid rgba(22,163,74,.12);}
+[data-theme="dark"] .findings-banner-hd{background:#071008;border-bottom-color:rgba(34,197,94,.1);}
+.findings-eyebrow{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:#16a34a;margin-bottom:.3rem;}
+.findings-heading{font-size:1.15rem;font-weight:800;color:#0c2d18;margin:0;line-height:1.2;letter-spacing:-.02em;}
+[data-theme="dark"] .findings-heading{color:#dcfce7;}
+.findings-badge{background:#16a34a;border-radius:10px;padding:.65rem 1.3rem;text-align:center;flex-shrink:0;box-shadow:0 4px 12px rgba(22,163,74,.35);}
+.findings-badge-val{font-size:1.8rem;font-weight:900;color:#fff;line-height:1;letter-spacing:-.04em;}
+.findings-badge-lbl{font-size:.56rem;font-weight:700;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.14em;margin-top:.25rem;}
+.findings-item{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid rgba(22,163,74,.09);}
+.findings-item:last-child{border-bottom:none;}
+.findings-num-cell{display:flex;align-items:center;justify-content:center;padding:1rem 0;border-right:1px solid rgba(22,163,74,.1);font-size:.68rem;font-weight:800;background:rgba(22,163,74,.05);color:#16a34a;letter-spacing:.04em;}
+[data-theme="dark"] .findings-num-cell{background:rgba(22,163,74,.08);color:#4ade80;}
+.findings-text-cell{padding:.95rem 1.4rem;background:#fff;font-size:.82rem;color:#374151;line-height:1.75;}
+[data-theme="dark"] .findings-text-cell{background:#0a1c0e;color:#a7f3d0;}
+.findings-text-cell strong{color:#0c2d18;font-weight:700;}
+[data-theme="dark"] .findings-text-cell strong{color:#ecfdf5;}
+/* ════════════════════════════════════════════
+   ✦ MODERN POLISH LAYER — full index effect set
+   gradient · glass · reveal · spotlight · grain
+   · sheen · section shimmer · spring motion
+════════════════════════════════════════════ */
+:root{--glow:rgba(34,197,94,.18);--gsm:rgba(34,197,94,.07);}
+
+/* animated drifting glow over hero (::before/::after already used) */
+.hero{background:
+  radial-gradient(38% 50% at 14% 28%,rgba(74,222,128,.16),transparent 70%),
+  linear-gradient(145deg,#071a0c 0%,#0d2e15 55%,#16a34a 100%)!important;
+  background-size:140% 140%,100% 100%!important;
+  animation:heroDrift 16s ease-in-out infinite alternate;}
+@keyframes heroDrift{0%{background-position:0% 0%,0 0;}100%{background-position:30% 20%,0 0;}}
+
+/* animated gradient on hero accent word */
+.hero-h1 em{
+  background:linear-gradient(100deg,#4ade80,#bbf7d0,#22c55e,#4ade80);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:hueslide 6.5s ease infinite;font-style:italic;
+}
+@keyframes hueslide{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* hero tag shine sweep */
+.hero-tag{position:relative;overflow:hidden;}
+.hero-tag::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(74,222,128,.45),transparent);
+  transform:skewX(-20deg);animation:sheen 5.5s ease-in-out infinite;
+}
+@keyframes sheen{0%,100%{left:-80%;}50%{left:150%;}}
+
+/* glass + spring lift + cursor spotlight on cards */
+.card,.chart-card{position:relative;transition:transform .4s cubic-bezier(.18,.89,.32,1.28),border-color .25s,box-shadow .35s!important;}
+.chart-card{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.card:hover,.chart-card:hover{transform:translateY(-5px);border-color:var(--border-h);box-shadow:var(--sh2);}
+.card::after,.chart-card::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+  opacity:0;transition:opacity .3s;
+  background:radial-gradient(170px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%);
+}
+.card:hover::after,.chart-card:hover::after{opacity:1;}
+
+/* section heading: shimmer underline */
+.sec-h{position:relative;padding-bottom:.45rem;}
+.sec-h::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:42px;
+  background:linear-gradient(90deg,var(--g),#4ade80,transparent);
+  background-size:200% 100%;animation:hueslide 4s ease infinite;border-radius:2px;
+}
+
+/* back button shine sweep on hover */
+.nav-back{position:relative;overflow:hidden;transition:all .25s cubic-bezier(.18,.89,.32,1.28);}
+.nav-back::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(34,197,94,.25),transparent);
+  transform:skewX(-20deg);transition:left .5s;
+}
+.nav-back:hover::after{left:150%;}
+
+/* upgraded scroll-reveal spring */
+.rv{transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.18,.89,.32,1.28);}
+
+/* table rows smoother hover */
+tbody tr{transition:background .2s,box-shadow .2s;}
+tbody tr:hover{box-shadow:inset 3px 0 0 var(--g);}
+
+/* subtle grain texture */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.02;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* accessibility: respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .rv{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="progress-bar" id="pgbar"></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+<nav class="nav">
+  <div class="nav-left">
+    <a href="index-60-5.html" class="nav-back"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>Back</a>
+    <div class="nav-title">SNGPL <span>· Behavioral Finance</span></div>
+  </div>
+  <div class="nav-right">
+    <div class="dark-btn" onclick="toggleTheme()">
+      <div class="dark-knob">
+        <span class="ks"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+        <span class="km"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+      </div>
+    </div>
+  <button class="print-btn" onclick="window.print()">⎙ Print</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+  <div class="hero-tag"><div class="hero-tag-dot"></div>Academic Report · BBA 6B · SMI University</div>
+  <h1 class="hero-h1">Sui Northern Gas<br><em>Pipelines Limited</em></h1>
+  <p class="hero-sub">Behavioral Finance Report — A comprehensive analysis of investor behavior, psychological biases, and market reactions to 20+ PSX corporate announcements</p>
+  <div class="hero-meta">
+    <div class="hmeta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Abdul Qadir Avadia &nbsp;·&nbsp; BUS-21S-003</div>
+    <div class="hmeta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>SMI University · BBA 6B</div>
+    <div class="hmeta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Submitted to: Sir Raza Ali</div>
+    <div class="hmeta"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PSX Listed · KSE</div>
+  </div>
+  </div>
+  <div class="hero-kpis">
+    <div class="hero-kpi">
+      <div class="hero-kpi-val">~29%</div>
+      <div class="hero-kpi-lbl">Share Price Decline</div>
+      <div class="hero-kpi-note">PKR 48.31 → PKR 34.21, driven by AGM uncertainty</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-val">9 / 13</div>
+      <div class="hero-kpi-lbl">Loss Aversion Bias</div>
+      <div class="hero-kpi-note">Most dominant bias across announcements analyzed</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-val">+61.8%</div>
+      <div class="hero-kpi-lbl">Gross Profit Growth</div>
+      <div class="hero-kpi-note">Fundamentals stayed strong despite price drop</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-val">21.4M</div>
+      <div class="hero-kpi-lbl">Peak Trade Volume</div>
+      <div class="hero-kpi-note">Single-session spike from herding behavior</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="body" style="padding-top:2.5rem;">
+
+<!-- 01 — COMPANY INTRO -->
+<div class="findings-banner rv">
+  <div class="findings-banner-inner">
+    <div class="findings-banner-hd">
+      <div>
+        <div class="findings-eyebrow">Summary</div>
+        <div class="findings-heading">Detailed Findings</div>
+      </div>
+      <div class="findings-badge">
+        <div class="findings-badge-val">13</div>
+        <div class="findings-badge-lbl">Announcements</div>
+      </div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">01</div>
+      <div class="findings-text-cell">Share price declined <strong>~29%</strong> — from PKR 48.31 to PKR 34.21 — driven by Annual General Meeting (AGM) extension uncertainty, not fundamental deterioration.</div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">02</div>
+      <div class="findings-text-cell"><strong>Loss Aversion</strong> was the most dominant bias, identified in 9 out of 13 corporate announcements analyzed throughout the period.</div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">03</div>
+      <div class="findings-text-cell">Despite net profit declining -5.6%, fundamentals stayed strong — Gross Profit <strong>+61.8%</strong>, EPS Rs. 16.34, ROCE 9.19%.</div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">04</div>
+      <div class="findings-text-cell"><strong>Herding Behavior</strong> caused trade volume to spike from 2.1M to <strong>21.4M</strong> in a single trading session on July 5, 2021.</div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">05</div>
+      <div class="findings-text-cell">Breakup value <strong>PKR 62.51</strong> significantly exceeded market price PKR 34.21 — a clear value investing opportunity signal.</div>
+    </div>
+    <div class="findings-item">
+      <div class="findings-num-cell">06</div>
+      <div class="findings-text-cell">Repeated Annual General Meeting (AGM) and financial report extension requests over <strong>12 months</strong> systematically eroded investor confidence and market trust.</div>
+    </div>
+  </div>
+</div>
+<div class="sec rv" id="s1">
+  <div class="sec-label">01</div>
+  <h2 class="sec-h">Company<br><em>Introduction</em></h2>
+  <div class="g2" style="margin-bottom:1.2rem;">
+    <div class="prose">
+      <p>Sui Northern Gas Pipelines Limited (SNGPL), established in 1963 as a private limited company, became a public limited company in January 1964 under the Indian Companies Act 1913. SNGPL is the largest gas company in northern Pakistan, serving over <strong>7.2 million consumers</strong> across Punjab, Khyber Pakhtunkhwa, and Azad Jammu & Kashmir.</p>
+      <p>SNGPL supplies gas through two sources: <strong>System Gas</strong> — extracting 750–800 million cubic feet from local sources — and <strong>RLNG</strong> (Re-gasified Liquified Natural Gas) imported in liquid form, totaling approximately 100 million cubic feet.</p>
+    </div>
+    <div class="prose">
+      <p><strong>Vision:</strong> To be the leading integrated natural gas provider, improving quality of life and achieving maximum benefit for stakeholders through uninterrupted, environment-friendly energy.</p>
+      <p><strong>Mission:</strong> Deliver natural gas to all doorsteps through continuous expansion of the network, optimally employing technological, human, and organizational resources with high ethical standards.</p>
+    </div>
+  </div>
+  <div class="g4">
+    <div class="card"><div class="card-title">Founded</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">1963</div><div style="font-size:.7rem;color:var(--muted);">Public Ltd. since 1964</div></div>
+    <div class="card"><div class="card-title">Consumers</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">7.2M+</div><div style="font-size:.7rem;color:var(--muted);">Residential, commercial & industrial</div></div>
+    <div class="card"><div class="card-title">System Gas</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">800 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Local extraction daily</div></div>
+    <div class="card"><div class="card-title">RLNG Import</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">100 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Imported re-gasified LNG</div></div>
+  </div>
+</div>
+
+<!-- 02 — BALANCE SHEET -->
+<div class="sec rv" id="s2">
+  <div class="sec-label">02</div>
+  <h2 class="sec-h">Balance Sheet<br><em>Analysis</em></h2>
+  <div class="hl-strip" style="margin-bottom:1.2rem;">
+    <div class="hl-strip-title">Key Balance Sheet Movements · FY 2021 → FY 2022 · PKR (Rupees in Thousands)</div>
+    <div class="hl-grid">
+      <div class="hl-item"><div class="hl-val">1,268B</div><div class="hl-lbl">Total Assets</div><div class="hl-chg up">↑ from 918B — Balance sheet expanded +38%</div></div>
+      <div class="hl-item"><div class="hl-val">33.3B</div><div class="hl-lbl">Revenue Reserves</div><div class="hl-chg up">↑ from 27.9B — Retained earnings growing</div></div>
+      <div class="hl-item"><div class="hl-val">828B</div><div class="hl-lbl">Trade & Other Payables</div><div class="hl-chg dn">↑ from 528B — Gas supply payment backlog</div></div>
+      <div class="hl-item"><div class="hl-val">307B</div><div class="hl-lbl">Trade Debt</div><div class="hl-chg dn">↑ from 172B — Receivables collection concern</div></div>
+    </div>
+  </div>
+  <div class="g2 bs-stack">
+    <div>
+      <div style="font-size:.65rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;">Equity & Liabilities</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th class="yr">FY 2022 (PKR)</th><th>FY 2021 (PKR)</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="4">Share Capital & Reserves</td></tr>
+            <tr><td class="ind">Share Capital (Paid-up)</td><td>6,342,167,000</td><td>6,342,167,000</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Revenue Reserves</td><td class="pos">33,305,891,000</td><td>27,877,899,000</td><td class="pos">↑ +19.5%</td></tr>
+            <tr><td class="ind">Deferred Grant</td><td class="pos">57,656,379,000</td><td>54,873,962,000</td><td class="pos">↑ +5.1%</td></tr>
+            <tr><td class="ind">Contract Liabilities (LT)</td><td class="neg">19,747,043,000</td><td>15,262,507,000</td><td class="neg">↑ +29.4%</td></tr>
+            <tr class="sub"><td><strong>Total Equity</strong></td><td><strong>117,051,480,000</strong></td><td><strong>104,356,535,000</strong></td><td class="pos"><strong>↑ +12.2%</strong></td></tr>
+            <tr class="grp"><td colspan="4">Non-Current Liabilities</td></tr>
+            <tr><td class="ind">Long-term Financing — Local</td><td>124,214,000</td><td>179,775,000</td><td class="pos">↓ Reduced</td></tr>
+            <tr><td class="ind">Long-term Financing — Banking Companies</td><td>25,450,493,000</td><td>27,455,663,000</td><td class="pos">↓ Reduced</td></tr>
+            <tr><td class="ind">Lease Liabilities</td><td>28,297,506,000</td><td>30,171,701,000</td><td class="pos">↓ Reduced</td></tr>
+            <tr><td class="ind">Long-term Security Deposits</td><td class="neg">56,479,161,000</td><td>55,205,548,000</td><td class="neg">↑ +2.3%</td></tr>
+            <tr><td class="ind">Deferred Liabilities — Taxation</td><td>—</td><td>1,266,808,000</td><td class="pos">↓ Cleared</td></tr>
+            <tr><td class="ind">Employee Benefits</td><td>11,942,076,000</td><td>11,387,322,000</td><td class="neg">↑ +4.9%</td></tr>
+            <tr class="grp"><td colspan="4">Current Liabilities</td></tr>
+            <tr><td class="ind">Trade & Other Payables</td><td class="neg">828,842,370,000</td><td>528,308,720,000</td><td class="neg">↑ +56.9%</td></tr>
+            <tr><td class="ind">Contract Liabilities (Current)</td><td class="neg">—</td><td>1,256,000,000</td><td>—</td></tr>
+            <tr><td class="ind">Short-term Borrowings</td><td class="neg">190,199,488,000</td><td>29,598,829,000</td><td class="neg">↑ Significant</td></tr>
+            <tr><td class="ind">Current Portion of Lease Liabilities</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Current Portion of LT Financing</td><td class="neg">122,014,000</td><td>110,787,000</td><td class="neg">↑</td></tr>
+            <tr class="sub"><td><strong>Total Current Liabilities</strong></td><td class="neg"><strong>1,028,762,141,000</strong></td><td class="neg"><strong>688,037,096,000</strong></td><td class="neg"><strong>↑ +49.5%</strong></td></tr>
+            <tr class="tot"><td><strong>TOTAL EQUITY & LIABILITIES</strong></td><td><strong>1,268,107,071,000</strong></td><td><strong>918,060,448,000</strong></td><td style="color:#fca5a5;font-weight:700;">↑ +38.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.65rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;">Assets</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th class="yr">FY 2022 (PKR)</th><th>FY 2021 (PKR)</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="4">Non-Current Assets</td></tr>
+            <tr><td class="ind">PP&E (Net)</td><td class="pos">224,937,870,000</td><td>214,090,961,000</td><td class="pos">↑ +5.1%</td></tr>
+            <tr><td class="ind">Intangible Assets</td><td>366,290,000</td><td>384,441,000</td><td class="neg">↓ Amortized</td></tr>
+            <tr><td class="ind">Right-of-Use Assets</td><td>29,969,008,000</td><td>33,357,784,000</td><td class="neg">↓ Expired leases</td></tr>
+            <tr><td class="ind">Long-term Loan Receivable</td><td class="pos">1,168,910,000</td><td>634,709,000</td><td class="pos">↑ +84.2%</td></tr>
+            <tr><td class="ind">Long-term Investment</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Employee Benefits (Asset)</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr class="sub"><td><strong>Total Non-Current Assets</strong></td><td><strong>261,607,683,000</strong></td><td><strong>252,730,046,000</strong></td><td class="pos"><strong>↑ +3.5%</strong></td></tr>
+            <tr class="grp"><td colspan="4">Current Assets</td></tr>
+            <tr><td class="ind">Stores & Spare Parts</td><td class="neg">—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Stock-in-Trade</td><td class="neg">12,496,985,000</td><td>4,680,416,000</td><td class="neg">↑ +167%</td></tr>
+            <tr><td class="ind">Trade Debt</td><td class="neg">307,900,341,000</td><td>172,259,997,000</td><td class="neg">↑ +78.8%</td></tr>
+            <tr><td class="ind">Loans & Advances</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Other Receivables</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Income Tax Recoverable (Net)</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Sales Tax Recoverable</td><td>—</td><td>—</td><td class="neu">—</td></tr>
+            <tr><td class="ind">Cash & Bank Balances</td><td class="pos">15,739,568,000</td><td>10,328,059,000</td><td class="pos">↑ +52.4%</td></tr>
+            <tr class="sub"><td><strong>Total Current Assets</strong></td><td><strong>1,006,499,388,000</strong></td><td><strong>665,330,402,000</strong></td><td class="neg"><strong>↑ +51.3%</strong></td></tr>
+            <tr class="tot"><td><strong>TOTAL ASSETS</strong></td><td><strong>1,268,107,071,000</strong></td><td><strong>918,060,448,000</strong></td><td style="color:#fca5a5;font-weight:700;">↑ +38.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 — P&L -->
+<div class="sec rv" id="s3">
+  <div class="sec-label">03</div>
+  <h2 class="sec-h">Statement of Profit & Loss<br><em>Analysis</em></h2>
+  <div class="tbl-wrap" style="margin-bottom:1.2rem;">
+    <table>
+      <thead><tr><th style="width:38%;">Particulars</th><th class="yr">FY 2022 (PKR)</th><th>FY 2021 (PKR)</th><th>Change</th><th style="width:44px;">Info</th></tr></thead>
+      <tbody>
+        <tr><td>Gas Sales</td><td class="pos">1,076,740,109,000</td><td>644,504,419,000</td><td class="pos">↑ +67.1%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Higher gas volumes &amp; price increases</span></td></tr>
+        <tr><td>Add: Tariff Adjustment / Gas Development Surcharge</td><td class="pos">216,937,355,000</td><td>113,122,636,000</td><td class="pos">↑ +91.8%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Regulatory tariff component added to Gas Sales</span></td></tr>
+        <tr class="sub"><td><strong>Net Sales</strong></td><td><strong>1,293,677,464,000</strong></td><td><strong>757,627,055,000</strong></td><td class="pos"><strong>↑ +70.8%</strong></td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Gas Sales + Tariff Adjustment</span></td></tr>
+        <tr><td>Cost of Gas Sold</td><td class="neg">1,208,155,759,000</td><td>704,775,318,000</td><td class="neg">↑ +71.4%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Deducted from Net Sales — not Gas Sales alone</span></td></tr>
+        <tr class="sub"><td><strong>Gross Profit</strong></td><td><strong>85,521,705,000</strong></td><td><strong>52,851,737,000</strong></td><td class="pos"><strong>↑ +61.8%</strong></td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Net Sales − Cost of Gas Sold · GP Margin: 6.61%</span></td></tr>
+        <tr><td>Other Operating Income</td><td class="pos">21,452,025,000</td><td>19,513,400,000</td><td class="pos">↑ +9.9%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Non-core income streams</span></td></tr>
+        <tr class="grp"><td colspan="5">Expenditure</td></tr>
+        <tr><td class="ind">Operating Expenses</td><td class="neg">16,657,744,000</td><td>15,314,143,000</td><td class="neg">↑ +8.8%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Admin, selling &amp; distribution costs</span></td></tr>
+        <tr><td class="ind">Take or Pay Adjustment (Prior Years)</td><td class="neg">13,768,112,000</td><td>—</td><td class="neg">New</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">One-time prior year adjustment charge</span></td></tr>
+        <tr><td class="ind">Expected Credit Loss</td><td class="neg">1,208,532,000</td><td>370,386,000</td><td class="neg">↑ +226%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Rising bad debt provision on trade receivables</span></td></tr>
+        <tr><td class="ind">Finance Cost</td><td class="neg">57,296,389,000</td><td>40,036,825,000</td><td class="neg">↑ +43.1%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Higher borrowings — major drag on net profit</span></td></tr>
+        <tr><td class="ind">Other Charges</td><td class="neg">2,539,340,000</td><td>801,879,000</td><td class="neg">↑ +217%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Miscellaneous charges</span></td></tr>
+        <tr><td><strong>Profit Before Taxation</strong></td><td>15,503,613,000</td><td>15,841,904,000</td><td class="neg">↓ -2.1%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Finance costs offset strong operating gains</span></td></tr>
+        <tr><td>Provision for Taxation</td><td class="neg">5,137,382,000</td><td>4,855,910,000</td><td class="neg">↑ +5.8%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Higher taxable income in FY 2022</span></td></tr>
+        <tr class="tot"><td><strong>Profit / (Loss) After Taxation</strong></td><td><strong>10,366,231,000</strong></td><td><strong>10,985,994,000</strong></td><td style="color:#fca5a5;font-weight:700;">↓ -5.6%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Finance cost &amp; taxes eroded profit despite higher revenue</span></td></tr>
+        <tr><td>EPS — Basic (Rupees)</td><td class="neg">PKR 16.34</td><td>PKR 17.32</td><td class="neg">↓ -5.7%</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Less earnings per share due to lower net profit</span></td></tr>
+        <tr><td>Dividend (%)</td><td>40%</td><td>70%</td><td class="neg">↓ -30pp</td><td class="td-note"><span class="note-icon">i</span><span class="note-tip">Reduced payout ratio to conserve cash</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="g2">
+    <div class="chart-card"><div class="chart-title">Revenue vs Gross Profit vs Net Profit</div><div class="chart-sub">FY 2021 vs FY 2022 · PKR Billions</div><div style="position:relative;height:200px;"><canvas id="c-pl"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Margin Comparison</div><div class="chart-sub">Key margins FY 2021 vs FY 2022 (%)</div><div style="position:relative;height:200px;"><canvas id="c-margin"></canvas></div></div>
+  </div>
+</div>
+
+<!-- 04 — RATIO ANALYSIS -->
+<div class="sec rv" id="s4">
+  <div class="sec-label">04</div>
+  <h2 class="sec-h">Ratio<br><em>Analysis</em></h2>
+  <div class="g2" style="margin-bottom:1rem;">
+    <!-- Profitability -->
+    <div class="ratio-card">
+      <div class="ratio-head">Profitability Ratios</div>
+      <div class="ratio-row"><span class="ratio-name">Gross Profit Ratio (on Net Sales)</span><span class="ratio-val neg">6.61%</span><span class="ratio-val">6.98%</span><span class="chg-badge dn">↓ −0.37pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Net Profit to Sales</span><span class="ratio-val neg">0.96%</span><span class="ratio-val">1.70%</span><span class="chg-badge dn">↓ −0.74pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">EBITDA Margin</span><span class="ratio-val neg">8.55%</span><span class="ratio-val">12.41%</span><span class="chg-badge dn">↓ −3.86pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Return on Equity</span><span class="ratio-val neg">28.07%</span><span class="ratio-val">37.02%</span><span class="chg-badge dn">↓ −8.95pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Return on Capital Employed</span><span class="ratio-val neg">9.19%</span><span class="ratio-val">9.67%</span><span class="chg-badge dn">↓ −0.48pp</span></div>
+    </div>
+    <!-- Efficiency -->
+    <div class="ratio-card">
+      <div class="ratio-head">Efficiency Ratios</div>
+      <div class="ratio-row"><span class="ratio-name">Operating Cycle</span><span class="ratio-val pos">84 days</span><span class="ratio-val">98 days</span><span class="chg-badge up">↑ −14 days</span></div>
+      <div class="ratio-row"><span class="ratio-name">Inventory Turnover</span><span class="ratio-val pos">140.67x</span><span class="ratio-val">122.51x</span><span class="chg-badge up">↑ +14.8%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Debtor Turnover</span><span class="ratio-val pos">4.48x</span><span class="ratio-val">3.82x</span><span class="chg-badge up">↑ +17.3%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Total Asset Turnover</span><span class="ratio-val pos">0.85x</span><span class="ratio-val">0.70x</span><span class="chg-badge up">↑ +21.4%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Fixed Asset Turnover</span><span class="ratio-val pos">4.79x</span><span class="ratio-val">3.01x</span><span class="chg-badge up">↑ +59.1%</span></div>
+    </div>
+  </div>
+  <div class="g2">
+    <!-- Investment -->
+    <div class="ratio-card">
+      <div class="ratio-head">Investment / Market Ratios</div>
+      <div class="ratio-row"><span class="ratio-name">Earnings Per Share (EPS)</span><span class="ratio-val neg">PKR 16.34</span><span class="ratio-val">PKR 17.32</span><span class="chg-badge dn">↓ −5.7%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Market Value Per Share</span><span class="ratio-val neg">PKR 34.21</span><span class="ratio-val">PKR 48.58</span><span class="chg-badge dn">↓ −29.5%</span></div>
+      <div class="ratio-row"><span class="ratio-name">P/E Ratio</span><span class="ratio-val neg">2.09x</span><span class="ratio-val">2.80x</span><span class="chg-badge dn">↓ −25.4%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Breakup Value Per Share</span><span class="ratio-val pos">PKR 62.51</span><span class="ratio-val">PKR 53.96</span><span class="chg-badge up">↑ +15.8%</span></div>
+      <div class="ratio-row"><span class="ratio-name">Cash Dividend Per Share</span><span class="ratio-val neg">PKR 4.00</span><span class="ratio-val">PKR 7.00</span><span class="chg-badge dn">↓ −42.9%</span></div>
+    </div>
+    <!-- Leverage -->
+    <div class="ratio-card">
+      <div class="ratio-head">Leverage / Liquidity Ratios</div>
+      <div class="ratio-row"><span class="ratio-name">Debt-Equity Ratio</span><span class="ratio-val pos">68%</span><span class="ratio-val">75%</span><span class="chg-badge up">↓ −7pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Dividend Yield Ratio</span><span class="ratio-val neg">11.69%</span><span class="ratio-val">14.41%</span><span class="chg-badge dn">↓ −2.72pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Dividend Payout Ratio</span><span class="ratio-val neg">24.47%</span><span class="ratio-val">40.41%</span><span class="chg-badge dn">↓ −15.9pp</span></div>
+      <div class="ratio-row"><span class="ratio-name">Current Ratio</span><span class="ratio-val pos">0.98x</span><span class="ratio-val">0.97x</span><span class="chg-badge up">↑ +0.01x</span></div>
+      <div class="ratio-row"><span class="ratio-name">Quick / Acid Test Ratio</span><span class="ratio-val pos">0.96x</span><span class="ratio-val">0.95x</span><span class="chg-badge up">↑ +0.01x</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 — BEHAVIORAL BIASES SUMMARY -->
+<div class="sec rv" id="s5">
+  <div class="sec-label">05</div>
+  <h2 class="sec-h">Behavioral Biases<br><em>Identified</em></h2>
+  <div class="g3" style="margin-bottom:1.2rem;">
+    <div class="bias-box">
+      <div class="bias-box-title" style="color:var(--blue);">Cognitive Biases</div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(37,99,235,.08);">🔁</div><div><div class="bias-name">Overreaction Bias</div><div class="bias-desc">Investors overreact to announcements — sharp price spikes followed by corrections. Seen on July 5, Aug 27, Nov 22.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.08);">📌</div><div><div class="bias-name">Anchoring Bias</div><div class="bias-desc">Past dividend of PKR 7 anchored expectations; PKR 4 announcement caused disappointment and sell-off.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(22,163,74,.08);">✅</div><div><div class="bias-name">Confirmation Bias</div><div class="bias-desc">Investors focused on dividend news while ignoring auditor's investigation allegation on July 29, 2021.</div></div></div>
+    </div>
+    <div class="bias-box">
+      <div class="bias-box-title" style="color:#7c3aed;">Social Biases</div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(124,58,237,.08);">🐑</div><div><div class="bias-name">Herding Behavior</div><div class="bias-desc">Trade volume jumped from 2.1M to 21.4M on July 5 as investors followed early buyers without independent analysis.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(147,51,234,.08);">💭</div><div><div class="bias-name">Overconfidence Bias</div><div class="bias-desc">After AGM notice (July 7) and court win (July 19), investors overestimated ability to predict outcomes.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(100,116,139,.08);">⏸️</div><div><div class="bias-name">Status Quo Bias</div><div class="bias-desc">Repeated AGM extension requests led investors to hold positions and wait, evidenced by reduced trade volume.</div></div></div>
+    </div>
+    <div class="bias-box">
+      <div class="bias-box-title" style="color:var(--red);">Emotional Biases</div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(220,38,38,.08);">😨</div><div><div class="bias-name">Loss Aversion</div><div class="bias-desc">Investors sold on declining prices to avoid greater losses — even at a loss — during Aug–Oct 2021 downtrend.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.08);">🕒</div><div><div class="bias-name">Recency Bias</div><div class="bias-desc">Most recent announcements (dividend, quarterly EPS) weighted heavily over longer historical performance.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(180,83,0,.08);">😬</div><div><div class="bias-name">Regret Aversion</div><div class="bias-desc">Before June 2022 board meeting, investors avoided selling fearing the price would recover after they sold.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 — PSX ANNOUNCEMENTS -->
+<div class="sec rv" id="s6">
+  <div class="sec-label">06</div>
+  <h2 class="sec-h">PSX Announcements &<br><em>Market Reactions</em></h2>
+  <div style="display:flex;flex-direction:column;gap:.7rem;">
+
+    <div class="ann-card" style="--ann-color:#16a34a;">
+      <div class="ann-date">July 2 & 5, 2021</div>
+      <div class="ann-title">Board Meeting + Financial Results (FY 2020) + Director Resignation</div>
+      <div class="ann-body">Dividend of PKR 4/share announced. FY 2020 profit: PKR 5.99M, EPS Rs. 9.46 (vs Rs. 11.16 prior). Auditors flagged director transaction investigation & circular debt. Q1 EPS Rs. 5.01 (vs Rs. 2.96). Director Sajid Mehmood Qazi resigned; Yusuf Khan appointed.</div>
+      <div class="ann-biases">
+        <span class="bias-tag ov">Overreaction</span><span class="bias-tag rc">Recency Bias</span><span class="bias-tag hr">Herding</span><span class="bias-tag av">Attribution Bias</span>
+      </div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">47.97</div><div class="pm-lbl">Jul 2</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">49.74</div><div class="pm-lbl">Jul 5 ↑</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">47.73</div><div class="pm-lbl">Jul 6 ↓</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val">48.45</div><div class="pm-lbl">Jul 7</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">Vol: 2.1M → 21.4M → 8.7M</span>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#2563eb;">
+      <div class="ann-date">July 7 & 8, 2021</div>
+      <div class="ann-title">56th AGM Notice + Book Closure Change (Eid) + Audited Accounts Transmission</div>
+      <div class="ann-body">AGM scheduled July 29 at Pearl Continental Lahore. Book closure changed due to Eid holidays. Full audited annual and Q1 accounts shared with shareholders. AGM seen as positive signal for future dividend announcement.</div>
+      <div class="ann-biases"><span class="bias-tag oc">Overconfidence</span><span class="bias-tag cf">Confirmation</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">48.45</div><div class="pm-lbl">Jul 7</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">49.50</div><div class="pm-lbl">Jul 8 ↑</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val">48.85</div><div class="pm-lbl">Jul 9</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#7c3aed;">
+      <div class="ann-date">July 19, 2021</div>
+      <div class="ann-title">Lahore High Court Win — RLNG Pricing Dispute</div>
+      <div class="ann-body">SNGPL won case against regulator over RLNG pricing methodology (changed since August 2020). Court win did not impact recent financials but boosted investor sentiment significantly. Trade volume surged as investors followed market momentum.</div>
+      <div class="ann-biases"><span class="bias-tag hr">Herding</span><span class="bias-tag oc">Overconfidence</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">49.05</div><div class="pm-lbl">Jul 16</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">52.72</div><div class="pm-lbl">Jul 19 ↑</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">56.25</div><div class="pm-lbl">Jul 23 Peak</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">Vol: 4.3M → 18.5M → 21.1M</span>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#d97706;">
+      <div class="ann-date">July 29, 2021</div>
+      <div class="ann-title">56th Annual General Meeting — Dividend Confirmed PKR 4/Share</div>
+      <div class="ann-body">AGM held at Pearl Continental Lahore. Company confirmed PKR 4/share cash dividend. Auditors Yousaf Adil CA appointed for next year. Company agreed to auditor's previous allegations. Despite positive dividend news, price fell next day as investors processed auditor allegation details.</div>
+      <div class="ann-biases"><span class="bias-tag cf">Confirmation</span><span class="bias-tag an">Anchoring</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">49.90</div><div class="pm-lbl">Jul 28</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">50.45</div><div class="pm-lbl">Jul 29 ↑</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">49.68</div><div class="pm-lbl">Jul 30 ↓</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#16a34a;">
+      <div class="ann-date">August 16, 2021</div>
+      <div class="ann-title">Credit of Final Cash Dividend PKR 4/Share via Online Banking</div>
+      <div class="ann-body">Dividend credited directly to shareholder bank accounts. Shareholders who had not submitted ID/bank details could not receive payment. Post-dividend, some investors sold shares (short-term trading bias), viewing distribution as less reinvestment signal.</div>
+      <div class="ann-biases"><span class="bias-tag sq">Short-term Trading</span><span class="bias-tag la">Risk Aversion</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">49.93</div><div class="pm-lbl">Aug 13</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">48.99</div><div class="pm-lbl">Aug 16 ↓</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val">49.72</div><div class="pm-lbl">Aug 17</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#dc2626;">
+      <div class="ann-date">August 27, 2021</div>
+      <div class="ann-title">Supreme Court Orders Termination of 717 Employees</div>
+      <div class="ann-body">Supreme Court ruled SNGPL should not have re-hired 717 employees (195 executives + 521 subordinate staff) under Act 2010. This raised concerns about operational disruption, increased costs, and company profitability. Investors immediately began selling shares.</div>
+      <div class="ann-biases"><span class="bias-tag la">Loss Aversion</span><span class="bias-tag ov">Overreaction</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">47.07</div><div class="pm-lbl">Aug 26</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">46.59</div><div class="pm-lbl">Aug 27 ↓</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val">47.81</div><div class="pm-lbl">Aug 30 Recovery</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#dc2626;">
+      <div class="ann-date">Sept 1 – Oct 21, 2021</div>
+      <div class="ann-title">Director Change + Multiple AGM & Financial Report Extension Requests</div>
+      <div class="ann-body">New director Syed Zakria Ali Shah appointed. Company requested multiple extensions for AGM (Sept 30, Oct 20, Oct 21) and financial report submissions. SECP granted some, rejected others. Investor confidence declined steadily — share price fell from ~47 to ~40.</div>
+      <div class="ann-biases"><span class="bias-tag hr">Herding</span><span class="bias-tag la">Loss Aversion</span><span class="bias-tag av">Availability Heuristic</span><span class="bias-tag sq">Status Quo</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">47.37</div><div class="pm-lbl">Sep 1</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">39.95</div><div class="pm-lbl">Oct 22 ↓</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">Steady decline over 7 weeks</span>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#16a34a;">
+      <div class="ann-date">October 4, 2021</div>
+      <div class="ann-title">Half-Year (Dec 2020) & Q3 (Mar 2021) Financial Results + Interim Dividend PKR 2/Share</div>
+      <div class="ann-body">H1 EPS Rs. 9.33 (vs Rs. 7.40 prior year). Q3 EPS Rs. 4.76 (vs Rs. 1.71 prior). PKR 2/share interim dividend announced. Despite positive results, share price continued declining as investors anchored to previous PKR 7 dividend and feared ongoing investigation.</div>
+      <div class="ann-biases"><span class="bias-tag la">Loss Aversion</span><span class="bias-tag an">Anchoring</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">47.34</div><div class="pm-lbl">Oct 4</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">42.99</div><div class="pm-lbl">Oct 8 ↓</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#dc2626;">
+      <div class="ann-date">Nov 11–25, 2021</div>
+      <div class="ann-title">Gas Loss Clarification (8.9%) + Gas Meter JV Disclosure + More AGM Extensions</div>
+      <div class="ann-body">Company clarified Minister of Energy's tweet on gas losses — expected ~8.9% (final numbers pending audit). Disclosed potential JV for gas meter manufacturing. Second AGM extension request (new deadline: April 15, 2022). Each extension reinforced investor belief that company was hiding financial problems.</div>
+      <div class="ann-biases"><span class="bias-tag an">Anchoring</span><span class="bias-tag la">Loss Aversion</span><span class="bias-tag rc">Recency</span><span class="bias-tag ov">Overreaction</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">42.99</div><div class="pm-lbl">Nov 11</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">39.87</div><div class="pm-lbl">Nov 23 ↓</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#dc2626;">
+      <div class="ann-date">Dec 13, 2021</div>
+      <div class="ann-title">Director Change — Mr. Hamed Yaqoob Sheikh Appointed</div>
+      <div class="ann-body">Board accepted resignation of Mr. Yusuf Khan; Mr. Hamed Yaqoob Sheikh appointed. Investors linked this leadership change to ongoing extension requests, confirming fears about company's financial condition. High trade volume as investors rushed to sell at any price.</div>
+      <div class="ann-biases"><span class="bias-tag cf">Confirmation</span><span class="bias-tag la">Loss Aversion</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">36.47</div><div class="pm-lbl">Dec 13</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">34.45</div><div class="pm-lbl">Dec 14 ↓</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">Vol spike: 548K → 4.75M → 6.72M</span>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#64748b;">
+      <div class="ann-date">Dec 31, 2021</div>
+      <div class="ann-title">Director Resignation + Supreme Court Reinstates 716 Employees</div>
+      <div class="ann-body">Mr. Afan Aziz resigned. Supreme Court ordered reinstatement of 716 employees (195 executives + 521 subordinate staff) previously terminated on Aug 17, 2021. No significant market impact — investors in Status Quo Bias mode, waiting for annual results.</div>
+      <div class="ann-biases"><span class="bias-tag sq">Status Quo</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">33.27</div><div class="pm-lbl">Dec 30</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val">33.45</div><div class="pm-lbl">Dec 31</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">35.01</div><div class="pm-lbl">Jan 4 ↑</div></div>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#dc2626;">
+      <div class="ann-date">Feb–May 2022</div>
+      <div class="ann-title">Multiple SECP Extension Applications — Half-Yearly, 9-Monthly, AGM Extensions</div>
+      <div class="ann-body">Company repeatedly applied for extensions — SECP denied half-yearly extension (Feb 22) citing no legal provision. AGM rescheduled to July 30, 2022. Investors increasingly sold shares as trust collapsed. Share price fell from ~37 to ~28 over this period.</div>
+      <div class="ann-biases"><span class="bias-tag la">Loss Aversion</span><span class="bias-tag ov">Overreaction</span><span class="bias-tag sq">Status Quo</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">37.14</div><div class="pm-lbl">Feb 18</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--red);">28.41</div><div class="pm-lbl">May 9 ↓</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">~23% decline over 3 months</span>
+      </div>
+    </div>
+
+    <div class="ann-card" style="--ann-color:#16a34a;">
+      <div class="ann-date">June 17 & 26–27, 2022</div>
+      <div class="ann-title">Board Meeting Announced for FY 2021 Accounts + Venue Change to Islamabad</div>
+      <div class="ann-body">Company announced board meeting for July 2, 2022, to review FY 2021 and Q1 Sep 2021 accounts. Closed period June 25 – July 2. Venue changed from Lahore to Islamabad (July 27). Investors showed regret aversion — afraid to sell before meeting in case price recovered.</div>
+      <div class="ann-biases"><span class="bias-tag cf">Confirmation</span><span class="bias-tag av">Regret Aversion</span></div>
+      <div class="price-mini">
+        <div class="pm-item"><div class="pm-val">33.06</div><div class="pm-lbl">Jun 16</div></div>
+        <span class="pm-arr">→</span>
+        <div class="pm-item"><div class="pm-val" style="color:var(--g);">35.52</div><div class="pm-lbl">Jun 21 ↑</div></div>
+        <span style="font-size:.65rem;color:var(--muted);margin-left:.4rem;">Vol surge: 1.1M → 4.6M</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 07 — SHARE PRICE CHART -->
+<div class="sec rv" id="s7">
+  <div class="sec-label">07</div>
+  <h2 class="sec-h">Share Price<br><em>Journey</em></h2>
+  <div class="chart-card">
+    <div class="chart-title">SNGPL Share Price — July 2021 to June 2022</div>
+    <div class="chart-sub">Closing price PKR · Key announcement events marked</div>
+    <div style="position:relative;height:260px;"><canvas id="c-price"></canvas></div>
+  </div>
+</div>
+
+<!-- BIAS FREQUENCY -->
+<div class="sec rv" id="s5b" style="padding-top:0;border-bottom:none;margin-top:-1.5rem;">
+  <div class="g2">
+    <div>
+      <div style="font-size:.65rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.9rem;">Bias Frequency — All Announcements</div>
+      <div class="freq-bar-wrap">
+        <div class="freq-row"><span class="freq-label">Loss Aversion</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#dc2626;" data-w="90%"></div></div><span class="freq-count">9</span></div>
+        <div class="freq-row"><span class="freq-label">Overreaction</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#2563eb;" data-w="60%"></div></div><span class="freq-count">6</span></div>
+        <div class="freq-row"><span class="freq-label">Herding Behavior</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#7c3aed;" data-w="60%"></div></div><span class="freq-count">6</span></div>
+        <div class="freq-row"><span class="freq-label">Status Quo</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#64748b;" data-w="50%"></div></div><span class="freq-count">5</span></div>
+        <div class="freq-row"><span class="freq-label">Confirmation</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#16a34a;" data-w="40%"></div></div><span class="freq-count">4</span></div>
+        <div class="freq-row"><span class="freq-label">Anchoring</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#0f766e;" data-w="30%"></div></div><span class="freq-count">3</span></div>
+        <div class="freq-row"><span class="freq-label">Overconfidence</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#9333ea;" data-w="20%"></div></div><span class="freq-count">2</span></div>
+        <div class="freq-row"><span class="freq-label">Recency Bias</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#d97706;" data-w="20%"></div></div><span class="freq-count">2</span></div>
+        <div class="freq-row"><span class="freq-label">Regret Aversion</span><div class="freq-track"><div class="freq-fill" style="width:0%;background:#b45309;" data-w="10%"></div></div><span class="freq-count">1</span></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Bias Distribution</div>
+      <div class="chart-sub">Frequency across 13 announcements</div>
+      <div style="position:relative;height:220px;"><canvas id="c-bias"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 — INVESTMENT STRATEGIES -->
+<div class="sec rv" id="s8">
+  <div class="sec-label">08</div>
+  <h2 class="sec-h">Investment<br><em>Strategies</em></h2>
+  <div class="g2" style="margin-bottom:.8rem;">
+    <div class="strat-card" style="--sc:#16a34a;">
+      <div class="strat-num">01</div>
+      <div class="strat-title">Portfolio Diversification</div>
+      <div class="strat-desc">Invest across different asset classes (bonds, equities, commodities) and sectors (technology, healthcare, energy). SNGPL's share fell from Rs. 48.34 to Rs. 34.21 in one fiscal year — concentrated risk causes severe losses. Diversification minimizes sector-specific impact.</div>
+    </div>
+    <div class="strat-card" style="--sc:#2563eb;">
+      <div class="strat-num">02</div>
+      <div class="strat-title">Value Investing</div>
+      <div class="strat-desc">SNGPL shares became undervalued due to continuous AGM/report submission delays. However, company remained profitable throughout. High chance of price bouncing back to intrinsic value. Breakup value (PKR 62.51) significantly exceeds market price (PKR 34.21) — a clear value signal.</div>
+    </div>
+    <div class="strat-card" style="--sc:#d97706;">
+      <div class="strat-num">03</div>
+      <div class="strat-title">Set Loss Limits (Stop-Loss)</div>
+      <div class="strat-desc">Set predetermined criteria for cutting losses in underperforming shares. This prevents emotional decisions driven by anchoring bias (holding on to previous high prices) or loss aversion (waiting too long and incurring larger losses).</div>
+    </div>
+    <div class="strat-card" style="--sc:#7c3aed;">
+      <div class="strat-num">04</div>
+      <div class="strat-title">Strategic Asset Allocation</div>
+      <div class="strat-desc">Align investment portfolio with personal risk tolerance and investment horizon. Adjust asset mix as financial goals or market conditions change. Long-term perspective helps mitigate short-term fluctuations and recency bias driven by daily news cycle.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 — RISK ANALYSIS -->
+<div class="sec rv" id="s9">
+  <div class="sec-label">09</div>
+  <h2 class="sec-h">Risk<br><em>Analysis</em></h2>
+  <div class="g3" style="margin-bottom:1.2rem;">
+    <div class="risk-item">
+      <div class="risk-head"><div class="risk-title">Market Risk</div><span class="risk-pill h">High</span></div>
+      <div class="risk-desc">Pakistan's high inflation rate and volatile energy sector — influenced by international events — means even well-diversified portfolios face broad market decline risk. SNGPL lost ~29% market value in one year.</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-head"><div class="risk-title">Liquidity Risk</div><span class="risk-pill m">Medium</span></div>
+      <div class="risk-desc">During negative news cycles (AGM extensions), finding buyers without accepting lower prices becomes difficult. Ongoing submission delays increased liquidity risk significantly for existing shareholders.</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-head"><div class="risk-title">Behavioral Risk</div><span class="risk-pill m">Medium</span></div>
+      <div class="risk-desc">Investors are neither fully rational nor irrational — psychological biases lead to suboptimal decisions. Herding, overreaction, and loss aversion caused price distortions not justified by fundamentals.</div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card"><div class="card-title">Mitigation 01 — Regular Review</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Review investment portfolio periodically to ensure alignment with risk tolerance and investment goals. Rebalance when required to maintain desired asset allocation.</div></div>
+    <div class="card"><div class="card-title">Mitigation 02 — Continuous Learning</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Stay informed about market conditions and behavioral finance concepts. Understanding investor biases helps in recognizing and avoiding them in personal decision-making.</div></div>
+    <div class="card"><div class="card-title">Mitigation 03 — Professional Advisory</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;">Engage with a qualified financial advisor for portfolio advice and guidance during volatile periods. Professional input helps in sticking to long-term strategy and avoiding emotional decisions.</div></div>
+  </div>
+</div>
+
+<!-- 10 — CSR -->
+<div class="sec rv" id="s10">
+  <div class="sec-label">10</div>
+  <h2 class="sec-h">Recent CSR<br><em>Activities</em></h2>
+  <div class="g3">
+    <div class="card"><div class="card-title">Ration Distribution — Ramadan 2023</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;margin-top:.3rem;">10,000 ration bags worth <strong>PKR 100 million</strong> distributed across 15 regions. Implemented in collaboration with Akhuwat, Alkhidmat Foundation, and Saylani Welfare Trust.</div></div>
+    <div class="card"><div class="card-title">Flood Relief Efforts</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;margin-top:.3rem;">Essential aid (shelters, food, supplies) to flood-affected areas across Punjab, KPK, Balochistan, and Sindh. Donated to PM Flood Relief Fund and partnered with NGOs for rehabilitation.</div></div>
+    <div class="card"><div class="card-title">Health Sector — COVID-19</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;margin-top:.3rem;">Established <strong>50 Mobile Vaccination Teams</strong> with Health Department, administering over <strong>460,544 vaccine doses</strong>. Also supported blood donation campaigns.</div></div>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<footer>
+  <div><strong>Behavioral Finance Report — SNGPL</strong> &nbsp;·&nbsp; Abdul Qadir Avadia · BUS-21S-003 &nbsp;·&nbsp; BBA 6B · SMI University &nbsp;·&nbsp; Submitted to Sir Raza Ali</div>
+  <div>Academic Project · Illustrative Analysis · PSX Data</div>
+</footer>
+
+<script>
+
+// Progress bar
+window.addEventListener('scroll',function(){
+  var s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('pgbar').style.width=(s/h*100)+'%';
+  var btt=document.getElementById('btt');
+  if(s>400)btt.classList.add('show');else btt.classList.remove('show');
+  // Active nav pill
+  var secs=['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10'];
+  var active='';
+  secs.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=120)active=id;});
+  document.querySelectorAll('.sec-nav a').forEach(function(a){
+    a.classList.toggle('active',a.getAttribute('href')==='#'+active);
+  });
+});
+
+// Freq bars animate on scroll
+var fro=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.freq-fill').forEach(function(bar){
+        setTimeout(function(){bar.style.width=bar.dataset.w;},100);
+      });
+      fro.unobserve(e.target);
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('#s5b').forEach(function(el){fro.observe(el);});
+
+// Bias donut chart
+document.addEventListener('DOMContentLoaded',function(){
+  var bel=document.getElementById('c-bias');
+  if(bel){new Chart(bel.getContext('2d'),{type:'doughnut',data:{
+    labels:['Loss Aversion','Overreaction','Herding','Status Quo','Confirmation','Anchoring','Overconfidence','Recency','Regret'],
+    datasets:[{data:[9,6,6,5,4,3,2,2,1],
+      backgroundColor:['#dc2626','#2563eb','#7c3aed','#64748b','#16a34a','#0f766e','#9333ea','#d97706','#b45309'],
+      borderWidth:2,borderColor:document.documentElement.dataset.theme==='dark'?'#071008':'#f4f4f0'}]
+  },options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+    plugins:{legend:{position:'right',labels:{color:tc(),font:{family:"'DM Sans',sans-serif",size:9},boxWidth:8,padding:6}}}}});}
+});
+
+// Announcement filter
+document.addEventListener('DOMContentLoaded',function(){
+  var filters=document.querySelectorAll('.ann-filter');
+  var cards=document.querySelectorAll('.ann-card');
+  filters.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      filters.forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var tag=btn.dataset.tag;
+      cards.forEach(function(card){
+        if(tag==='all'||card.dataset.biases&&card.dataset.biases.includes(tag)){
+          card.style.display='';
+        }else{card.style.display='none';}
+      });
+    });
+  });
+});
+
+// Theme
+function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem('sngpl-theme',n);rebuildCharts();}
+var saved=localStorage.getItem('sngpl-theme');if(saved)document.documentElement.dataset.theme=saved;
+
+// Scroll reveal
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.05});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+
+/* CURSOR SPOTLIGHT on cards */
+document.addEventListener('mousemove',function(e){
+  var c=e.target.closest('.card,.chart-card');
+  if(!c)return;
+  var r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+
+// Chart helpers
+function tc(){return document.documentElement.dataset.theme==='dark'?'#4ade80':'#4a7360';}
+function gc(){return document.documentElement.dataset.theme==='dark'?'rgba(34,197,94,.07)':'rgba(22,163,74,.07)';}
+var G='#16a34a',R='#dc2626',B='#2563eb',A='#d97706';
+
+var C={};
+function buildCharts(){
+  // P&L chart
+  var el=document.getElementById('c-pl');
+  if(el){if(C.pl)C.pl.destroy();C.pl=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['FY 2021','FY 2022'],datasets:[{label:'Net Sales (B)',data:[757.6,1293.7],backgroundColor:'rgba(22,163,74,.55)',borderColor:G,borderWidth:2,borderRadius:4},{label:'Gross Profit (B)',data:[52.9,85.5],backgroundColor:'rgba(22,163,74,.85)',borderColor:'#14532d',borderWidth:2,borderRadius:4},{label:'Net Profit (B)',data:[11.0,10.4],backgroundColor:'rgba(217,119,6,.75)',borderColor:A,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:10}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'B'}},grid:{color:gc()}}}}});}
+
+  // Margin chart
+  el=document.getElementById('c-margin');
+  if(el){if(C.mg)C.mg.destroy();C.mg=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Gross\nMargin','Net\nMargin','EBITDA\nMargin','ROE','ROCE'],datasets:[{label:'FY 2022',data:[7.94,0.96,8.55,28.07,9.19],backgroundColor:'rgba(22,163,74,.8)',borderColor:G,borderWidth:2,borderRadius:3},{label:'FY 2021',data:[8.20,1.70,12.41,37.02,9.67],backgroundColor:'rgba(217,119,6,.7)',borderColor:A,borderWidth:2,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900},plugins:{legend:{labels:{color:tc(),font:{size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:9}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'%'}},grid:{color:gc()}}}}});}
+
+  // Share price line chart
+  el=document.getElementById('c-price');
+  if(el){if(C.pr)C.pr.destroy();
+  var labels=['Jul 1','Jul 5','Jul 19','Jul 29','Aug 16','Aug 27','Sep 22','Oct 4','Nov 1','Nov 22','Dec 13','Dec 31','Feb 11','Mar 8','May 6','Jun 17'];
+  var prices=[48.31,49.74,52.72,50.45,48.99,46.59,45.45,47.34,40.86,41.68,36.47,33.45,33.75,31.42,29.41,33.83];
+  C.pr=new Chart(el.getContext('2d'),{type:'line',data:{labels:labels,datasets:[{label:'SNGPL Close Price (PKR)',data:prices,borderColor:G,backgroundColor:'rgba(22,163,74,.1)',fill:true,tension:.35,borderWidth:2.5,pointRadius:5,pointBackgroundColor:prices.map(function(v,i){return[2,5,8,10].indexOf(i)>=0?G:R;}),pointBorderColor:'#fff',pointBorderWidth:1.5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:1100,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{size:10},boxWidth:8}},tooltip:{callbacks:{afterLabel:function(ctx){var events=['Board meeting announced','Financial results + court win signal','AGM — Dividend PKR 4 confirmed','Dividend credited — sell-off','717 employees terminated','Extension request','Half-year results + PKR 2 dividend','Interim dividend credited','2nd AGM extension','Director change — panic sell','Employee reinstatement','Half-year extension denied','FRR not finalized','SECP rejects extension','Board meeting announced'];return events[ctx.dataIndex]||'';}}}},scales:{x:{ticks:{color:tc(),font:{size:8.5},maxRotation:40},grid:{color:gc()}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return 'Rs.'+v;}},grid:{color:gc()},min:25,max:58}}}});}
+}
+function rebuildCharts(){buildCharts();}
+document.addEventListener('DOMContentLoaded',buildCharts);
+</script>
+</body>
+</html>

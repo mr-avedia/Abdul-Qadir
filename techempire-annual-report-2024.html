@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TechEmpire Pvt. Ltd. — Annual Report 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--g:#16a34a;--gd:#14532d;--gp:#dcfce7;--ink:#111;--ink2:#333;--ink3:#555;--muted:#888;--paper:#fafaf8;--paper2:#f4f4f0;--border:rgba(22,163,74,.18);--r:6px;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;}
+::-webkit-scrollbar{width:3px;} ::-webkit-scrollbar-thumb{background:var(--g);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:99;background:rgba(250,250,248,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.6rem 5%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:800;color:var(--gd);}
+.nav-logo span{color:var(--g);}
+.nav-right{display:flex;align-items:center;gap:.8rem;}
+.nav-tag{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g);background:var(--gp);padding:.2rem .6rem;border-radius:2px;border:1px solid var(--border);}
+.nav-back{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;color:var(--muted);padding:.32rem .8rem;border-radius:4px;border:1.5px solid var(--border);background:rgba(22,163,74,.06);text-decoration:none;transition:all .2s;}
+.nav-back:hover{color:var(--g);border-color:var(--g);background:rgba(22,163,74,.12);}
+.nav-print{font-size:.62rem;font-weight:700;color:#fff;background:var(--g);border:none;padding:.28rem .8rem;border-radius:2px;cursor:pointer;letter-spacing:.06em;}
+
+/* COVER */
+.cover{background:linear-gradient(145deg,#0c2d18 0%,#14532d 60%,#16a34a 100%);padding:5rem 8% 4rem;position:relative;overflow:hidden;min-height:80vh;display:flex;flex-direction:column;justify-content:space-between;}
+.cover::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--g),#4ade80,#b8952a);}
+.cover-tag{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(74,222,128,.8);margin-bottom:1.5rem;}
+.cover-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:800;color:#fff;line-height:1;letter-spacing:-.02em;margin-bottom:.5rem;}
+.cover-h1 em{color:#4ade80;font-style:italic;}
+.cover-sub{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:3rem;}
+.cover-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.ck{border-left:2px solid rgba(255,255,255,.15);padding-left:1rem;}
+.ck-val{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:#fff;line-height:1;}
+.ck-lbl{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-top:.25rem;}
+.ck-chg{font-size:.65rem;font-weight:700;color:#4ade80;margin-top:.1rem;}
+.cover-foot{margin-top:3rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:flex-end;}
+.cover-co{font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.7;}
+.cover-co strong{color:rgba(255,255,255,.65);display:block;font-size:.75rem;margin-bottom:.2rem;}
+.cover-audit{font-size:.6rem;color:rgba(255,255,255,.25);text-align:right;line-height:1.7;}
+
+/* BODY */
+.body{max-width:960px;margin:0 auto;padding:0 5%;}
+.sec{padding:3rem 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none;}
+.sec-tag{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;}
+.sec-tag::after{content:'';width:20px;height:1px;background:var(--g);}
+.sec-h{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--gd);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.sec-h em{color:var(--g);font-style:italic;}
+.prose p{font-size:.88rem;color:var(--ink2);line-height:1.85;margin-bottom:.9rem;}
+.prose p strong{color:var(--ink);}
+
+/* HIGHLIGHT STRIP */
+.hl{background:var(--gd);border-radius:var(--r);padding:1.8rem 2rem;margin:1.5rem 0;}
+.hl-title{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:rgba(74,222,128,.7);margin-bottom:1.2rem;}
+.hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.hl-item{border-left:2px solid rgba(255,255,255,.12);padding-left:.9rem;}
+.hl-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1;}
+.hl-lbl{font-size:.57rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.38);margin-top:.2rem;}
+.hl-chg{font-size:.62rem;font-weight:700;color:#4ade80;margin-top:.1rem;}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border);margin:1.2rem 0;}
+table{width:100%;border-collapse:collapse;font-size:.78rem;}
+table caption{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--gd);text-align:left;padding:.6rem 0 .4rem;caption-side:top;}
+table caption small{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:400;color:var(--muted);font-style:italic;}
+thead th{background:var(--gd);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;padding:.6rem .9rem;text-align:right;white-space:nowrap;}
+thead th:first-child{text-align:left;}
+tbody tr{border-bottom:1px solid var(--paper2);}
+tbody tr:hover{background:rgba(22,163,74,.03);}
+tbody td{padding:.55rem .9rem;color:var(--ink2);text-align:right;}
+tbody td:first-child{text-align:left;color:var(--ink);font-weight:500;}
+tr.grp td{background:var(--paper2);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--g);padding:.35rem .9rem;border-top:1px solid var(--border);}
+tr.sub td{background:var(--gp);font-weight:700;}
+tr.sub td:not(:first-child){color:var(--gd);}
+tr.tot{background:var(--gd)!important;}
+tr.tot td{color:#fff!important;font-weight:700;padding:.65rem .9rem;}
+tr.note td{font-style:italic;font-size:.72rem;color:var(--muted);}
+td.pos{color:var(--g)!important;font-weight:600;}
+td.neg{color:#dc2626!important;font-weight:600;}
+td.yr{color:var(--g)!important;font-weight:800;}
+td.ind{padding-left:2rem!important;}
+
+/* RATIO GRID */
+.ratio-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.ratio-card{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.ratio-card-title{background:var(--gd);color:#fff;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.5rem .9rem;}
+.ratio-table{width:100%;border-collapse:collapse;font-size:.76rem;}
+.ratio-table td{padding:.45rem .9rem;border-bottom:1px solid var(--paper2);color:var(--ink2);}
+.ratio-table td:first-child{color:var(--ink);font-weight:500;}
+.ratio-table td:not(:first-child){text-align:right;}
+.ratio-table tr:last-child td{border-bottom:none;}
+.ratio-table .pos{color:var(--g);font-weight:700;}
+.ratio-table .neg{color:#dc2626;font-weight:700;}
+
+/* RISK TABLE */
+.risk-pill{display:inline-block;font-size:.58rem;font-weight:700;padding:.12rem .45rem;border-radius:2px;text-transform:uppercase;}
+.risk-pill.h{background:#fee2e2;color:#991b1b;}
+.risk-pill.m{background:#fef3c7;color:#92400e;}
+.risk-pill.l{background:#dcfce7;color:#14532d;}
+
+/* NOTES */
+.note-box{background:var(--paper2);border-left:3px solid var(--g);padding:1rem 1.2rem;margin:.8rem 0;border-radius:0 var(--r) var(--r) 0;}
+.note-box-title{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g);margin-bottom:.4rem;}
+.note-box p{font-size:.78rem;color:var(--ink2);line-height:1.7;margin-bottom:.3rem;}
+.note-box p:last-child{margin-bottom:0;}
+
+/* AUDITOR */
+.auditor-card{border:1px solid var(--border);border-radius:var(--r);padding:1.6rem 2rem;background:var(--paper);}
+.auditor-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.2rem;padding-bottom:.9rem;border-bottom:2px solid var(--g);}
+.auditor-firm{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--gd);}
+.auditor-firm small{font-family:'DM Sans',sans-serif;font-size:.62rem;font-weight:400;color:var(--muted);display:block;margin-top:.15rem;}
+.opinion-badge{font-size:.62rem;font-weight:700;background:var(--gp);color:var(--gd);border:1px solid var(--border);padding:.3rem .7rem;border-radius:2px;}
+.auditor-body p{font-size:.8rem;color:var(--ink2);line-height:1.8;margin-bottom:.8rem;}
+.auditor-sigs{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--paper2);}
+.sig-name{font-size:.8rem;font-weight:700;color:var(--ink);}
+.sig-detail{font-size:.65rem;color:var(--muted);line-height:1.6;margin-top:.15rem;}
+
+/* DECLARATION */
+.decl{background:var(--gd);border-radius:var(--r);padding:1.6rem 2rem;color:#fff;margin-top:1.2rem;}
+.decl-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid rgba(255,255,255,.15);}
+.decl-body{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.85;margin-bottom:1rem;}
+.decl-sigs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.1);}
+.dsig-name{font-size:.78rem;font-weight:700;color:#fff;}
+.dsig-title{font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.07em;margin-top:.12rem;}
+
+/* CHARTS */
+.chart-row{display:grid;gap:1rem;margin:1.2rem 0;}
+.chart-row.c2{grid-template-columns:1fr 1fr;}
+.chart-row.c21{grid-template-columns:2fr 1fr;}
+.chart-card{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.3rem;}
+.chart-card-title{font-size:.68rem;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.2rem;}
+.chart-card-sub{font-size:.6rem;color:var(--muted);margin-bottom:.8rem;}
+
+/* COMPANY INFO 2-COL */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+.rv.on{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{background:var(--gd);color:rgba(255,255,255,.4);padding:1.2rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.62rem;margin-top:2rem;}
+footer strong{color:rgba(255,255,255,.7);}
+
+@media(max-width:768px){
+  .cover{padding:3rem 5% 2.5rem;min-height:auto;}
+  .cover-kpis,.hl-grid{grid-template-columns:1fr 1fr;}
+  .ratio-grid,.info-grid,.chart-row.c2,.chart-row.c21{grid-template-columns:1fr!important;}
+  .decl-sigs{grid-template-columns:1fr 1fr;}
+  .auditor-sigs{grid-template-columns:1fr;}
+  .cover-foot{flex-direction:column;gap:.8rem;align-items:flex-start;}
+}
+/* ════════════════════════════════════════════
+   ✦ MODERN POLISH LAYER — green-themed 2026
+   gradient · glass · reveal · spotlight · grain
+════════════════════════════════════════════ */
+:root{--glow:rgba(34,197,94,.18);--gsm:rgba(34,197,94,.07);}
+
+/* animated gradient sheen over cover hero */
+.cover::after{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(40% 50% at 12% 30%,rgba(74,222,128,.18),transparent 70%),
+    radial-gradient(35% 45% at 88% 18%,rgba(34,197,94,.14),transparent 70%);
+  filter:blur(6px);animation:blobfloat 15s ease-in-out infinite alternate;
+}
+@keyframes blobfloat{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(2%,-2%,0) scale(1.05);}
+  100%{transform:translate3d(-2%,2%,0) scale(1.02);}
+}
+.cover>*{position:relative;z-index:1;}
+
+/* animated gradient on the accent word "Empire" */
+.cover-h1 em{
+  background:linear-gradient(100deg,#4ade80,#bbf7d0,#22c55e,#4ade80);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:hueslide 6.5s ease infinite;font-style:italic;
+}
+@keyframes hueslide{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* highlight stat items: spring lift on hover */
+.hl-item{transition:transform .35s cubic-bezier(.18,.89,.32,1.28),border-color .25s;border-radius:2px;}
+.hl-item:hover{transform:translateY(-4px);border-left-color:#4ade80;}
+
+/* chart + ratio cards: glass, spring lift, cursor spotlight */
+.chart-card,.ratio-card{position:relative;transition:transform .4s cubic-bezier(.18,.89,.32,1.28),border-color .25s,box-shadow .35s;}
+.chart-card{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.chart-card:hover,.ratio-card:hover{transform:translateY(-5px);border-color:var(--g);box-shadow:0 14px 38px rgba(22,163,74,.14);}
+.chart-card::after,.ratio-card::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+  opacity:0;transition:opacity .3s;
+  background:radial-gradient(170px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%);
+}
+.chart-card:hover::after,.ratio-card:hover::after{opacity:1;}
+
+/* upgraded scroll-reveal spring + slight rise */
+.rv{transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.18,.89,.32,1.28);}
+
+/* table rows smoother hover */
+tbody tr{transition:background .2s,box-shadow .2s;}
+tbody tr:hover{box-shadow:inset 3px 0 0 var(--g);}
+
+/* nav buttons micro-interaction */
+.nav-back,.nav-print{transition:all .25s cubic-bezier(.18,.89,.32,1.28);}
+.nav-print:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(22,163,74,.4);}
+
+/* — Section heading shimmer underline (from index) — */
+.sec-h{position:relative;padding-bottom:.5rem;}
+.sec-h::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:46px;
+  background:linear-gradient(90deg,var(--g),#4ade80,transparent);
+  background-size:200% 100%;animation:hueslide 4s ease infinite;border-radius:2px;
+}
+
+/* — Primary button glow pulse + shine sweep (from index .btn-p / .n-hire) — */
+.nav-print{position:relative;overflow:hidden;}
+.nav-print::after{
+  content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);animation:sheen 4.5s ease-in-out infinite;
+}
+@keyframes sheen{0%,100%{left:-70%;}50%{left:150%;}}
+
+/* — Cover tag shine sweep — */
+.cover-tag{position:relative;overflow:hidden;display:inline-block;}
+.cover-tag::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(74,222,128,.45),transparent);
+  transform:skewX(-20deg);animation:sheen 5.5s ease-in-out infinite;
+}
+
+/* — Back button shine on hover — */
+.nav-back{position:relative;overflow:hidden;}
+.nav-back::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(34,197,94,.25),transparent);
+  transform:skewX(-20deg);transition:left .5s;
+}
+.nav-back:hover::after{left:150%;}
+
+
+/* subtle grain texture for depth */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.02;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* accessibility: respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .rv{opacity:1!important;transform:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div style="display:flex;align-items:center;gap:.9rem;">
+    <a href="index.html" class="nav-back">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>
+      Back
+    </a>
+    <div class="nav-logo">Tech<span>Empire</span></div>
+  </div>
+  <div class="nav-right">
+    <span class="nav-tag">Annual Report 2024</span>
+    <button class="nav-print" onclick="window.print()">⎙ Print / PDF</button>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-tag">Annual Report & Accounts · FY 2024</div>
+    <h1 class="cover-h1">Tech<em>Empire</em><br>Pvt. Ltd.</h1>
+    <p class="cover-sub">For the year ended December 31, 2024 · Web Development · E-Commerce · WordPress · Graphic Design · Accounting Software · PKR</p>
+    <div class="cover-kpis">
+      <div class="ck"><div class="ck-val">PKR 842M</div><div class="ck-lbl">Total Revenue</div><div class="ck-chg">↑ +28.4% YoY</div></div>
+      <div class="ck"><div class="ck-val">PKR 88M</div><div class="ck-lbl">Net Profit After Tax</div><div class="ck-chg">↑ +7.3% YoY</div></div>
+      <div class="ck"><div class="ck-val">PKR 142M</div><div class="ck-lbl">Closing Cash</div><div class="ck-chg">↑ +69.4% YoY</div></div>
+      <div class="ck"><div class="ck-val">1,240</div><div class="ck-lbl">Employees</div><div class="ck-chg">↑ +18.3% YoY</div></div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-co">
+      <strong>TechEmpire Private Limited</strong>
+      SECP Reg. No. 0123456 · NTN: 1234567-8<br>
+      Islamabad, Pakistan
+    </div>
+    <div class="cover-audit">
+      Audited by Rahman & Associates, CA<br>
+      Prepared in accordance with IFRS & Companies Act 2017
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+<!-- 01. CHAIRMAN'S LETTER -->
+<div class="sec rv">
+  <div class="sec-tag">01</div>
+  <h2 class="sec-h">Founder's<br><em>Message</em></h2>
+  <div class="prose">
+    <p>Dear Team, Clients & Stakeholders,</p>
+    <p>It is with great pride that I present TechEmpire's Annual Report for the fiscal year ended December 31, 2024. What started as a small startup with a bold vision has grown into a trusted digital solutions partner. Our revenue reached <strong>PKR 842 million</strong>, a growth of <strong>28.4%</strong> — driven by strong demand for our web development, e-commerce, WordPress, graphic design, and accounting software services.</p>
+    <p>This year we delivered <strong>386 client projects</strong>, expanded our team, and deepened our expertise across all service lines. Our CEO Hanif Abdul Sattar and Co-Founder Shahzaib have been instrumental in scaling our operations, while our development team led by Haseeb and Yasir delivered exceptional quality across every project.</p>
+    <p>Looking ahead to FY 2025, we aim to grow our recurring client base, launch new accounting software features, and expand our e-commerce portfolio. I am deeply grateful to our entire team for their dedication and to our clients for their continued trust in TechEmpire.</p>
+    <p style="margin-top:1.5rem;"><strong>Amin Noorani</strong><br><span style="font-size:.78rem;color:var(--muted);">Founder · TechEmpire Pvt. Ltd. · February 28, 2025</span></p>
+  </div>
+</div>
+
+<!-- 02. COMPANY INFO -->
+<div class="sec rv">
+  <div class="sec-tag">02</div>
+  <h2 class="sec-h">Company<br><em>Information</em></h2>
+  <div class="info-grid">
+    <table class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r);">
+      <thead><tr><th colspan="2" style="text-align:left;">Corporate Details</th></tr></thead>
+      <tbody>
+        <tr><td>Legal Name</td><td>TechEmpire Private Limited</td></tr>
+        <tr><td>Entity Type</td><td>Startup — Private Limited</td></tr>
+        <tr><td>Fiscal Year End</td><td>December 31</td></tr>
+        <tr><td>Currency</td><td>Pakistani Rupee (PKR)</td></tr>
+        <tr><td>Core Services</td><td>Web Development · E-Commerce</td></tr>
+        <tr><td></td><td>WordPress · Graphic Design</td></tr>
+        <tr><td></td><td>Accounting Software</td></tr>
+        <tr><td>Bankers</td><td>HBL · Meezan Bank</td></tr>
+      </tbody>
+    </table>
+    <table class="tbl-wrap" style="border:1px solid var(--border);border-radius:var(--r);">
+      <thead><tr><th colspan="2" style="text-align:left;">Team & Leadership</th></tr></thead>
+      <tbody>
+        <tr><td>Founder</td><td>Amin Noorani</td></tr>
+        <tr><td>Co-Founder</td><td>Shahzaib</td></tr>
+        <tr><td>Director</td><td>Abdul Sammad</td></tr>
+        <tr><td>Chief Executive Officer</td><td>Hanif Abdul Sattar</td></tr>
+        <tr><td>Senior Developer</td><td>Haseeb</td></tr>
+        <tr><td>Junior Developer</td><td>Yasir</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note-box">
+    <div class="note-box-title">Offices</div>
+    <p><strong>Head Office:</strong> G-11, Islamabad &nbsp;·&nbsp; <strong>Karachi:</strong> Ocean Tower, Clifton &nbsp;·&nbsp; <strong>Lahore:</strong> Arfa Software Technology Park &nbsp;·&nbsp; <strong>Dubai (GCC HQ):</strong> Dubai Silicon Oasis Free Zone</p>
+  </div>
+</div>
+
+<!-- 03. FINANCIAL HIGHLIGHTS -->
+<div class="sec rv">
+  <div class="sec-tag">03</div>
+  <h2 class="sec-h">Financial<br><em>Highlights</em></h2>
+  <div class="hl">
+    <div class="hl-title">Five-Year Summary · PKR</div>
+    <div class="hl-grid">
+      <div class="hl-item"><div class="hl-val">PKR 842M</div><div class="hl-lbl">Total Revenue</div><div class="hl-chg">↑ +28.4%</div></div>
+      <div class="hl-item"><div class="hl-val">PKR 378M</div><div class="hl-lbl">Gross Profit</div><div class="hl-chg">44.9% Margin</div></div>
+      <div class="hl-item"><div class="hl-val">PKR 198M</div><div class="hl-lbl">EBITDA</div><div class="hl-chg">23.5% Margin</div></div>
+      <div class="hl-item"><div class="hl-val">PKR 88M</div><div class="hl-lbl">Net Profit</div><div class="hl-chg">10.5% Margin</div></div>
+    </div>
+  </div>
+  <div class="chart-row c21">
+    <div class="chart-card">
+      <div class="chart-card-title">Revenue, Gross Profit & Net Profit</div>
+      <div class="chart-card-sub">FY 2020–2024 · PKR millions</div>
+      <div style="position:relative;height:190px;"><canvas id="c-rev"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Revenue Mix FY 2024</div>
+      <div class="chart-card-sub">By segment</div>
+      <div style="position:relative;height:190px;"><canvas id="c-mix"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-row c2">
+    <div class="chart-card">
+      <div class="chart-card-title">Margin Trends</div>
+      <div class="chart-card-sub">Gross / EBITDA / Net % · 5 years</div>
+      <div style="position:relative;height:160px;"><canvas id="c-margin"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-title">Cash Balance Trend</div>
+      <div class="chart-card-sub">Year-end closing cash · PKR M</div>
+      <div style="position:relative;height:160px;"><canvas id="c-cash"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- 04. INCOME STATEMENT -->
+<div class="sec rv">
+  <div class="sec-tag">04</div>
+  <h2 class="sec-h">Statement of<br><em>Profit & Loss</em></h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Income Statement — For the year ended December 31<small>All figures in PKR · Prepared in accordance with IFRS</small></caption>
+      <thead><tr><th style="width:38%;">Particulars</th><th>Note</th><th class="yr">FY 2024</th><th>FY 2023</th><th>FY 2022</th><th>FY 2021</th><th>FY 2020</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="7">Revenue</td></tr>
+        <tr><td class="ind">Software Development & Services</td><td>5.1</td><td class="pos">421,000,000</td><td>326,000,000</td><td>278,000,000</td><td>224,000,000</td><td>182,000,000</td></tr>
+        <tr><td class="ind">Cloud & Infrastructure</td><td>5.2</td><td class="pos">198,000,000</td><td>152,000,000</td><td>118,000,000</td><td>89,000,000</td><td>68,000,000</td></tr>
+        <tr><td class="ind">IT Consulting</td><td>5.3</td><td class="pos">112,000,000</td><td>94,000,000</td><td>78,000,000</td><td>64,000,000</td><td>52,000,000</td></tr>
+        <tr><td class="ind">SaaS Products</td><td>5.4</td><td class="pos">111,000,000</td><td>84,000,000</td><td>56,000,000</td><td>38,000,000</td><td>24,000,000</td></tr>
+        <tr class="sub"><td><strong>Total Revenue</strong></td><td></td><td><strong>842,000,000</strong></td><td><strong>656,000,000</strong></td><td><strong>530,000,000</strong></td><td><strong>415,000,000</strong></td><td><strong>326,000,000</strong></td></tr>
+        <tr class="grp"><td colspan="7">Cost of Revenue</td></tr>
+        <tr><td class="ind">Direct Labour & Delivery</td><td>6.1</td><td class="neg">(262,000,000)</td><td>(208,000,000)</td><td>(170,000,000)</td><td>(134,000,000)</td><td>(108,000,000)</td></tr>
+        <tr><td class="ind">Cloud & Hosting Costs</td><td>6.2</td><td class="neg">(82,000,000)</td><td>(62,000,000)</td><td>(48,000,000)</td><td>(36,000,000)</td><td>(28,000,000)</td></tr>
+        <tr><td class="ind">Software Licences</td><td>6.3</td><td class="neg">(40,000,000)</td><td>(30,000,000)</td><td>(24,000,000)</td><td>(18,000,000)</td><td>(14,000,000)</td></tr>
+        <tr><td class="ind">Subcontracting</td><td>6.4</td><td class="neg">(40,000,000)</td><td>(36,000,000)</td><td>(28,000,000)</td><td>(22,000,000)</td><td>(18,000,000)</td></tr>
+        <tr class="sub"><td><strong>Gross Profit</strong></td><td></td><td><strong>378,000,000</strong></td><td><strong>320,000,000</strong></td><td><strong>260,000,000</strong></td><td><strong>205,000,000</strong></td><td><strong>158,000,000</strong></td></tr>
+        <tr class="note"><td colspan="7">&nbsp;&nbsp;Gross Margin: 44.9% · 48.8% · 49.1% · 49.4% · 48.5%</td></tr>
+        <tr class="grp"><td colspan="7">Operating Expenses</td></tr>
+        <tr><td class="ind">Salaries & Benefits</td><td>7.1</td><td class="neg">(122,000,000)</td><td>(98,000,000)</td><td>(80,000,000)</td><td>(64,000,000)</td><td>(52,000,000)</td></tr>
+        <tr><td class="ind">Marketing & Sales</td><td>7.2</td><td class="neg">(48,000,000)</td><td>(38,000,000)</td><td>(30,000,000)</td><td>(24,000,000)</td><td>(18,000,000)</td></tr>
+        <tr><td class="ind">General & Administrative</td><td>7.3</td><td class="neg">(28,000,000)</td><td>(22,000,000)</td><td>(18,000,000)</td><td>(14,000,000)</td><td>(12,000,000)</td></tr>
+        <tr><td class="ind">Research & Development</td><td>7.4</td><td class="neg">(32,000,000)</td><td>(24,000,000)</td><td>(18,000,000)</td><td>(12,000,000)</td><td>(8,000,000)</td></tr>
+        <tr><td class="ind">Depreciation & Amortisation</td><td>8.1</td><td class="neg">(18,400,000)</td><td>(14,200,000)</td><td>(11,600,000)</td><td>(9,800,000)</td><td>(8,400,000)</td></tr>
+        <tr><td class="ind">Office & Utilities</td><td>7.5</td><td class="neg">(5,600,000)</td><td>(8,200,000)</td><td>(6,800,000)</td><td>(5,600,000)</td><td>(4,800,000)</td></tr>
+        <tr class="sub"><td><strong>Operating Profit (EBIT)</strong></td><td></td><td><strong>124,000,000</strong></td><td><strong>115,600,000</strong></td><td><strong>95,600,000</strong></td><td><strong>75,600,000</strong></td><td><strong>54,800,000</strong></td></tr>
+        <tr><td class="ind">Finance Income / (Cost) — Net</td><td>9.1</td><td>—</td><td>(3,100,000)</td><td>(5,400,000)</td><td>(3,600,000)</td><td>(2,000,000)</td></tr>
+        <tr class="sub"><td><strong>Profit Before Tax</strong></td><td></td><td><strong>124,000,000</strong></td><td><strong>112,500,000</strong></td><td><strong>90,200,000</strong></td><td><strong>72,000,000</strong></td><td><strong>52,800,000</strong></td></tr>
+        <tr><td class="ind">Income Tax (29%)</td><td>10.1</td><td class="neg">(35,960,000)</td><td>(30,424,000)</td><td>(22,324,000)</td><td>(18,324,000)</td><td>(13,892,000)</td></tr>
+        <tr class="tot"><td><strong>Net Profit After Tax</strong></td><td></td><td><strong>88,040,000</strong></td><td><strong>82,076,000</strong></td><td><strong>67,876,000</strong></td><td><strong>53,676,000</strong></td><td><strong>38,908,000</strong></td></tr>
+        <tr class="note"><td colspan="7">&nbsp;&nbsp;Net Margin: 10.5% · 12.5% · 12.8% · 12.9% · 11.9% &nbsp;|&nbsp; EPS: PKR 44.02 · 41.04 · 33.94 · 26.84 · 19.45</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 05. BALANCE SHEET -->
+<div class="sec rv">
+  <div class="sec-tag">05</div>
+  <h2 class="sec-h">Statement of<br><em>Financial Position</em></h2>
+  <div style="display:flex;flex-direction:column;gap:1.2rem;">
+    <div class="tbl-wrap">
+      <table>
+        <caption>Assets<small>As at December 31 · PKR</small></caption>
+        <thead><tr><th>Particulars</th><th>Note</th><th class="yr">FY 2024</th><th>FY 2023</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="4">Current Assets</td></tr>
+          <tr><td class="ind">Cash & Equivalents</td><td>12.1</td><td class="pos">142,600,000</td><td>84,200,000</td></tr>
+          <tr><td class="ind">Trade Receivables (Net)</td><td>12.2</td><td>148,200,000</td><td>112,400,000</td></tr>
+          <tr><td class="ind">Unbilled Revenue</td><td>12.3</td><td>38,400,000</td><td>28,600,000</td></tr>
+          <tr><td class="ind">Prepayments & Deposits</td><td>12.4</td><td>18,600,000</td><td>14,200,000</td></tr>
+          <tr><td class="ind">Short-term Investments</td><td>12.5</td><td>60,000,000</td><td>40,000,000</td></tr>
+          <tr class="sub"><td><strong>Total Current Assets</strong></td><td></td><td><strong>407,800,000</strong></td><td><strong>279,400,000</strong></td></tr>
+          <tr class="grp"><td colspan="4">Non-Current Assets</td></tr>
+          <tr><td class="ind">Property, Plant & Equipment</td><td>13.1</td><td>104,200,000</td><td>86,400,000</td></tr>
+          <tr><td class="ind">Intangible Assets & IP</td><td>13.2</td><td>58,000,000</td><td>42,000,000</td></tr>
+          <tr><td class="ind">Long-term Investments</td><td>13.3</td><td>32,000,000</td><td>24,000,000</td></tr>
+          <tr><td class="ind">Deferred Tax Asset</td><td>14.1</td><td>6,800,000</td><td>8,200,000</td></tr>
+          <tr class="sub"><td><strong>Total Non-Current Assets</strong></td><td></td><td><strong>201,000,000</strong></td><td><strong>160,600,000</strong></td></tr>
+          <tr class="tot"><td><strong>Total Assets</strong></td><td></td><td><strong>608,800,000</strong></td><td><strong>440,000,000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Liabilities & Equity<small>As at December 31 · PKR</small></caption>
+        <thead><tr><th>Particulars</th><th>Note</th><th class="yr">FY 2024</th><th>FY 2023</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="4">Current Liabilities</td></tr>
+          <tr><td class="ind">Trade & Other Payables</td><td>15.1</td><td>52,600,000</td><td>38,400,000</td></tr>
+          <tr><td class="ind">Accrued Liabilities</td><td>15.2</td><td>30,400,000</td><td>22,600,000</td></tr>
+          <tr><td class="ind">Deferred Revenue</td><td>15.3</td><td>26,200,000</td><td>18,400,000</td></tr>
+          <tr><td class="ind">Short-term Borrowings</td><td>15.4</td><td>15,000,000</td><td>20,000,000</td></tr>
+          <tr><td class="ind">Tax Payable</td><td>15.5</td><td>16,800,000</td><td>12,400,000</td></tr>
+          <tr class="sub"><td><strong>Total Current Liabilities</strong></td><td></td><td><strong>141,000,000</strong></td><td><strong>111,800,000</strong></td></tr>
+          <tr class="grp"><td colspan="4">Non-Current Liabilities</td></tr>
+          <tr><td class="ind">Long-term Borrowings</td><td>16.1</td><td>48,000,000</td><td>60,000,000</td></tr>
+          <tr><td class="ind">Deferred Tax Liability</td><td>16.2</td><td>8,400,000</td><td>6,200,000</td></tr>
+          <tr class="sub"><td><strong>Total Liabilities</strong></td><td></td><td><strong>197,400,000</strong></td><td><strong>178,000,000</strong></td></tr>
+          <tr class="grp"><td colspan="4">Shareholders' Equity</td></tr>
+          <tr><td class="ind">Paid-up Share Capital</td><td>17.1</td><td>20,000,000</td><td>20,000,000</td></tr>
+          <tr><td class="ind">Share Premium</td><td>17.2</td><td>60,000,000</td><td>60,000,000</td></tr>
+          <tr><td class="ind">Retained Earnings</td><td>17.3</td><td class="pos">294,400,000</td><td>148,000,000</td></tr>
+          <tr><td class="ind">Other Comprehensive Income</td><td>17.4</td><td>37,000,000</td><td>34,000,000</td></tr>
+          <tr class="sub"><td><strong>Total Equity</strong></td><td></td><td><strong>411,400,000</strong></td><td><strong>262,000,000</strong></td></tr>
+          <tr class="tot"><td><strong>Total Liabilities & Equity</strong></td><td></td><td><strong>608,800,000</strong></td><td><strong>440,000,000</strong></td></tr>
+          <tr class="note"><td colspan="4">Balance Check: ✓ Assets = Liabilities + Equity</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 06. CASH FLOW -->
+<div class="sec rv">
+  <div class="sec-tag">06</div>
+  <h2 class="sec-h">Statement of<br><em>Cash Flows</em></h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Cash Flow Statement — Indirect Method<small>For the year ended December 31 · PKR</small></caption>
+      <thead><tr><th style="width:42%;">Particulars</th><th>Note</th><th class="yr">FY 2024</th><th>FY 2023</th><th>Change</th></tr></thead>
+      <tbody>
+        <tr class="grp"><td colspan="5">A. Operating Activities</td></tr>
+        <tr><td class="ind">Net Profit After Tax</td><td></td><td class="pos">88,040,000</td><td>82,076,000</td><td class="pos">+7.3%</td></tr>
+        <tr><td class="ind">Add: Depreciation & Amortisation</td><td>8.1</td><td class="pos">18,400,000</td><td>14,200,000</td><td class="pos">+29.6%</td></tr>
+        <tr><td class="ind">Changes in Trade Receivables</td><td></td><td class="neg">(35,800,000)</td><td>(24,600,000)</td><td class="neg">-45.5%</td></tr>
+        <tr><td class="ind">Changes in Trade Payables</td><td></td><td class="pos">14,200,000</td><td>8,400,000</td><td class="pos">+69.0%</td></tr>
+        <tr><td class="ind">Changes in Deferred Revenue</td><td></td><td class="pos">7,800,000</td><td>4,200,000</td><td class="pos">+85.7%</td></tr>
+        <tr><td class="ind">Other Working Capital Changes</td><td></td><td class="neg">(22,400,000)</td><td>(18,200,000)</td><td class="neg">-23.1%</td></tr>
+        <tr><td class="ind">Income Tax Paid</td><td></td><td class="neg">(31,560,000)</td><td>(30,424,000)</td><td class="neg">-3.7%</td></tr>
+        <tr class="sub"><td><strong>Net Cash from Operating Activities</strong></td><td></td><td><strong>38,680,000</strong></td><td><strong>35,652,000</strong></td><td class="pos"><strong>+8.5%</strong></td></tr>
+        <tr class="grp"><td colspan="5">B. Investing Activities</td></tr>
+        <tr><td class="ind">Purchase of Fixed Assets</td><td>13.1</td><td class="neg">(36,200,000)</td><td>(28,400,000)</td><td class="neg">-27.5%</td></tr>
+        <tr><td class="ind">Acquisition of Intangibles</td><td>13.2</td><td class="neg">(18,000,000)</td><td>(12,000,000)</td><td class="neg">-50.0%</td></tr>
+        <tr><td class="ind">Net Investment Activity</td><td></td><td class="neg">(28,000,000)</td><td>(24,000,000)</td><td class="neg">-16.7%</td></tr>
+        <tr class="sub"><td><strong>Net Cash from Investing Activities</strong></td><td></td><td class="neg"><strong>(82,200,000)</strong></td><td class="neg"><strong>(64,400,000)</strong></td><td class="neg"><strong>-27.6%</strong></td></tr>
+        <tr class="grp"><td colspan="5">C. Financing Activities</td></tr>
+        <tr><td class="ind">Proceeds from Series B</td><td>17.2</td><td class="pos">80,000,000</td><td>—</td><td>—</td></tr>
+        <tr><td class="ind">Repayment of Borrowings</td><td>16.1</td><td class="neg">(17,000,000)</td><td>(10,000,000)</td><td class="neg">-70.0%</td></tr>
+        <tr><td class="ind">Dividend Paid</td><td></td><td class="neg">(22,000,000)</td><td>(18,000,000)</td><td class="neg">-22.2%</td></tr>
+        <tr class="sub"><td><strong>Net Cash from Financing Activities</strong></td><td></td><td><strong>41,000,000</strong></td><td class="neg"><strong>(28,000,000)</strong></td><td>—</td></tr>
+        <tr><td class="ind">Opening Cash — January 1</td><td></td><td>84,200,000</td><td>147,888,000</td><td>—</td></tr>
+        <tr class="tot"><td><strong>Closing Cash — December 31</strong></td><td>12.1</td><td><strong>142,600,000</strong></td><td><strong>84,200,000</strong></td><td class="pos"><strong>+69.4%</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 07. CHANGES IN EQUITY -->
+<div class="sec rv">
+  <div class="sec-tag">07</div>
+  <h2 class="sec-h">Statement of Changes<br><em>in Equity</em></h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Changes in Equity<small>For the year ended December 31, 2024 · PKR</small></caption>
+      <thead><tr><th>Particulars</th><th>Share Capital</th><th>Share Premium</th><th>Retained Earnings</th><th>OCI Reserve</th><th class="yr">Total Equity</th></tr></thead>
+      <tbody>
+        <tr class="sub"><td><strong>Balance — Jan 1, 2023</strong></td><td>20,000,000</td><td>60,000,000</td><td>83,924,000</td><td>30,000,000</td><td><strong>193,924,000</strong></td></tr>
+        <tr><td class="ind">Net Profit — FY 2023</td><td>—</td><td>—</td><td class="pos">82,076,000</td><td>—</td><td class="pos">82,076,000</td></tr>
+        <tr><td class="ind">Other Comprehensive Income</td><td>—</td><td>—</td><td>—</td><td>4,000,000</td><td>4,000,000</td></tr>
+        <tr><td class="ind">Dividend Paid</td><td>—</td><td>—</td><td class="neg">(18,000,000)</td><td>—</td><td class="neg">(18,000,000)</td></tr>
+        <tr class="sub"><td><strong>Balance — Dec 31, 2023</strong></td><td>20,000,000</td><td>60,000,000</td><td>148,000,000</td><td>34,000,000</td><td><strong>262,000,000</strong></td></tr>
+        <tr><td class="ind">Net Profit — FY 2024</td><td>—</td><td>—</td><td class="pos">88,040,000</td><td>—</td><td class="pos">88,040,000</td></tr>
+        <tr><td class="ind">Other Comprehensive Income</td><td>—</td><td>—</td><td>—</td><td>3,000,000</td><td>3,000,000</td></tr>
+        <tr><td class="ind">Series B Premium Component</td><td>—</td><td>—</td><td class="pos">80,360,000</td><td>—</td><td class="pos">80,360,000</td></tr>
+        <tr><td class="ind">Dividend Paid</td><td>—</td><td>—</td><td class="neg">(22,000,000)</td><td>—</td><td class="neg">(22,000,000)</td></tr>
+        <tr class="tot"><td><strong>Balance — Dec 31, 2024</strong></td><td><strong>20,000,000</strong></td><td><strong>60,000,000</strong></td><td><strong>294,400,000</strong></td><td><strong>37,000,000</strong></td><td><strong>411,400,000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 08. RATIO ANALYSIS -->
+<div class="sec rv">
+  <div class="sec-tag">08</div>
+  <h2 class="sec-h">Financial<br><em>Ratio Analysis</em></h2>
+  <div class="ratio-grid">
+    <div class="ratio-card">
+      <div class="ratio-card-title">Profitability Ratios</div>
+      <table class="ratio-table">
+        <tr><th>Ratio</th><th>FY 2024</th><th>FY 2023</th></tr>
+        <tr><td>Gross Margin</td><td class="pos">44.9%</td><td>48.8%</td></tr>
+        <tr><td>EBITDA Margin</td><td class="pos">23.5%</td><td>19.8%</td></tr>
+        <tr><td>EBIT Margin</td><td class="pos">14.7%</td><td>17.6%</td></tr>
+        <tr><td>Net Profit Margin</td><td class="pos">10.5%</td><td>12.5%</td></tr>
+        <tr><td>Return on Equity</td><td class="pos">30.2%</td><td>31.3%</td></tr>
+        <tr><td>Return on Assets</td><td class="pos">20.4%</td><td>18.7%</td></tr>
+      </table>
+    </div>
+    <div class="ratio-card">
+      <div class="ratio-card-title">Liquidity & Leverage</div>
+      <table class="ratio-table">
+        <tr><th>Ratio</th><th>FY 2024</th><th>FY 2023</th></tr>
+        <tr><td>Current Ratio</td><td class="pos">2.89x</td><td>2.50x</td></tr>
+        <tr><td>Quick Ratio</td><td class="pos">2.41x</td><td>2.09x</td></tr>
+        <tr><td>Debt-to-Equity</td><td class="pos">0.15x</td><td>0.23x</td></tr>
+        <tr><td>Interest Coverage</td><td class="pos">18.4x</td><td>14.8x</td></tr>
+        <tr><td>EPS (Basic)</td><td class="pos">PKR 44.02</td><td>PKR 41.04</td></tr>
+        <tr><td>Dividend Per Share</td><td>PKR 11.00</td><td>PKR 9.00</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 09. NOTES -->
+<div class="sec rv">
+  <div class="sec-tag">09</div>
+  <h2 class="sec-h">Notes to the<br><em>Financial Statements</em></h2>
+  <div class="note-box"><div class="note-box-title">Note 1 — Basis of Preparation</div><p>These financial statements are prepared in accordance with IFRS as adopted in Pakistan and the Companies Act, 2017. Presented in PKR. Prepared under the historical cost convention except for financial instruments at fair value.</p></div>
+  <div class="note-box"><div class="note-box-title">Note 2 — Revenue Recognition (IFRS 15)</div><p>Time-and-material contracts: recognised over time based on hours incurred. Fixed-price projects: percentage-of-completion. SaaS subscriptions: rateably over subscription period. Consulting retainers: monthly as services rendered.</p></div>
+  <div class="note-box"><div class="note-box-title">Note 3 — Depreciation Policy (IAS 16)</div><p>Straight-line basis: IT equipment & servers — 3 years · Furniture & fixtures — 7 years · Vehicles — 5 years · Leasehold improvements — over lease term. Intangible assets amortised over 3–5 years.</p></div>
+  <div class="note-box"><div class="note-box-title">Note 4 — Related Party Transactions</div><p>Key management remuneration: PKR 28.4M (FY 2023: PKR 22.1M). All related party transactions conducted on arm's length terms and approved by the Board. No other material related party transactions during the year.</p></div>
+  <div class="note-box"><div class="note-box-title">Note 5 — Contingencies & Commitments</div><p>Outstanding capital commitments: PKR 8.2M for server infrastructure (Q1 2025). Operating lease commitments: PKR 34.4M within one year, PKR 62.8M thereafter. No material legal proceedings as at December 31, 2024.</p></div>
+</div>
+
+<!-- 10. AUDITOR'S REPORT -->
+<div class="sec rv">
+  <div class="sec-tag">10</div>
+  <h2 class="sec-h">Independent<br><em>Auditor's Report</em></h2>
+  <div class="auditor-card">
+    <div class="auditor-head">
+      <div>
+        <div class="auditor-firm">Rahman & Associates<small>Chartered Accountants · ICAP Reg. Firm · Islamabad</small></div>
+        <div style="font-size:.65rem;color:var(--muted);margin-top:.25rem;">To the Members of TechEmpire Private Limited</div>
+      </div>
+      <div class="opinion-badge">Unqualified Opinion</div>
+    </div>
+    <div class="auditor-body">
+      <p><strong>Opinion.</strong> In our opinion, the accompanying financial statements present fairly, in all material respects, the financial position of TechEmpire Private Limited as at December 31, 2024, and its financial performance and cash flows for the year then ended in accordance with IFRS and the requirements of the Companies Act, 2017.</p>
+      <p><strong>Basis for Opinion.</strong> We conducted our audit in accordance with International Standards on Auditing (ISAs). We are independent of the Company in accordance with the IESBA Code of Ethics and have fulfilled our other ethical responsibilities. We believe that the audit evidence obtained is sufficient and appropriate to provide a basis for our opinion.</p>
+      <p><strong>Key Audit Matters.</strong> (i) Revenue recognition for multi-element software arrangements under IFRS 15; (ii) Capitalisation of internally developed software costs under IAS 38. Both matters were satisfactorily addressed and did not result in any qualification of our opinion.</p>
+    </div>
+    <div class="auditor-sigs">
+      <div><div class="sig-name">Khalid Rahman, FCA</div><div class="sig-detail">Engagement Partner · ICAP No. 4782<br>Rahman & Associates, CA<br>Islamabad · February 28, 2025</div></div>
+      <div><div class="sig-name">Firm Reg. No. 0184</div><div class="sig-detail">QC Reviewer: Tariq Mehmood, FCA<br>This report is intended solely for the members of TechEmpire Private Limited.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. RISK -->
+<div class="sec rv">
+  <div class="sec-tag">11</div>
+  <h2 class="sec-h">Principal Risk<br><em>Factors</em></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th style="width:18%;">Risk</th><th>Description</th><th>Likelihood</th><th>Impact</th><th>Rating</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td><strong>FX Volatility</strong></td><td>PKR depreciation affects USD-billed contracts</td><td><span class="risk-pill m">Medium</span></td><td><span class="risk-pill h">High</span></td><td><span class="risk-pill h">High</span></td><td>Natural hedging via USD contracts; pricing reviews bi-annually</td></tr>
+        <tr><td><strong>Talent Retention</strong></td><td>Competitive market for tech and AI/ML engineers</td><td><span class="risk-pill h">High</span></td><td><span class="risk-pill h">High</span></td><td><span class="risk-pill h">High</span></td><td>ESOP scheme; 18% salary increment FY 2024; L&D investment</td></tr>
+        <tr><td><strong>Cybersecurity</strong></td><td>Data breach risk for client confidentiality</td><td><span class="risk-pill m">Medium</span></td><td><span class="risk-pill h">High</span></td><td><span class="risk-pill m">Medium</span></td><td>ISO 27001 certified; quarterly pen testing; SOC 2 in progress</td></tr>
+        <tr><td><strong>Concentration</strong></td><td>Revenue concentration in enterprise clients</td><td><span class="risk-pill m">Medium</span></td><td><span class="risk-pill m">Medium</span></td><td><span class="risk-pill m">Medium</span></td><td>No single client &gt;12% of revenue; active diversification</td></tr>
+        <tr><td><strong>Regulatory</strong></td><td>SECP, SBP, or data residency law changes</td><td><span class="risk-pill l">Low</span></td><td><span class="risk-pill m">Medium</span></td><td><span class="risk-pill l">Low</span></td><td>Dedicated compliance officer; external legal counsel</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 12. DIRECTORS' DECLARATION -->
+<div class="sec rv">
+  <div class="sec-tag">12</div>
+  <h2 class="sec-h">Directors'<br><em>Declaration</em></h2>
+  <div class="decl">
+    <div class="decl-title">Statement of Directors' Responsibilities</div>
+    <div class="decl-body">The Directors confirm that to the best of their knowledge the financial statements, prepared in accordance with IFRS, give a true and fair view of the assets, liabilities, financial position and profit of the Company. The Directors have selected suitable accounting policies and applied them consistently; made judgements and estimates that are reasonable and prudent; and prepared the financial statements on a going concern basis. The Directors are satisfied that the Company has adequate resources to continue in operational existence for the foreseeable future.</div>
+    <div class="decl-sigs">
+      <div><div class="dsig-name">Amin Noorani</div><div class="dsig-title">Founder · Feb 28, 2025</div></div>
+      <div><div class="dsig-name">Hanif Abdul Sattar</div><div class="dsig-title">Chief Executive Officer · Feb 28, 2025</div></div>
+      <div><div class="dsig-name">Abdul Sammad</div><div class="dsig-title">Director · Feb 28, 2025</div></div>
+    </div>
+  </div>
+  <div class="note-box" style="margin-top:1rem;">
+    <div class="note-box-title">Disclaimer</div>
+    <p>This report contains forward-looking statements subject to risks and uncertainties. Actual results may differ materially. Prepared for illustrative purposes only.</p>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<footer>
+  <strong>TechEmpire Private Limited</strong> &nbsp;·&nbsp; Annual Report FY 2024 &nbsp;·&nbsp; Web Development · E-Commerce · WordPress · Graphic Design · Accounting Software · Illustrative
+  <span>Founder: Amin Noorani &nbsp;·&nbsp; CEO: Hanif Abdul Sattar &nbsp;·&nbsp; © 2025 TechEmpire Pvt. Ltd.</span>
+</footer>
+
+<script>
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.05});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+
+/* CURSOR SPOTLIGHT on cards */
+document.addEventListener('mousemove',function(e){
+  var c=e.target.closest('.chart-card,.ratio-card');
+  if(!c)return;
+  var r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+var G='#16a34a',B='#2563eb',A='#b8952a',P='#7c3aed',R='#dc2626';
+function tc(){return '#4a7360';} function gc(){return 'rgba(22,163,74,.07)';}
+function cd(){return{animation:{duration:900,easing:'easeOutQuart',delay:function(c){return c.dataIndex*60;}},plugins:{legend:{labels:{color:tc(),font:{family:"'DM Sans',sans-serif",size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:9}},grid:{color:gc()}},y:{ticks:{color:tc(),font:{size:9}},grid:{color:gc()}}}};}
+document.addEventListener('DOMContentLoaded',function(){
+  new Chart(document.getElementById('c-rev').getContext('2d'),{type:'bar',data:{labels:['FY20','FY21','FY22','FY23','FY24'],datasets:[{label:'Revenue',data:[326,415,530,656,842],backgroundColor:'rgba(22,163,74,.55)',borderColor:G,borderWidth:2,borderRadius:3},{label:'Gross Profit',data:[158,205,260,320,378],backgroundColor:'rgba(22,163,74,.88)',borderColor:'#14532d',borderWidth:2,borderRadius:3},{label:'Net Profit',data:[38.9,53.7,67.9,82.1,88],backgroundColor:'rgba(184,149,42,.75)',borderColor:A,borderWidth:2,borderRadius:3}]},options:{...cd(),responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:tc(),font:{size:9}},grid:{color:gc()}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'M';}},grid:{color:gc()}}}}});
+  new Chart(document.getElementById('c-mix').getContext('2d'),{type:'doughnut',data:{labels:['Software','Cloud','Consulting','SaaS'],datasets:[{data:[421,198,112,111],backgroundColor:['rgba(22,163,74,.88)','rgba(37,99,235,.8)','rgba(184,149,42,.8)','rgba(124,58,237,.8)'],borderColor:[G,B,A,P],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{color:tc(),font:{size:9},boxWidth:8,padding:6}}}}});
+  new Chart(document.getElementById('c-margin').getContext('2d'),{type:'line',data:{labels:['FY20','FY21','FY22','FY23','FY24'],datasets:[{label:'Gross',data:[48.5,49.4,49.1,48.8,44.9],borderColor:G,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3},{label:'EBITDA',data:[19.4,20.8,20.4,19.8,23.5],borderColor:B,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3},{label:'Net',data:[11.9,12.9,12.8,12.5,10.5],borderColor:A,backgroundColor:'transparent',tension:.4,borderWidth:2,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc(),font:{size:9},boxWidth:8,padding:8}}},scales:{x:{ticks:{color:tc(),font:{size:9}},grid:{color:gc()}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'%';}},grid:{color:gc()}}}}});
+  new Chart(document.getElementById('c-cash').getContext('2d'),{type:'line',data:{labels:['FY20','FY21','FY22','FY23','FY24'],datasets:[{label:'Closing Cash (PKR M)',data:[18,32,52,84.2,142.6],borderColor:G,backgroundColor:'rgba(22,163,74,.1)',fill:true,tension:.4,borderWidth:2.5,pointRadius:4,pointBackgroundColor:G}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:tc(),font:{size:9},boxWidth:8}}},scales:{x:{ticks:{color:tc(),font:{size:9}},grid:{color:gc()}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'M';}},grid:{color:gc()}}}}});
+});
+</script>
+</body>
+</html>

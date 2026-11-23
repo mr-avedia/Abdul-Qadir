@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>KFC Boycott — Capstone Project · Abdul Qadir Avadia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0a0a0a;--ink2:#1a1a1a;--ink3:#3a3a3a;--muted:#6b6b6b;
+  --paper:#ffffff;--paper2:#f7f7f5;--paper3:#efefec;
+  --accent:#16a34a;--accent2:#22c55e;--accent-pale:#f0fdf4;
+  --green:#16a34a;--border:#e5e5e0;--border-dark:#d0d0c8;
+  --sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 8px 32px rgba(0,0,0,.12);
+  --r:8px;
+}
+[data-theme="dark"]{
+  --ink:#f5f5f0;--ink2:#e0e0d8;--ink3:#b0b0a8;--muted:#707068;
+  --paper:#111110;--paper2:#1a1a18;--paper3:#222220;
+  --accent:#22c55e;--accent-pale:#071008;
+  --border:#2a2a28;--border-dark:#3a3a38;
+  --sh:0 1px 3px rgba(0,0,0,.3);--sh2:0 8px 32px rgba(0,0,0,.4);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+
+/* PROGRESS */
+.pgbar{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:999;transition:width .1s;}
+.btt{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:all .3s;z-index:100;box-shadow:0 4px 16px rgba(22,163,74,.3);}
+.btt.show{opacity:1;transform:translateY(0);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:99;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(250,250,248,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s;}
+[data-theme="dark"] .nav{background:rgba(2,14,5,.95);}
+.nav-left{display:flex;align-items:center;gap:.9rem;}
+.nav-back{display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;color:var(--muted);padding:.3rem .75rem;border-radius:6px;border:1.5px solid var(--border);background:rgba(22,163,74,.05);text-decoration:none;transition:all .2s;}
+.nav-back:hover{color:#16a34a;border-color:#16a34a;}
+.nav-wordmark{font-size:.82rem;font-weight:700;color:var(--ink);letter-spacing:-.01em;}
+.nav-wordmark span{color:#16a34a;}
+.nav-right{display:flex;align-items:center;gap:.6rem;}
+.dark-btn{width:44px;height:24px;border-radius:99px;background:var(--paper2);border:1.5px solid var(--border);position:relative;cursor:pointer;transition:all .3s;}
+.dark-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#16a34a;display:flex;align-items:center;justify-content:center;transition:transform .35s;}
+[data-theme="dark"] .dark-knob{transform:translateX(20px);}
+.ks,.km{display:flex;} [data-theme="dark"] .ks{display:none;} .km{display:none;} [data-theme="dark"] .km{display:flex;}
+.print-btn{font-size:.62rem;font-weight:700;color:#fff;background:#16a34a;border:none;padding:.3rem .85rem;border-radius:6px;cursor:pointer;text-transform:uppercase;letter-spacing:.06em;}
+.print-btn:hover{background:#14532d;}
+
+/* COVER */
+.cover{display:grid;grid-template-columns:1fr 1fr;min-height:92vh;}
+.cover-left{background:linear-gradient(145deg,#071a0c 0%,#0d2e15 60%,#16a34a 100%);padding:4rem 5% 4rem 5%;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
+.cover-left::after{content:'KFC';position:absolute;bottom:-1rem;left:-.5rem;font-size:18rem;font-weight:900;color:rgba(0,0,0,.12);line-height:1;pointer-events:none;font-family:'Inter',sans-serif;letter-spacing:-.08em;}
+.cover-eyebrow{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.65);margin-bottom:.9rem;}
+.cover-title{font-family:'Fraunces',serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;position:relative;z-index:1;}
+.cover-title em{font-style:italic;font-weight:300;}
+.cover-sub{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7;margin-top:1.5rem;max-width:380px;position:relative;z-index:1;}
+.cover-meta-row{display:flex;flex-direction:column;gap:.35rem;position:relative;z-index:1;}
+.cover-meta-item{display:flex;align-items:center;gap:.5rem;font-size:.65rem;color:rgba(255,255,255,.55);}
+.cover-meta-item strong{color:rgba(255,255,255,.85);font-weight:600;}
+.cover-right{background:var(--paper2);padding:4rem 5%;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--border);}
+.cover-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.cover-stat{background:var(--paper);padding:1.4rem 1.2rem;}
+.cover-stat-val{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-.04em;}
+.cover-stat-val.red{color:var(--accent);}
+.cover-stat-val.grn{color:var(--green);}
+.cover-stat-lbl{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.4rem;}
+.cover-stat-note{font-size:.68rem;color:var(--ink3);margin-top:.3rem;}
+.cover-right-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;line-height:1.2;}
+.cover-tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
+.cover-tag{font-size:.62rem;font-weight:600;padding:.22rem .65rem;border-radius:99px;background:var(--paper3);color:var(--ink3);border:1px solid var(--border);}
+
+/* BODY */
+.body{max-width:1100px;margin:0 auto;padding:0 5%;}
+
+/* SECTION */
+.sec{padding:3.5rem 0;border-bottom:1px solid var(--border);}
+.sec:last-child{border-bottom:none;}
+.sec-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#16a34a;display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;}
+.sec-tag::after{content:'';flex:0 0 20px;height:1px;background:#16a34a;}
+.sec-heading{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.sec-heading em{font-style:italic;font-weight:300;color:var(--muted);}
+.lead{font-size:.9rem;color:var(--ink3);line-height:1.8;max-width:760px;margin-bottom:1.5rem;}
+
+/* KEY FINDINGS */
+.kf-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;box-shadow:var(--sh);}
+.kf-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.6rem;background:var(--paper2);border-bottom:1px solid var(--border);}
+.kf-head-left .kf-eyebrow{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#16a34a;margin-bottom:.2rem;}
+.kf-head-left .kf-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--ink);}
+.kf-badge{background:#16a34a;color:#fff;border-radius:6px;padding:.5rem 1rem;text-align:center;flex-shrink:0;}
+.kf-badge-val{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:#fff;line-height:1;}
+.kf-badge-lbl{font-size:.54rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.75);margin-top:.18rem;}
+.kf-item{display:grid;grid-template-columns:52px 1fr;border-bottom:1px solid var(--border);}
+.kf-item:last-child{border-bottom:none;}
+.kf-num{display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;background:#f0fdf4;color:#16a34a;border-right:1px solid var(--border);letter-spacing:.03em;}
+.kf-text{padding:.9rem 1.4rem;font-size:.8rem;color:var(--ink3);line-height:1.72;background:var(--paper);}
+[data-theme="dark"] .kf-text{background:var(--paper2);}
+.kf-text strong{color:var(--ink);font-weight:700;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+@media(max-width:900px){.cover{grid-template-columns:1fr;}.cover-right{border-left:none;border-top:1px solid var(--border);min-height:auto;}.g3,.g4{grid-template-columns:1fr 1fr!important;}}
+@media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr!important;}}
+
+/* METRIC CARDS */
+.mc{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;}
+.mc-val{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;line-height:1;letter-spacing:-.03em;}
+.mc-val.red{color:var(--accent);}
+.mc-val.grn{color:var(--green);}
+.mc-val.amb{color:#d97706;}
+.mc-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.35rem;}
+.mc-note{font-size:.7rem;color:var(--ink3);margin-top:.4rem;line-height:1.55;}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;}
+.tl-item{display:flex;gap:.9rem;padding-bottom:1.1rem;position:relative;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--border);}
+.tl-dot{width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tl-dot.grn{background:var(--green);}
+.tl-dot svg{width:11px;height:11px;}
+.tl-date{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.1rem;}
+.tl-t{font-size:.75rem;font-weight:700;color:var(--ink);margin-bottom:.12rem;}
+.tl-d{font-size:.67rem;color:var(--muted);line-height:1.55;}
+
+/* CHART CARD */
+.cc{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.4rem;}
+.cc-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink);margin-bottom:.2rem;}
+.cc-sub{font-size:.6rem;color:var(--muted);margin-bottom:.9rem;}
+
+/* SURVEY BARS */
+.sbar-wrap{display:flex;flex-direction:column;gap:.42rem;margin:.7rem 0;}
+.sbar-row{display:flex;align-items:center;gap:.6rem;}
+.sbar-lbl{font-size:.65rem;color:var(--ink3);width:120px;flex-shrink:0;}
+.sbar-track{flex:1;height:8px;background:var(--paper3);border-radius:99px;overflow:hidden;}
+.sbar-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.4,0,.2,1);}
+.sbar-pct{font-size:.65rem;font-weight:700;color:var(--ink);width:36px;text-align:right;}
+
+/* IMPACT PANELS */
+.ip{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.ip-hd{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.1rem;border-bottom:1px solid var(--border);background:var(--paper);}
+[data-theme="dark"] .ip-hd{background:var(--paper3);}
+.ip-title{font-size:.7rem;font-weight:700;color:var(--ink);}
+.ip-badge{font-size:.58rem;font-weight:700;padding:.15rem .5rem;border-radius:99px;}
+.ip-badge.neg{background:rgba(220,38,38,.1);color:#dc2626;}
+.ip-badge.pos{background:rgba(22,163,74,.1);color:var(--green);}
+.ip-body{padding:.9rem 1.1rem;font-size:.78rem;color:var(--ink3);line-height:1.72;}
+.ip-body strong{color:var(--ink);}
+
+/* LIT CARDS */
+.lit{background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem;border-top:2px solid var(--lc,var(--accent));}
+.lit-title{font-size:.73rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
+.lit-body{font-size:.7rem;color:var(--muted);line-height:1.65;}
+
+/* REC CARDS */
+.rec{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;}
+.rec-n{font-size:2rem;font-weight:900;color:#16a34a;opacity:.2;line-height:1;font-family:'Fraunces',serif;margin-bottom:.3rem;}
+.rec-title{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
+.rec-body{font-size:.72rem;color:var(--muted);line-height:1.7;}
+
+/* PULL QUOTE */
+.pq{border-left:3px solid #16a34a;padding:1rem 1.5rem;margin:1.5rem 0;background:#f0fdf4;}
+.pq p{font-family:'Fraunces',serif;font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.6;}
+.pq cite{font-size:.65rem;font-style:normal;color:var(--muted);margin-top:.5rem;display:block;}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.rv.on{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{background:#0c2d18;color:rgba(255,255,255,.35);padding:1.5rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.62rem;margin-top:4rem;}
+footer strong{color:rgba(255,255,255,.7);}
+/* ════════════════════════════════════════════
+   ✦ MODERN POLISH LAYER — full index effect set
+   gradient · glass · reveal · spotlight · grain
+   · sheen · section shimmer · spring motion
+════════════════════════════════════════════ */
+:root{--glow:rgba(34,197,94,.18);--gsm:rgba(34,197,94,.07);}
+
+/* animated drifting glow over cover-left (::after holds KFC text) */
+.cover-left{background:
+  radial-gradient(45% 55% at 18% 26%,rgba(74,222,128,.18),transparent 70%),
+  linear-gradient(145deg,#071a0c 0%,#0d2e15 60%,#16a34a 100%)!important;
+  background-size:150% 150%,100% 100%!important;
+  animation:heroDrift 16s ease-in-out infinite alternate;}
+@keyframes heroDrift{0%{background-position:0% 0%,0 0;}100%{background-position:30% 25%,0 0;}}
+
+/* animated gradient on cover accent word */
+.cover-title em{
+  background:linear-gradient(100deg,#4ade80,#bbf7d0,#22c55e,#4ade80);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:hueslide 6.5s ease infinite;font-style:italic;
+}
+@keyframes hueslide{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* cover eyebrow shine sweep */
+.cover-eyebrow{position:relative;overflow:hidden;display:inline-block;}
+.cover-eyebrow::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(74,222,128,.45),transparent);
+  transform:skewX(-20deg);animation:sheen 5.5s ease-in-out infinite;
+}
+@keyframes sheen{0%,100%{left:-80%;}50%{left:150%;}}
+
+/* glass + spring lift + cursor spotlight on stat + rec cards */
+.cover-stat,.rec,.lit,.mc{position:relative;transition:transform .4s cubic-bezier(.18,.89,.32,1.28),border-color .25s,box-shadow .35s,background .2s;}
+.cover-stat:hover,.rec:hover,.lit:hover,.mc:hover{transform:translateY(-5px);box-shadow:var(--sh2);border-color:var(--border-dark);}
+.cover-stat::after,.rec::after,.lit::after,.mc::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;border-radius:inherit;
+  opacity:0;transition:opacity .3s;
+  background:radial-gradient(160px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 60%);
+}
+.cover-stat:hover::after,.rec:hover::after,.lit:hover::after,.mc:hover::after{opacity:1;}
+
+/* note + pull-quote blocks: subtle lift + accent on hover */
+.note,.pq{transition:transform .35s cubic-bezier(.18,.89,.32,1.28),box-shadow .3s,border-color .25s;}
+.note:hover,.pq:hover{transform:translateY(-3px);box-shadow:var(--sh);}
+
+/* section heading shimmer underline */
+.sec-heading{position:relative;padding-bottom:.5rem;}
+.sec-heading::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:46px;
+  background:linear-gradient(90deg,var(--accent),#4ade80,transparent);
+  background-size:200% 100%;animation:hueslide 4s ease infinite;border-radius:2px;
+}
+
+/* cover tag pills spring */
+.cover-tag{transition:transform .3s cubic-bezier(.18,.89,.32,1.28),border-color .25s;}
+.cover-tag:hover{transform:translateY(-2px);border-color:var(--accent);}
+
+/* back button shine sweep on hover */
+.nav-back{position:relative;overflow:hidden;transition:all .25s cubic-bezier(.18,.89,.32,1.28);}
+.nav-back::after{
+  content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(34,197,94,.25),transparent);
+  transform:skewX(-20deg);transition:left .5s;
+}
+.nav-back:hover::after{left:150%;}
+
+/* upgraded scroll-reveal spring */
+.rv{transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.18,.89,.32,1.28);}
+
+/* table rows smoother hover */
+tbody tr{transition:background .2s,box-shadow .2s;}
+tbody tr:hover{box-shadow:inset 3px 0 0 var(--accent);}
+
+/* subtle grain texture */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.02;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* accessibility: respect reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .rv{opacity:1!important;transform:none!important;}
+}
+/* ════════════════════════════════════════════
+   ✦ LOOK UPGRADE — modern editorial polish
+════════════════════════════════════════════ */
+
+/* richer cover with layered mesh gradient */
+.cover-left{
+  background:
+    radial-gradient(60% 50% at 80% 15%,rgba(74,222,128,.28),transparent 60%),
+    radial-gradient(50% 45% at 10% 85%,rgba(22,163,74,.35),transparent 65%),
+    linear-gradient(150deg,#04140a 0%,#0a2613 45%,#0f3d1d 100%)!important;
+  background-size:160% 160%,160% 160%,100% 100%!important;
+}
+/* big KFC watermark: outlined + gradient instead of flat shadow */
+.cover-left::after{
+  color:transparent!important;
+  -webkit-text-stroke:2px rgba(255,255,255,.07);
+  font-size:20rem!important;bottom:-2.5rem!important;
+}
+/* cover title: tighter, with refined italic accent */
+.cover-title{text-shadow:0 2px 30px rgba(0,0,0,.25);}
+.cover-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.3rem .7rem;border-radius:99px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.85)!important;
+}
+.cover-eyebrow::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+/* glass stat cards on cover-right */
+.cover-stat-grid{gap:1px;border-radius:14px;box-shadow:var(--sh2);}
+.cover-stat{transition:background .25s;}
+.cover-stat-val{font-size:2.4rem;}
+.cover-tag{border-radius:99px;font-weight:600;transition:all .25s cubic-bezier(.18,.89,.32,1.28);}
+.cover-tag:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* section tag: pill style, more modern */
+.sec-tag{
+  display:inline-flex;width:auto;align-items:center;
+  padding:.3rem .7rem;border-radius:99px;
+  background:var(--accent-pale);border:1px solid var(--border);
+  color:var(--accent)!important;margin-bottom:1rem;
+}
+.sec-tag::after{display:none!important;}
+
+/* headings: refined */
+.sec-heading{letter-spacing:-.03em;line-height:1.04;}
+
+/* key-findings: deeper rounding + lift */
+.kf-wrap{border-radius:16px;transition:transform .35s cubic-bezier(.18,.89,.32,1.28),box-shadow .35s;}
+.kf-wrap:hover{transform:translateY(-3px);box-shadow:var(--sh2);}
+.kf-badge{border-radius:10px;box-shadow:0 4px 14px rgba(22,163,74,.35);}
+.kf-num{font-size:.7rem;}
+.kf-item{transition:background .2s;}
+.kf-item:hover .kf-text{background:var(--accent-pale);}
+
+/* lit cards: rounded, soft */
+.lit{border-radius:12px;border-top-width:3px;}
+
+/* recommendation cards: big translucent number */
+.rec{border-radius:14px;overflow:hidden;}
+.rec-n{font-size:2.6rem;opacity:.14;}
+
+/* pull-quote: modern, large quote mark */
+.pq{border-radius:0 14px 14px 0;position:relative;border-left-width:4px;}
+
+/* note boxes: rounded + accent edge */
+.note{border-radius:12px;}
+
+/* nicer cards everywhere: unify radius */
+.cover-stat,.kf-wrap,.lit,.rec,.note,.pq,.mc{box-shadow:var(--sh);}
+
+/* metric cards: modern radius + larger value */
+.mc{border-radius:12px;}
+.mc-val{font-size:2.2rem;}
+
+/* timeline items: subtle slide on hover */
+.tl-item{transition:transform .3s cubic-bezier(.18,.89,.32,1.28);border-radius:8px;}
+.tl-item:hover{transform:translateX(4px);}
+.tl-dot{transition:transform .3s,box-shadow .3s;}
+.tl-item:hover .tl-dot{transform:scale(1.15);box-shadow:0 0 0 4px var(--accent-pale);}
+
+</style>
+</head>
+<body>
+
+<div class="pgbar" id="pgbar"></div>
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="index-60.html" class="nav-back">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M5 12l7-7M5 12l7 7"/></svg>Back
+    </a>
+    <div class="nav-wordmark">Capstone <span>· KFC Boycott</span></div>
+  </div>
+  <div class="nav-right">
+    <div class="dark-btn" onclick="toggleTheme()">
+      <div class="dark-knob">
+        <span class="ks"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
+        <span class="km"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">⎙ Print</button>
+  </div>
+</nav>
+
+<!-- COVER — 2 column split -->
+<div class="cover">
+  <div class="cover-left">
+    <div>
+<div class="cover-eyebrow">Final Year Project · BBA · SMI University · 2025</div>
+      <h1 class="cover-title">Boycott &<br>Its Impact<br>on <em>Customer<br>Retention</em></h1>
+      <p class="cover-sub">A case study of KFC Pakistan — analyzing the reasons behind the boycott and its measurable impact on customer behavior, sales, and local brand emergence.</p>
+    </div>
+    <div class="cover-meta-row">
+      <div class="cover-meta-item"><strong>Author</strong> Abdul Qadir Avadia · BUS-21S-003</div>
+      <div class="cover-meta-item"><strong>Supervisor</strong> Ma'am Quratulain Nazeer</div>
+      <div class="cover-meta-item"><strong>Submitted</strong> 21 February 2025</div>
+      <div class="cover-meta-item"><strong>Respondents</strong> 105 survey participants</div>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div>
+      <div class="cover-right-title">At a Glance</div>
+      <div class="cover-stat-grid">
+        <div class="cover-stat"><div class="cover-stat-val red">~47%</div><div class="cover-stat-lbl">Sales Decline</div><div class="cover-stat-note">KFC Lucky One, Karachi — PKR 1.5M → 800K daily</div></div>
+        <div class="cover-stat"><div class="cover-stat-val red">74.3%</div><div class="cover-stat-lbl">Switching Intent</div><div class="cover-stat-note">Respondents willing to switch to local brands</div></div>
+        <div class="cover-stat"><div class="cover-stat-val red">40%</div><div class="cover-stat-lbl">Industry Decline</div><div class="cover-stat-note">Overall Pakistan KFC & McDonald's sales drop</div></div>
+        <div class="cover-stat"><div class="cover-stat-val grn">65.7%</div><div class="cover-stat-lbl">Local Preference</div><div class="cover-stat-note">See Kababjees as best KFC alternative</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:.7rem;">Research Topics</div>
+      <div class="cover-tag-row">
+        <span class="cover-tag">Switching Intention</span>
+        <span class="cover-tag">Boycott Behavior</span>
+        <span class="cover-tag">Customer Retention</span>
+        <span class="cover-tag">Alternative Attractiveness</span>
+        <span class="cover-tag">Perceived Quality</span>
+        <span class="cover-tag">Local Brands</span>
+        <span class="cover-tag">Social Media Impact</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+<!-- KEY FINDINGS -->
+<div style="padding-top:3rem;" class="rv">
+  <div class="kf-wrap">
+    <div class="kf-head">
+      <div class="kf-head-left">
+        <div class="kf-eyebrow">Summary</div>
+        <div class="kf-title">Key Findings at a Glance</div>
+      </div>
+      <div class="kf-badge">
+        <div class="kf-badge-val">105</div>
+        <div class="kf-badge-lbl">Respondents</div>
+      </div>
+    </div>
+    <div class="kf-item"><div class="kf-num">01</div><div class="kf-text"><strong>74.3%</strong> of respondents are seriously considering switching from KFC to local fast-food brands because of the boycott movement.</div></div>
+    <div class="kf-item"><div class="kf-num">02</div><div class="kf-text">KFC Lucky One Mall Karachi saw daily sales drop from <strong>PKR 1.5M to PKR 800K</strong> — a ~47% decline — during the boycott period.</div></div>
+    <div class="kf-item"><div class="kf-num">03</div><div class="kf-text"><strong>69.5%</strong> prefer supporting local fast-food brands. Over half feel morally guilty purchasing from KFC during the boycott.</div></div>
+    <div class="kf-item"><div class="kf-num">04</div><div class="kf-text">International brands including KFC and McDonald's faced nearly <strong>40% decline</strong> in sales across Pakistan at the height of the boycott.</div></div>
+    <div class="kf-item"><div class="kf-num">05</div><div class="kf-text">Local brand <strong>Kababjees Fried Chicken</strong> successfully positioned itself as the primary alternative — 65.7% see it as the best KFC replacement.</div></div>
+    <div class="kf-item"><div class="kf-num">06</div><div class="kf-text"><strong>61%</strong> feel guilty purchasing from KFC. 57.1% state they will not support KFC due to its alleged involvement in unethical practices.</div></div>
+  </div>
+</div>
+
+<!-- 01 INTRODUCTION -->
+<div class="sec rv" id="s1">
+  <div class="sec-tag">01</div>
+  <h2 class="sec-heading">Introduction &<br><em>Background</em></h2>
+  <p class="lead">KFC entered Pakistan in 1997 with its first outlet in Gulshan Iqbal, Karachi. Today, over <strong>120 outlets</strong> operate across the country. In late 2023, the Israel-Palestine conflict triggered a global boycott movement that placed KFC at the center of public backlash in Pakistan.</p>
+  <div class="g2" style="margin-bottom:1.5rem;">
+    <div>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="tl-date">October 2023</div><div class="tl-t">Boycott Movement Begins</div><div class="tl-d">#BoycottKFC trends on Twitter, Facebook, Instagram, TikTok. Lists of "Israel-linked brands" circulate widely.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="tl-date">Late 2023</div><div class="tl-t">Sales Begin to Drop</div><div class="tl-d">Daily sales at KFC outlets fall sharply. Lucky One Mall Karachi drops from PKR 1.5M to PKR 800K average per day.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="tl-date">Early 2024</div><div class="tl-t">PSL Partnership Backlash</div><div class="tl-d">#BoycottPSL trends after KFC sponsors the cricket league. Stadium crowds visibly smaller; viewership declines.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div><div class="tl-date">March 2024</div><div class="tl-t">Mirpur Outlet Torched</div><div class="tl-d">Protesters burn a KFC outlet in Mirpur, AJK. Physical demonstrations spread across cities.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot grn"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg></div>
+          <div><div class="tl-date">2024</div><div class="tl-t">Local Brands Emerge</div><div class="tl-d">Kababjees, Krispy 2 Go, OPTP Fried Chicken rapidly gain loyal consumer base as ethical local alternatives.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="g2" style="align-content:start;">
+      <div class="mc"><div class="mc-val red">~47%</div><div class="mc-lbl">Sales Drop</div><div class="mc-note">KFC Lucky One — daily revenue decline during boycott</div></div>
+      <div class="mc"><div class="mc-val red">40%</div><div class="mc-lbl">Industry Decline</div><div class="mc-note">Overall Pakistan drop for KFC & McDonald's</div></div>
+      <div class="mc"><div class="mc-val">120+</div><div class="mc-lbl">KFC Outlets</div><div class="mc-note">Operating in Pakistan before the boycott movement</div></div>
+      <div class="mc"><div class="mc-val">1997</div><div class="mc-lbl">KFC Pakistan Entry</div><div class="mc-note">First outlet in Gulshan Iqbal, Karachi</div></div>
+    </div>
+  </div>
+  <div class="pq">
+    <p>"KFC, along with McDonald's, Starbucks, and Coca-Cola, became a major target of the boycott movement as consumers linked Yum! Brands to Israeli investments."</p>
+    <cite>— Dawn News, 2024</cite>
+  </div>
+</div>
+
+<!-- 02 LITERATURE REVIEW -->
+<div class="sec rv" id="s2">
+  <div class="sec-tag">02</div>
+  <h2 class="sec-heading">Literature<br><em>Review</em></h2>
+  <div class="g3">
+    <div class="lit" style="--lc:#16a34a;"><div class="lit-title">Food Quality & Consistency</div><div class="lit-body">Meyer et al. (2015) — High-quality ingredients and consistent cooking standards are pivotal. Hassan et al. (2018) — Consistency builds trust and repeat visits.</div></div>
+    <div class="lit" style="--lc:#2563eb;"><div class="lit-title">Customer Satisfaction & Loyalty</div><div class="lit-body">Zeithaml et al. (2000) — Service quality affects satisfaction which influences retention. Parasuraman et al. (1988) — 5 dimensions: tangibles, reliability, responsiveness, assurance, empathy.</div></div>
+    <div class="lit" style="--lc:var(--green);"><div class="lit-title">Location & Accessibility</div><div class="lit-body">Kotler et al. (2015) — Location is critical for foot traffic. Proximity to malls and transport hubs drives KFC's Pakistan expansion strategy.</div></div>
+    <div class="lit" style="--lc:#d97706;"><div class="lit-title">Switching Intention</div><div class="lit-body">Kuk et al. (2010) — Dissatisfaction is the dominant trigger. Bansal et al. (2005) — Push (dissatisfaction), Pull (alternatives), Mooring (switching barriers) framework.</div></div>
+    <div class="lit" style="--lc:#16a34a;"><div class="lit-title">Boycott Intention</div><div class="lit-body">Shim et al. (2021) — Boycott is action to punish ethically irresponsible firms. Romani et al. (2013) — Affects brand image, product perception, and consumer confidence.</div></div>
+    <div class="lit" style="--lc:#7c3aed;"><div class="lit-title">Alternative Attractiveness</div><div class="lit-body">Jones et al. (2000) — Perceived alternatives are a pull factor for switching. Alya E. Sjioen (2018) — Positive significant effect on switching intention.</div></div>
+  </div>
+</div>
+
+<!-- 03 SURVEY RESULTS -->
+<div class="sec rv" id="s3">
+  <div class="sec-tag">03</div>
+  <h2 class="sec-heading">Survey Results<br><em>& Interpretation</em></h2>
+  <p class="lead">105 respondents participated in the survey to analyze boycott impact on KFC customer retention. Primary data also collected from KFC Lucky One Mall, Karachi branch.</p>
+
+  <div class="g2" style="margin-bottom:1rem;">
+    <div class="cc">
+      <div class="cc-title">Switching Intention</div>
+      <div class="cc-sub">% considering switch from KFC to local brands</div>
+      <div style="position:relative;height:190px;"><canvas id="c-sw"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Boycott Intention</div>
+      <div class="cc-sub">% supporting the KFC boycott</div>
+      <div style="position:relative;height:190px;"><canvas id="c-by"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-bottom:1rem;">
+    <div class="ip">
+      <div class="ip-hd"><span class="ip-title">Switching Intention — Detailed</span><span class="ip-badge neg">74.3% Agree</span></div>
+      <div class="ip-body">
+        <div class="sbar-wrap">
+          <div class="sbar-row"><span class="sbar-lbl">Strongly Agree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#16a34a;" data-w="41%"></div></div><span class="sbar-pct">41%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Agree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#4ade80;" data-w="33.3%"></div></div><span class="sbar-pct">33.3%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Neutral</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d1d5db;" data-w="16.2%"></div></div><span class="sbar-pct">16.2%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Disagree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#e5e7eb;" data-w="9.5%"></div></div><span class="sbar-pct">9.5%</span></div>
+        </div>
+        "I am more likely to switch from KFC to local brands due to the ongoing boycott."
+      </div>
+    </div>
+    <div class="ip">
+      <div class="ip-hd"><span class="ip-title">Boycott Intention — Guilt</span><span class="ip-badge neg">61% Agree</span></div>
+      <div class="ip-body">
+        <div class="sbar-wrap">
+          <div class="sbar-row"><span class="sbar-lbl">Strongly Agree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#16a34a;" data-w="32.4%"></div></div><span class="sbar-pct">32.4%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Agree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#4ade80;" data-w="28.6%"></div></div><span class="sbar-pct">28.6%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Neutral</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d1d5db;" data-w="21%"></div></div><span class="sbar-pct">21%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Disagree</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#e5e7eb;" data-w="18%"></div></div><span class="sbar-pct">18%</span></div>
+        </div>
+        "I feel guilty buying from KFC, a brand clearly boycotted for unethical practices."
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="ip">
+      <div class="ip-hd"><span class="ip-title">Perceived Quality — Kababjees</span><span class="ip-badge pos">Positive Response</span></div>
+      <div class="ip-body">
+        <div class="sbar-wrap">
+          <div class="sbar-row"><span class="sbar-lbl">Menu Diversity</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:var(--green);" data-w="62.9%"></div></div><span class="sbar-pct">62.9%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Freshness & Quality</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:var(--green);" data-w="56.2%"></div></div><span class="sbar-pct">56.2%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Halal Standards</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:var(--green);" data-w="62.9%"></div></div><span class="sbar-pct">62.9%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Service Quality</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:var(--green);" data-w="59.1%"></div></div><span class="sbar-pct">59.1%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ip">
+      <div class="ip-hd"><span class="ip-title">Alternative Attractiveness</span><span class="ip-badge pos">Strong Competitor</span></div>
+      <div class="ip-body">
+        <div class="sbar-wrap">
+          <div class="sbar-row"><span class="sbar-lbl">Similar Price & Quality</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d97706;" data-w="60.9%"></div></div><span class="sbar-pct">60.9%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Best KFC Alternative</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d97706;" data-w="65.7%"></div></div><span class="sbar-pct">65.7%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Support Boycott via Kababjees</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d97706;" data-w="65.7%"></div></div><span class="sbar-pct">65.7%</span></div>
+          <div class="sbar-row"><span class="sbar-lbl">Prefer Local Brands</span><div class="sbar-track"><div class="sbar-fill" style="width:0%;background:#d97706;" data-w="69.5%"></div></div><span class="sbar-pct">69.5%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 SALES IMPACT -->
+<div class="sec rv" id="s4">
+  <div class="sec-tag">04</div>
+  <h2 class="sec-heading">Sales Impact<br><em>Analysis</em></h2>
+  <p class="lead">Primary sales data collected from <strong>KFC Lucky One Mall, Karachi</strong> to quantify the direct financial impact of the boycott on daily revenue.</p>
+  <div class="g3" style="margin-bottom:1.2rem;">
+    <div class="mc"><div class="mc-val grn">PKR 1.5M</div><div class="mc-lbl">Pre-Boycott Daily Avg</div><div class="mc-note">Weekdays ~PKR 1.2M · Weekends ~PKR 1.8M</div></div>
+    <div class="mc"><div class="mc-val red">PKR 800K</div><div class="mc-lbl">During Boycott Daily Avg</div><div class="mc-note">Weekdays ~PKR 500K · Weekends below PKR 1M</div></div>
+    <div class="mc"><div class="mc-val red">~47%</div><div class="mc-lbl">Revenue Drop</div><div class="mc-note">Measured at Lucky One Mall, Karachi branch</div></div>
+  </div>
+  <div class="cc">
+    <div class="cc-title">Daily Sales Before vs During Boycott — KFC Lucky One, Karachi</div>
+    <div class="cc-sub">PKR · Weekday vs Weekend comparison</div>
+    <div style="position:relative;height:230px;"><canvas id="c-sales"></canvas></div>
+  </div>
+</div>
+
+<!-- 05 LOCAL BRANDS -->
+<div class="sec rv" id="s5">
+  <div class="sec-tag">05</div>
+  <h2 class="sec-heading">Emerging Local<br><em>Brands</em></h2>
+  <div class="g3" style="margin-bottom:1.2rem;">
+    <div class="mc" style="border-top:2px solid var(--green);"><div class="mc-val grn" style="font-size:1.4rem;">Kababjees</div><div class="mc-lbl">Primary Challenger</div><div class="mc-note">Aggressive social media campaigns and influencer partnerships positioned it as the #1 local KFC alternative with authentic local flavors.</div></div>
+    <div class="mc" style="border-top:2px solid #2563eb;"><div class="mc-val" style="color:#2563eb;font-size:1.4rem;">Krispy 2 Go</div><div class="mc-lbl">Rising Brand</div><div class="mc-note">Rapid popularity growth during boycott period with affordable pricing and convenient locations across major cities.</div></div>
+    <div class="mc" style="border-top:2px solid #d97706;"><div class="mc-val amb" style="font-size:1.4rem;">OPTP FC</div><div class="mc-lbl">Established Player</div><div class="mc-note">OPTP Fried Chicken leveraged existing brand recognition to capture displaced KFC customers during the boycott period.</div></div>
+  </div>
+  <div class="cc">
+    <div class="cc-title">Market Perception — Kababjees vs KFC</div>
+    <div class="cc-sub">% of respondents who agree or strongly agree with each statement</div>
+    <div style="position:relative;height:200px;"><canvas id="c-cmp"></canvas></div>
+  </div>
+</div>
+
+<!-- 06 CONCLUSION -->
+<div class="sec rv" id="s6">
+  <div class="sec-tag">06</div>
+  <h2 class="sec-heading">Conclusion &<br><em>Recommendations</em></h2>
+  <p class="lead">The boycott had a profound and measurable impact on KFC's customer retention in Pakistan. Over 74% expressed willingness to switch to local brands, while KFC outlets experienced a ~47% decline in daily sales. The movement permanently reshaped the Pakistani fast-food landscape.</p>
+  <div class="pq" style="margin-bottom:1.5rem;">
+    <p>"Cultural relevance, brand ethics, and community trust are critical for retention in Muslim-majority markets. KFC's slow and inadequate response aggravated the situation significantly."</p>
+    <cite>— Research Conclusion</cite>
+  </div>
+  <div class="g3">
+    <div class="rec"><div class="rec-n">01</div><div class="rec-title">Menu Innovation</div><div class="rec-body">Launch new flavors, healthier options, and region-specific dishes that appeal to local Pakistani preferences and dietary habits.</div></div>
+    <div class="rec"><div class="rec-n">02</div><div class="rec-title">Improve Customer Service</div><div class="rec-body">Train employees for outstanding service. Establish collaborative community relationships to rebuild trust with local consumers.</div></div>
+    <div class="rec"><div class="rec-n">03</div><div class="rec-title">Transparent Communication</div><div class="rec-body">Use social media and brand ambassadors to communicate positively. Address ethical concerns with real, visible changes.</div></div>
+  </div>
+</div>
+
+</div><!-- /body -->
+
+<footer>
+  <div><strong>Boycott & Its Impact on Customer Retention — Case Study of KFC</strong> &nbsp;·&nbsp; Abdul Qadir Avadia · BUS-21S-003 &nbsp;·&nbsp; BBA Final Year · SMI University &nbsp;·&nbsp; Supervisor: Ma'am Quratulain Nazeer</div>
+  <div>Submitted: 21 February 2025 &nbsp;·&nbsp; Academic Research</div>
+</footer>
+
+<script>
+function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem('kfc-t',n);rebuildCharts();}
+var sv=localStorage.getItem('kfc-t');if(sv)document.documentElement.dataset.theme=sv;
+
+window.addEventListener('scroll',function(){
+  var s=document.documentElement.scrollTop,h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('pgbar').style.width=(s/h*100)+'%';
+  var b=document.getElementById('btt');if(s>400)b.classList.add('show');else b.classList.remove('show');
+});
+
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');x.target.querySelectorAll('.sbar-fill').forEach(function(b){setTimeout(function(){b.style.width=b.dataset.w;},150);});}});},{threshold:0.06});
+document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
+
+/* CURSOR SPOTLIGHT on cards */
+document.addEventListener('mousemove',function(e){
+  var c=e.target.closest('.cover-stat,.rec,.lit,.mc');
+  if(!c)return;
+  var r=c.getBoundingClientRect();
+  c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+  c.style.setProperty('--my',(e.clientY-r.top)+'px');
+},{passive:true});
+
+function isDark(){return document.documentElement.dataset.theme==='dark';}
+function tc(){return isDark()?'#b0b0a8':'#6b6b6b';}
+function gc(){return isDark()?'rgba(255,255,255,.05)':'rgba(0,0,0,.06)';}
+var C={};
+function buildCharts(){
+  var el,RED='#e63327',GREEN='#16a34a',AMB='#d97706',GRAY='#d1d5db';
+  el=document.getElementById('c-sw');
+  if(el){if(C.sw)C.sw.destroy();C.sw=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[41,33.3,16.2,9.5],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#1a1a18':'#f7f7f5'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'Inter',size:9},boxWidth:8,padding:6}}}}});}
+  el=document.getElementById('c-by');
+  if(el){if(C.by)C.by.destroy();C.by=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[29.5,27.6,22.9,20],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#1a1a18':'#f7f7f5'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'Inter',size:9},boxWidth:8,padding:6}}}}});}
+  el=document.getElementById('c-sales');
+  if(el){if(C.sa)C.sa.destroy();C.sa=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Weekday','Weekend','Daily Average'],datasets:[{label:'Before Boycott (PKR)',data:[1200000,1800000,1500000],backgroundColor:GREEN+'cc',borderColor:GREEN,borderWidth:2,borderRadius:5},{label:'During Boycott (PKR)',data:[500000,950000,800000],backgroundColor:RED+'cc',borderColor:RED,borderWidth:2,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{family:'Inter',size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:10}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return 'PKR '+(v/1000000).toFixed(1)+'M';}},grid:{color:gc()}}}}});}
+  el=document.getElementById('c-cmp');
+  if(el){if(C.cm)C.cm.destroy();C.cm=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Similar Price & Quality','Best KFC Alternative','Support Boycott via Brand','Service Quality Good','Menu Diverse & Appealing'],datasets:[{label:'% Agree',data:[60.9,65.7,65.7,59.1,62.9],backgroundColor:GREEN+'cc',borderColor:GREEN,borderWidth:2,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'%';}},grid:{color:gc()},max:100},y:{ticks:{color:tc(),font:{size:9}},grid:{display:false}}}}});}
+}
+function rebuildCharts(){buildCharts();}
+document.addEventListener('DOMContentLoaded',buildCharts);
+</script>
+</body>
+</html>
