@@ -13,7 +13,9 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Abdul Qadir Avedia"/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:image" content="avatar-finance.webp"/>
+<link rel="canonical" href="https://mr-avedia.github.io/Abdul-Qadir/"/>
+<meta property="og:url" content="https://mr-avedia.github.io/Abdul-Qadir/"/>
+<meta property="og:image" content="https://mr-avedia.github.io/Abdul-Qadir/avatar-finance.webp"/>
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Abdul Qadir Avedia | Finance &amp; Accounts Executive"/>
 <meta name="twitter:description" content="Finance &amp; Accounts Executive from Karachi — Power BI, Financial Modeling, QuickBooks, and Graphic Design."/>
@@ -2192,6 +2194,43 @@ html[data-theme="light"]{--head-grad:linear-gradient(var(--ng1),var(--ng1))}
 /* Skills: tighter gap between the heading block and the first panel */
 [id^="skills"] .sec-p{margin-bottom:1rem}
 [id^="skills"] .skills-layout{margin-top:0}
+
+/* ═══════════════════════════════════════════════
+   SECTION RHYTHM + Q&A
+═══════════════════════════════════════════════ */
+.sec{padding:4.5rem 5%}
+@media(max-width:640px){.sec{padding:3.2rem 4%}}
+/* Q&A */
+.qna{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);gap:2.2rem;max-width:1180px;margin:0 auto;align-items:start}
+.qna-side{position:sticky;top:110px;padding:2rem;border-radius:28px;background:radial-gradient(260px circle at 12% 0%,var(--g-spec,rgba(255,255,255,.4)),transparent 62%),var(--g-fill);
+  border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);-webkit-backdrop-filter:var(--g-blur-lg);backdrop-filter:var(--g-blur-lg)}
+.qna-side .eyebrow{margin-bottom:1rem}
+.qna-h{font-family:var(--display,'DM Sans',sans-serif);font-size:clamp(1.7rem,3vw,2.3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:var(--txt);margin-bottom:.8rem}
+html[data-theme] .qna-h span{background-image:var(--head-grad) !important;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;padding:0 .14em .18em 0;margin:0 -.14em -.18em 0}
+.qna-side p{color:var(--muted);line-height:1.75;font-size:.95rem;margin-bottom:1.4rem}
+.qna-cta{display:flex;flex-wrap:wrap;gap:.6rem}
+.qna-cta .btn-p,.qna-cta .btn-s{padding:0 1.4rem;font-size:.88rem}
+.qna-list{display:flex;flex-direction:column;gap:.75rem;min-width:0}
+.qa{border-radius:20px;background:var(--g-fill);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);
+  -webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);transition:border-color .3s,box-shadow .4s,transform .3s}
+.qa:hover{border-color:var(--border-h);transform:translateX(4px)}
+.qa.open{border-color:var(--accent2);box-shadow:var(--g-rim),0 16px 40px var(--glow-sm),var(--g-drop)}
+.qa-q{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:1rem;padding:1.15rem 1.3rem;cursor:pointer;border-radius:20px}
+.qa-q:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.qa-n{font-family:var(--display,'DM Sans',sans-serif);font-weight:700;font-size:.78rem;letter-spacing:.1em;color:var(--accent);opacity:.8;flex-shrink:0;min-width:1.6rem}
+.qa-t{flex:1;font-weight:700;font-size:1rem;line-height:1.4;color:var(--txt)}
+.qa-i{position:relative;width:30px;height:30px;border-radius:50%;flex-shrink:0;background:color-mix(in srgb,var(--accent2) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 28%,transparent);transition:background .3s,transform .4s cubic-bezier(.3,1.3,.4,1)}
+.qa-i::before,.qa-i::after{content:'';position:absolute;left:50%;top:50%;width:11px;height:2px;border-radius:2px;background:var(--accent);translate:-50% -50%;transition:rotate .35s}
+.qa-i::after{rotate:90deg}
+.qa.open .qa-i{background:var(--accent2);transform:rotate(180deg)}
+.qa.open .qa-i::before,.qa.open .qa-i::after{background:#fff}
+.qa.open .qa-i::after{rotate:0deg}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.8,.2,1)}
+.qa.open .qa-a{grid-template-rows:1fr}
+.qa-a>div{overflow:hidden}
+.qa-a p{padding:0 1.3rem 1.25rem 3.9rem;color:var(--txt2);line-height:1.75;font-size:.95rem}
+@media(max-width:900px){.qna{grid-template-columns:1fr;gap:1.4rem}.qna-side{position:static;padding:1.5rem}.qa-a p{padding-left:1.3rem}.qa:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.qa-a,.qa-i{transition:none}}
 </style>
 
 </head>
@@ -3044,14 +3083,27 @@ var _p=document.getElementById('i-pct'),_s=performance.now();(function f(n){var 
     <a class="btn-p" href="https://wa.me/923010301158?text=Hi%20Abdul%2C%20I%27d%20like%20to%20book%20a%2015-minute%20call." target="_blank" rel="noopener noreferrer">Book a Call on WhatsApp</a>
     <button type="button" class="btn-s" id="savevcf">Save My Contact</button>
   </div>
-  <div class="faq-wrap rv">
-    <h3 class="faq-h">Frequently Asked <span>Questions</span></h3>
-    <details class="faq"><summary>Are you available for freelance work?</summary><p>Yes — I am open to freelance finance and design projects. Message me with the details and we can take it from there.</p></details>
-    <details class="faq"><summary>Which tools do you work with?</summary><p>On the finance side: Power BI with DAX, QuickBooks Online, MySQL, and Excel. On the design side: Photoshop, Illustrator, InDesign, and Canva.</p></details>
-    <details class="faq"><summary>Where are you based?</summary><p>I am based in Karachi, Pakistan, and can work with clients remotely.</p></details>
-    <details class="faq"><summary>How can I see your projects or CV?</summary><p>Use the Projects section and the Download CV buttons on this page — they link to my full project pages and CV.</p></details>
-    <details class="faq"><summary>What is the best way to reach you?</summary><p>WhatsApp or email is fastest. You can also use the contact form below.</p></details>
+  <div class="qna rv">
+    <aside class="qna-side">
+      <span class="eyebrow">FAQ</span>
+      <h3 class="qna-h">Questions, <span>answered</span></h3>
+      <p>Quick answers about how I work. Can&rsquo;t find yours? Ask me directly &mdash; I reply fast.</p>
+      <div class="qna-cta">
+        <a class="btn-p" href="https://wa.me/923010301158?text=Hi%20Abdul%2C%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer">Ask on WhatsApp</a>
+        <a class="btn-s" href="mailto:abdul.qadir.avedia1@gmail.com">Email me</a>
+      </div>
+    </aside>
+    <div class="qna-list">
+      <div class="qa open"><button class="qa-q" type="button" aria-expanded="true"><span class="qa-n">01</span><span class="qa-t">Are you available for freelance work?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>Yes &mdash; I am open to freelance finance and design projects. Message me with the details and we can take it from there.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">02</span><span class="qa-t">What kind of finance work do you handle?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>Financial reconciliation, receivables and accounts management, Power BI reporting dashboards, and financial modeling.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">03</span><span class="qa-t">Which tools do you work with?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>On the finance side: Power BI with DAX, QuickBooks Online, MySQL, and Excel. On the design side: Photoshop, Illustrator, InDesign, and Canva.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">04</span><span class="qa-t">Do you offer both finance and design services?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>Yes. Use the Finance / Design profile switch at the top of the page to see the work, projects and CV for each.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">05</span><span class="qa-t">Where are you based?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>I am based in Karachi, Pakistan, and can work with clients remotely.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">06</span><span class="qa-t">How can I see your projects or CV?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>Use the Projects section and the Download CV buttons on this page &mdash; they link to my full project pages and CV.</p></div></div></div>
+      <div class="qa"><button class="qa-q" type="button" aria-expanded="false"><span class="qa-n">07</span><span class="qa-t">What is the best way to reach you?</span><span class="qa-i" aria-hidden="true"></span></button><div class="qa-a"><div><p>WhatsApp or email is fastest. You can also use the contact form below.</p></div></div></div>
+    </div>
   </div>
+
 </section>
 
 <section id="contact" class="sec sec-alt">
@@ -3572,6 +3624,24 @@ addEventListener('scroll',function(){if(!tk){tk=1;requestAnimationFrame(u);}},{p
   var h=document.querySelector('.hero');if(h&&!document.querySelector('.beam')){var b=document.createElement('div');b.className='beam';h.appendChild(b);}
   var t=0;addEventListener('scroll',function(){if(t)return;t=1;requestAnimationFrame(function(){t=0;document.documentElement.style.setProperty('--sy',scrollY);});},{passive:true});
 })();
+</script>
+
+<script>
+/* Q&A accordion: one open at a time */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.qa'));
+  items.forEach(function(it){var b=it.querySelector('.qa-q');
+    b.addEventListener('click',function(){var was=it.classList.contains('open');
+      items.forEach(function(o){o.classList.remove('open');o.querySelector('.qa-q').setAttribute('aria-expanded','false');});
+      if(!was){it.classList.add('open');b.setAttribute('aria-expanded','true');}});});
+})();
+</script>
+
+<script>
+/* canonical + og:url follow the active mode (Finance = root, Design = ?mode=design) */
+(function(){var B='https://mr-avedia.github.io/Abdul-Qadir/',c=document.querySelector('link[rel="canonical"]'),o=document.querySelector('meta[property="og:url"]');
+  function sync(){var u=document.documentElement.dataset.mode==='design'?B+'?mode=design':B;if(c)c.setAttribute('href',u);if(o)o.setAttribute('content',u);}
+  sync();new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['data-mode']});})();
 </script>
 </body>
 </html>
