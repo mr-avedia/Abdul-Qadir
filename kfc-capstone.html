@@ -4,7 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>KFC Boycott — Capstone Project · Abdul Qadir Avadia</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+<script>(function(){try{var t=localStorage.getItem("aqt")||localStorage.getItem("kfc-t");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;if(!sessionStorage.getItem("kfc-intro")&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("intro-on");}catch(e){}})();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -24,7 +25,7 @@
   --sh:0 1px 3px rgba(0,0,0,.3);--sh2:0 8px 32px rgba(0,0,0,.4);
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
 
 /* PROGRESS */
@@ -51,9 +52,9 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 /* COVER */
 .cover{display:grid;grid-template-columns:1fr 1fr;min-height:92vh;}
 .cover-left{background:linear-gradient(145deg,#071a0c 0%,#0d2e15 60%,#16a34a 100%);padding:4rem 5% 4rem 5%;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;}
-.cover-left::after{content:'KFC';position:absolute;bottom:-1rem;left:-.5rem;font-size:18rem;font-weight:900;color:rgba(0,0,0,.12);line-height:1;pointer-events:none;font-family:'Inter',sans-serif;letter-spacing:-.08em;}
+.cover-left::after{content:'KFC';position:absolute;bottom:-1rem;left:-.5rem;font-size:18rem;font-weight:900;color:rgba(0,0,0,.12);line-height:1;pointer-events:none;font-family:'DM Sans',sans-serif;letter-spacing:-.08em;}
 .cover-eyebrow{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.65);margin-bottom:.9rem;}
-.cover-title{font-family:'Fraunces',serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;position:relative;z-index:1;}
+.cover-title{font-family:var(--display);font-size:clamp(2.8rem,5vw,4.8rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;position:relative;z-index:1;}
 .cover-title em{font-style:italic;font-weight:300;}
 .cover-sub{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.7;margin-top:1.5rem;max-width:380px;position:relative;z-index:1;}
 .cover-meta-row{display:flex;flex-direction:column;gap:.35rem;position:relative;z-index:1;}
@@ -62,12 +63,12 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 .cover-right{background:var(--paper2);padding:4rem 5%;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--border);}
 .cover-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
 .cover-stat{background:var(--paper);padding:1.4rem 1.2rem;}
-.cover-stat-val{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-.04em;}
+.cover-stat-val{font-family:var(--display);font-size:2.2rem;font-weight:900;color:var(--ink);line-height:1;letter-spacing:-.04em;}
 .cover-stat-val.red{color:var(--accent);}
 .cover-stat-val.grn{color:var(--green);}
 .cover-stat-lbl{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.4rem;}
 .cover-stat-note{font-size:.68rem;color:var(--ink3);margin-top:.3rem;}
-.cover-right-title{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;line-height:1.2;}
+.cover-right-title{font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;line-height:1.2;}
 .cover-tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
 .cover-tag{font-size:.62rem;font-weight:600;padding:.22rem .65rem;border-radius:99px;background:var(--paper3);color:var(--ink3);border:1px solid var(--border);}
 
@@ -79,7 +80,7 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 .sec:last-child{border-bottom:none;}
 .sec-tag{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#16a34a;display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;}
 .sec-tag::after{content:'';flex:0 0 20px;height:1px;background:#16a34a;}
-.sec-heading{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.sec-heading{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;}
 .sec-heading em{font-style:italic;font-weight:300;color:var(--muted);}
 .lead{font-size:.9rem;color:var(--ink3);line-height:1.8;max-width:760px;margin-bottom:1.5rem;}
 
@@ -87,9 +88,9 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 .kf-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;box-shadow:var(--sh);}
 .kf-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.6rem;background:var(--paper2);border-bottom:1px solid var(--border);}
 .kf-head-left .kf-eyebrow{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:#16a34a;margin-bottom:.2rem;}
-.kf-head-left .kf-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--ink);}
+.kf-head-left .kf-title{font-family:var(--display);font-size:1.05rem;font-weight:700;color:var(--ink);}
 .kf-badge{background:#16a34a;color:#fff;border-radius:6px;padding:.5rem 1rem;text-align:center;flex-shrink:0;}
-.kf-badge-val{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:#fff;line-height:1;}
+.kf-badge-val{font-family:var(--display);font-size:1.5rem;font-weight:900;color:#fff;line-height:1;}
 .kf-badge-lbl{font-size:.54rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.75);margin-top:.18rem;}
 .kf-item{display:grid;grid-template-columns:52px 1fr;border-bottom:1px solid var(--border);}
 .kf-item:last-child{border-bottom:none;}
@@ -107,7 +108,7 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 
 /* METRIC CARDS */
 .mc{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem 1.3rem;}
-.mc-val{font-family:'Fraunces',serif;font-size:2rem;font-weight:900;line-height:1;letter-spacing:-.03em;}
+.mc-val{font-family:var(--display);font-size:2rem;font-weight:900;line-height:1;letter-spacing:-.03em;}
 .mc-val.red{color:var(--accent);}
 .mc-val.grn{color:var(--green);}
 .mc-val.amb{color:#d97706;}
@@ -157,13 +158,13 @@ body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);lin
 
 /* REC CARDS */
 .rec{background:var(--paper2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.2rem;}
-.rec-n{font-size:2rem;font-weight:900;color:#16a34a;opacity:.2;line-height:1;font-family:'Fraunces',serif;margin-bottom:.3rem;}
+.rec-n{font-size:2rem;font-weight:900;color:#16a34a;opacity:.2;line-height:1;font-family:var(--display);margin-bottom:.3rem;}
 .rec-title{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
 .rec-body{font-size:.72rem;color:var(--muted);line-height:1.7;}
 
 /* PULL QUOTE */
 .pq{border-left:3px solid #16a34a;padding:1rem 1.5rem;margin:1.5rem 0;background:#f0fdf4;}
-.pq p{font-family:'Fraunces',serif;font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.6;}
+.pq p{font-family:var(--display);font-size:1.05rem;font-style:italic;color:var(--ink);line-height:1.6;}
 .pq cite{font-size:.65rem;font-style:normal;color:var(--muted);margin-top:.5rem;display:block;}
 
 /* SCROLL REVEAL */
@@ -342,10 +343,331 @@ body::after{
 .tl-dot{transition:transform .3s,box-shadow .3s;}
 .tl-item:hover .tl-dot{transform:scale(1.15);box-shadow:0 0 0 4px var(--accent-pale);}
 
+/* ═══ PORTFOLIO THEME MATCH: liquid glass · aurora orbs · blur reveals ═══ */
+:root{--display:'Outfit','DM Sans',sans-serif;--g-blur:blur(22px) saturate(185%);--g-blur-lg:blur(34px) saturate(200%);--accent2:#22c55e;--btn:#15803d;--btn-h:#166534;--head-grad:linear-gradient(110deg,var(--accent),var(--accent3));--d0:0s}
+.intro-on{--d0:1.9s}
+[data-theme=light]{--accent:#15803d;--accent3:#16a34a;--glow:rgba(21,128,61,.22);--glow-sm:rgba(21,128,61,.11);--accent-pale:rgba(21,128,61,.1);--paper:#f8fbf9;--paper2:#e9f3ed;--paper3:rgba(21,128,61,.1);--ink:#08170d;--ink2:#17301f;--ink3:#17301f;--muted:#365443;--border:rgba(21,90,50,.24);--border-dark:rgba(21,128,61,.55);--sh:0 1px 2px rgba(10,50,25,.1),0 6px 18px rgba(10,50,25,.08);--sh2:0 14px 38px rgba(10,50,25,.18);--g-fill:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.34));--g-fill-2:rgba(255,255,255,.42);--g-edge:rgba(255,255,255,.85);--g-rim:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35);--g-drop:0 10px 34px rgba(20,70,40,.14),0 2px 6px rgba(20,70,40,.07);--g-spec:rgba(255,255,255,.9);--oa:.5;--ob:.38;--oc:.3}
+[data-theme=dark]{--accent:#22c55e;--accent3:#4ade80;--glow:rgba(34,197,94,.2);--glow-sm:rgba(34,197,94,.09);--accent-pale:rgba(34,197,94,.1);--paper:#020e05;--paper2:#061209;--paper3:#0a1c0e;--ink:#edfff2;--ink2:#c4f0d0;--ink3:#c4f0d0;--muted:#6acf8a;--border:rgba(34,197,94,.1);--border-dark:rgba(34,197,94,.28);--g-fill:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035));--g-fill-2:rgba(255,255,255,.06);--g-edge:rgba(255,255,255,.16);--g-rim:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.35);--g-drop:0 18px 50px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.35);--g-spec:rgba(255,255,255,.22);--oa:.5;--ob:.42;--oc:.34}
+body{font-family:'DM Sans',sans-serif}
+::selection{background:var(--accent2);color:#04130a}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent2),var(--accent));border-radius:99px}
+/* ambient colour orbs + grain */
+body::before,body::after{content:'';position:fixed;inset:auto;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(70px);will-change:transform;opacity:1}
+body::before{width:62vmax;height:62vmax;top:-22vmax;left:-18vmax;background:radial-gradient(circle at 35% 35%,color-mix(in srgb,var(--accent2) calc(var(--oa)*100%),transparent),transparent 62%);animation:orbA 26s ease-in-out infinite alternate}
+body::after{width:58vmax;height:58vmax;bottom:-24vmax;right:-16vmax;background:radial-gradient(circle at 60% 40%,color-mix(in srgb,var(--accent3) calc(var(--ob)*100%),transparent),transparent 60%),radial-gradient(circle at 20% 80%,color-mix(in srgb,var(--accent) calc(var(--oc)*100%),transparent),transparent 55%);animation:orbB 32s ease-in-out infinite alternate}
+@keyframes orbA{to{transform:translate(18vmax,14vmax) scale(1.15)}}@keyframes orbB{to{transform:translate(-16vmax,-12vmax) scale(1.2)}}
+html::after{content:'';position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* glass surfaces */
+.cover-right,.cover-stat,.kf-wrap,.mc,.cc,.ip,.lit,.rec,.pq,.cover-tag,[data-theme] footer{background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop)}
+.cover-stat,.mc,.cc,.ip,.lit,.rec,.kf-wrap,.pq{background-image:radial-gradient(0px circle at var(--mx,50%) var(--my,50%),transparent,transparent),var(--g-fill);transition:background-image .3s,transform .45s cubic-bezier(.18,.89,.32,1.28),border-color .3s,box-shadow .4s}
+.cover-stat:hover,.mc:hover,.cc:hover,.ip:hover,.lit:hover,.rec:hover,.kf-wrap:hover,.pq:hover{background-image:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--g-spec),transparent 65%),var(--g-fill);border-color:color-mix(in srgb,var(--accent2) 55%,var(--g-edge));box-shadow:var(--g-rim),0 22px 60px var(--glow),var(--g-drop);animation:neon 2.2s ease-in-out infinite}
+@keyframes neon{50%{box-shadow:var(--g-rim),0 0 0 1px var(--accent2),0 26px 70px var(--glow),var(--g-drop)}}
+.cover-stat::after,.rec::after,.lit::after,.mc::after{display:none}
+.lit{border-top:3px solid var(--lc,var(--accent))}.lit:hover{border-top-color:var(--lc,var(--accent))}
+.cc,.ip,.mc,.lit,.rec{border-radius:22px}
+[data-theme] .kf-head,[data-theme] .kf-text,[data-theme] .ip-hd{background:transparent;border-color:var(--g-edge)}
+.kf-item{border-color:var(--g-edge)}.kf-num{background:var(--glow-sm);color:var(--accent);border-color:var(--g-edge)}
+.kf-wrap{border-radius:26px}
+.kf-badge{background:linear-gradient(160deg,color-mix(in srgb,var(--accent2) 92%,#fff),var(--btn) 70%);border:1px solid rgba(255,255,255,.35);border-radius:16px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),0 8px 24px var(--glow)}
+/* type */
+.cover-title,.sec-heading,.cover-stat-val,.mc-val,.kf-title,.kf-badge-val,.rec-n,.cover-right-title,.nav-wordmark,.pq p,.cover-left::after{font-family:var(--display)}
+.cover-title{font-weight:800;letter-spacing:-.05em;line-height:.95;font-size:clamp(2.8rem,5.4vw,5rem)}
+.cover-title em{font-style:normal;font-weight:800;display:inline-block;padding-bottom:.12em}
+.sec-heading{font-weight:800;letter-spacing:-.045em;font-size:clamp(2rem,4.2vw,3.2rem);line-height:1.04}
+.sec-heading::after{display:none}
+.sec-heading em{font-style:normal;font-weight:800;background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;padding:0 .14em .18em 0;margin:0 -.14em -.18em 0}
+.lead{font-size:1rem}
+.sec{border-bottom:0;padding:4.5rem 0}
+.sec-tag{padding:.38rem .95rem;background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);letter-spacing:.18em;gap:.5rem}
+.sec-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);animation:pulseDot 2s ease-in-out infinite}
+@keyframes pulseDot{50%{transform:scale(1.5);box-shadow:0 0 18px var(--accent2)}}
+.rec-n{opacity:.6;font-size:2.4rem;background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pq{border-radius:22px;padding:1.4rem 1.8rem 1.4rem 2.2rem;overflow:hidden}
+.pq::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--accent3),var(--accent))}
+.pq p{font-style:normal;font-weight:600;font-size:1.1rem;letter-spacing:-.02em}
+.tl-item:not(:last-child)::before{width:2px;background:linear-gradient(var(--accent2),transparent)}
+.tl-dot{background:linear-gradient(145deg,var(--accent3),var(--accent));box-shadow:0 0 14px var(--glow)}
+/* glowing shimmer bars */
+.sbar-track{background:var(--g-fill-2);box-shadow:inset 0 1px 0 var(--g-edge)}
+.sbar-fill{position:relative;overflow:hidden;box-shadow:0 0 12px var(--glow)}
+.sbar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55),transparent 70%);transform:translateX(-100%);animation:barshine 2.8s ease-in-out infinite}
+@keyframes barshine{60%,100%{transform:translateX(100%)}}
+.sbar-fill[style*="d1d5db"]{background:color-mix(in srgb,var(--muted) 45%,transparent)!important}
+.sbar-fill[style*="e5e7eb"]{background:color-mix(in srgb,var(--muted) 25%,transparent)!important}
+/* floating glass nav */
+[data-theme] .nav{position:fixed;top:10px;left:2.5%;right:2.5%;height:58px;padding:0 1.1rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur-lg);backdrop-filter:var(--g-blur-lg);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);z-index:1000;animation:navIn .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes navIn{from{opacity:0;transform:translateY(-30px)}}
+.nav-wordmark{font-weight:800;font-size:1rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.nav-wordmark::before{content:'';width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),var(--accent));box-shadow:0 0 12px var(--accent2)}
+.nav-back{border-radius:999px;background:var(--g-fill-2);border-color:var(--g-edge)}
+.dark-btn{width:48px;height:26px;background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.dark-knob{background:linear-gradient(145deg,var(--accent3),var(--accent));box-shadow:0 2px 10px var(--glow),inset 0 1px 0 rgba(255,255,255,.6)}
+[data-theme=dark] .dark-knob{transform:translateX(22px)}
+/* glossy liquid buttons */
+.print-btn,.btt{border-radius:999px;background:linear-gradient(160deg,color-mix(in srgb,var(--accent2) 92%,#fff),var(--btn) 70%);border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -6px 12px rgba(0,0,0,.14),0 8px 24px var(--glow);position:relative;overflow:hidden}
+.print-btn{padding:.5rem 1.1rem;text-shadow:0 1px 2px rgba(0,0,0,.22);animation:breathe 3.2s ease-in-out infinite}
+.print-btn:hover{background:linear-gradient(160deg,color-mix(in srgb,var(--accent3) 85%,#fff),var(--btn-h))}
+.print-btn::before{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg)}
+.print-btn:hover::before{animation:sweep .8s ease}
+@keyframes sweep{to{left:130%}}
+@keyframes breathe{50%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -6px 12px rgba(0,0,0,.14),0 10px 40px var(--glow),0 0 0 6px var(--glow-sm)}}
+/* cover: rounded panels, aurora, choreographed entrance */
+.cover{padding:84px 2.5% 0;gap:1.2rem}
+.cover-left{border-radius:28px;border:1px solid var(--g-edge);box-shadow:var(--g-drop);padding:3.2rem 2.4rem}
+.cover-left>*{position:relative;z-index:1}
+.cover-left::before{content:'';position:absolute;inset:-30%;filter:blur(70px);opacity:.5;pointer-events:none;background:conic-gradient(from 0deg,rgba(34,197,94,.55),transparent 25%,rgba(74,222,128,.5) 48%,transparent 70%,rgba(22,163,74,.5) 90%,rgba(34,197,94,.55));animation:spin 32s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cover-right{border-radius:28px;padding:2.4rem}
+.cover-stat-grid{gap:.8rem;background:none;border:0;box-shadow:none;overflow:visible}
+.cover-stat{border-radius:18px}
+@keyframes up{from{opacity:0;transform:translateY(26px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.cover-eyebrow,.cover-title,.cover-sub,.cover-meta-row,.cover-right>*{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.cover-eyebrow{animation-delay:calc(var(--d0) + .1s)}.cover-title{animation-delay:calc(var(--d0) + .22s)}.cover-sub{animation-delay:calc(var(--d0) + .36s)}.cover-meta-row{animation-delay:calc(var(--d0) + .46s)}
+.cover-right>:nth-child(1){animation-delay:calc(var(--d0) + .3s)}.cover-right>:nth-child(2){animation-delay:calc(var(--d0) + .5s)}
+/* marquee band */
+.band{margin-top:1.4rem;padding:1rem 0;overflow:hidden;background:linear-gradient(100deg,var(--btn),var(--accent2),var(--btn));border-block:1px solid rgba(255,255,255,.25);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.band-inner{display:flex;width:max-content;animation:bscroll 28s linear infinite}.band-inner:hover{animation-play-state:paused}
+.bi{display:flex;align-items:center;gap:3.2rem;padding-left:3.2rem;font-family:var(--display);font-weight:700;font-size:.9rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.bi::after{content:'';width:7px;height:7px;rotate:45deg;background:rgba(255,255,255,.6)}
+@keyframes bscroll{to{transform:translateX(-50%)}}
+/* blur-in scroll reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}.rv.on{opacity:1;transform:none}
+.rv .sec-tag,.rv .sec-heading,.rv .lead{opacity:0;filter:blur(14px);translate:0 18px;transition:opacity 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1),translate 1s cubic-bezier(.16,1,.3,1)}
+.rv.on .sec-tag,.rv.on .sec-heading,.rv.on .lead{opacity:1;filter:none;translate:0}.rv.on .sec-heading{transition-delay:.1s}.rv.on .lead{transition-delay:.2s}
+/* progress, cursor glow, stars, footer */
+.pgbar{height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3),var(--accent2));box-shadow:0 0 14px var(--accent2);z-index:3000;transition:none}
+#cglow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;z-index:0;pointer-events:none;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:0;transition:opacity .4s;will-change:transform}
+[data-theme=dark] #cglow{mix-blend-mode:screen}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s;background-image:radial-gradient(1.6px 1.6px at 12% 20%,#fff,transparent),radial-gradient(1.2px 1.2px at 74% 12%,#fff,transparent),radial-gradient(1.8px 1.8px at 38% 66%,#fff,transparent),radial-gradient(1.2px 1.2px at 88% 58%,#fff,transparent),radial-gradient(1.4px 1.4px at 55% 38%,#fff,transparent),radial-gradient(1.2px 1.2px at 22% 86%,#fff,transparent);background-size:420px 420px;animation:twinkle 4.5s ease-in-out infinite alternate}
+[data-theme=dark] #stars{opacity:.4}@keyframes twinkle{from{filter:brightness(.5)}to{filter:brightness(1.5)}}
+[data-theme] footer{margin:4rem 2.5% 1.2rem;border-radius:22px;padding:1.4rem 1.6rem;color:var(--muted)}[data-theme] footer strong{color:var(--accent)}
+/* intro splash */
+#intro{position:fixed;inset:0;height:100dvh;z-index:5000;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background:radial-gradient(ellipse at 50% 50%,color-mix(in srgb,var(--accent2) 16%,var(--paper)) 0%,var(--paper) 72%);animation:iOut 2.7s cubic-bezier(.7,0,.2,1) forwards}
+#intro .i-aurora{position:absolute;inset:-25%;filter:blur(70px);opacity:.8;pointer-events:none;background:conic-gradient(from 0deg,color-mix(in srgb,var(--accent2) 55%,transparent),transparent 22%,color-mix(in srgb,var(--accent3) 50%,transparent) 45%,transparent 68%,color-mix(in srgb,var(--accent) 50%,transparent) 88%,color-mix(in srgb,var(--accent2) 55%,transparent));animation:spin 14s linear infinite}
+#intro .i-ring{position:absolute;left:50%;top:50%;width:46vmin;height:46vmin;margin:-23vmin 0 0 -23vmin;border-radius:50%;border:1px solid var(--accent2);opacity:0;animation:iRing 2.6s .3s cubic-bezier(.2,.7,.2,1) infinite}#intro .r2{animation-delay:1s}
+#intro .i-core{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;padding:0 5%}
+#intro small{font-size:.8rem;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:var(--accent);opacity:0;animation:iIn 1s .2s cubic-bezier(.16,1,.3,1) forwards}
+#intro h1{font-family:var(--display);font-size:clamp(2.1rem,8.4vw,5.6rem);font-weight:800;letter-spacing:-.045em;line-height:1.05;color:var(--ink);perspective:700px;white-space:nowrap}
+#intro h1 .l{display:inline-block;opacity:0;transform:translateY(70px) rotateX(-70deg);filter:blur(16px);animation:iLetter 1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.35s + var(--i)*.05s)}
+#intro h1 .sp{width:.28em}#intro h1 .a{background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#intro .i-line{height:2px;width:0;background:linear-gradient(90deg,transparent,var(--accent3),var(--accent2),transparent);animation:iGrow 1.2s .9s cubic-bezier(.16,1,.3,1) forwards}
+#intro p{font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:0;animation:iIn 1s 1.1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes iRing{0%{transform:scale(.5);opacity:.7}100%{transform:scale(2.3);opacity:0}}
+@keyframes iIn{from{opacity:0;transform:translateY(22px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+@keyframes iLetter{to{opacity:1;transform:none;filter:none}}@keyframes iGrow{to{width:min(52vw,380px)}}
+@keyframes iOut{0%,72%{opacity:1;visibility:visible;transform:none;filter:none}100%{opacity:0;visibility:hidden;transform:scale(1.35);filter:blur(22px)}}
+/* responsive · motion · print */
+@media(max-width:900px){.cover-left{padding:2.4rem 1.6rem}.cover-right{padding:1.6rem}}
+@media(max-width:640px){#cglow{display:none}[data-theme] .nav{left:3%;right:3%;border-radius:18px}body::before,body::after{filter:blur(50px)}}
+@media(max-width:520px){.nav-wordmark span{display:none}}
+@media(prefers-reduced-motion:reduce){#intro{display:none}body::before,body::after,.cover-left::before,#stars{animation:none}.rv .sec-tag,.rv .sec-heading,.rv .lead{filter:none;translate:0;opacity:1}.cover-eyebrow,.cover-title,.cover-sub,.cover-meta-row,.cover-right>*{animation:none}}
+@media print{#intro,#cglow,#stars,.pgbar,.btt,.nav,.band,html::after,body::before,body::after{display:none!important}.cover{padding-top:0}.rv,.rv *{opacity:1!important;filter:none!important;transform:none!important;translate:none!important}*{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;animation:none!important}}
+
+/* wider layout, 2-col findings, abstract, note */
+.body{max-width:1360px;padding:0 4%}.lead{max-width:900px}
+.kf-eyebrow{letter-spacing:.18em}[data-theme] .kf-head-left .kf-title{font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.03em}
+.kf-grid{display:grid;grid-template-columns:1fr 1fr}.kf-item:nth-child(odd){border-right:1px solid var(--g-edge)}.kf-item:nth-last-child(-n+2){border-bottom:0}
+.kf-text{font-size:.9rem;display:flex;align-items:center}
+.abs{display:grid;grid-template-columns:1.2fr 1fr;gap:1.2rem;padding-top:3rem;align-items:stretch}
+.abs-card{background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);border-radius:26px;padding:1.8rem 2rem}
+.abs-card p{font-size:.95rem;line-height:1.85;color:var(--ink3);margin-top:.9rem}
+.abs .g2{align-content:stretch}.abs .mc-val{font-size:2rem}
+.note{background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);border-radius:18px;padding:1rem 1.3rem;font-size:.85rem;line-height:1.7;color:var(--ink3);margin-bottom:1.2rem}
+.note strong{color:var(--accent)}
+@media(max-width:900px){.abs{grid-template-columns:1fr}.kf-grid{grid-template-columns:1fr}.kf-item:nth-child(odd){border-right:0}.kf-item:nth-last-child(-n+2){border-bottom:1px solid var(--g-edge)}.kf-item:last-child{border-bottom:0}}
+
+/* key finding cards + intro blocks */
+.kf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;padding:1.2rem}
+.kf-card{background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);border-radius:18px;padding:1.2rem 1.3rem;transition:transform .45s cubic-bezier(.18,.89,.32,1.28),box-shadow .4s,border-color .3s}
+.kf-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent2) 55%,var(--g-edge));box-shadow:0 18px 44px var(--glow)}
+.kf-tag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.kf-val{font-family:var(--display);font-weight:800;font-size:2.6rem;letter-spacing:-.045em;line-height:1.1;margin:.3rem 0 .5rem;background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.kf-meter{height:5px;border-radius:99px;background:var(--g-fill-2);overflow:hidden;margin-bottom:.8rem}
+.kf-meter i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent3));box-shadow:0 0 10px var(--glow);transition:width 1.4s cubic-bezier(.16,1,.3,1) .3s}
+.rv.on .kf-meter i{width:var(--w)}
+.kf-card p{font-size:.86rem;line-height:1.7;color:var(--ink3)}
+.kf-take{margin:0 1.2rem 1.2rem;padding:1rem 1.3rem;border-radius:16px;font-size:.9rem;line-height:1.7;color:var(--ink3);background:var(--glow-sm);border:1px solid var(--g-edge)}.kf-take strong{color:var(--accent)}
+.ib{background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);border-radius:22px;padding:1.4rem 1.6rem}
+.ib-row{margin:1.4rem 0}.ib.wide{margin:0 0 1.4rem}
+.ib-h{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.02em;margin-bottom:.6rem;display:flex;align-items:center;gap:.55rem}
+.ib-h::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2)}
+.ib p,.ib-l li{font-size:.92rem;line-height:1.8;color:var(--ink3)}
+.ib-l{padding-left:1.2rem;display:grid;gap:.5rem}.ib-l li::marker{color:var(--accent);font-weight:700}.ib-l b{color:var(--accent)}
+@media(max-width:1100px){.kf-cards{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.kf-cards{grid-template-columns:1fr}}
+
+/* cover refresh */
+.cover-title em.t2{display:block;font-size:.5em;letter-spacing:-.035em;line-height:1.1;margin-top:.4em;padding-bottom:.1em}
+.cover-cta{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.cbtn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border-radius:999px;font-weight:700;font-size:.85rem;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .4s cubic-bezier(.18,.89,.32,1.28),background .3s,box-shadow .3s}
+.cbtn:hover{transform:translateY(-3px);background:rgba(255,255,255,.16)}
+.cbtn.p{background:linear-gradient(160deg,#4ade80,#16a34a 75%);border-color:rgba(255,255,255,.4);color:#04130a;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 10px 30px rgba(34,197,94,.4)}
+.cbtn.p span{display:inline-block;animation:bob 1.6s ease-in-out infinite}@keyframes bob{50%{transform:translateY(3px)}}
+.cover-meta-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.cover-meta-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:.7rem .95rem;color:#fff;font-size:.82rem;line-height:1.4}
+.cover-meta-item strong{display:block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.15rem}
+.cover-right{gap:1.3rem}.cover-stat-val{font-size:2.8rem}
+.snap{background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);border-radius:20px;padding:1.2rem 1.3rem}
+.snap-hd{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.snap-hd b{font-family:var(--display);font-size:1.1rem;letter-spacing:-.02em;color:#fff;background:linear-gradient(135deg,#dc2626,#f87171);padding:.15rem .7rem;border-radius:999px}
+.snap-row{display:grid;grid-template-columns:104px 1fr 76px;align-items:center;gap:.8rem;margin-top:.7rem;font-size:.8rem;color:var(--ink3)}
+.snap-row em{font-style:normal;font-weight:700;text-align:right;color:var(--ink)}
+.snap-bar{height:14px;border-radius:99px;background:var(--g-fill-2);overflow:hidden}
+.snap-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent3));box-shadow:0 0 12px var(--glow);animation:snapIn 1.4s cubic-bezier(.16,1,.3,1) calc(var(--d0) + 1s) forwards}
+.snap-bar.low i{background:linear-gradient(90deg,#dc2626,#f87171);box-shadow:0 0 12px rgba(220,38,38,.35);animation-delay:calc(var(--d0) + 1.25s)}
+@keyframes snapIn{to{width:var(--w)}}
+.cover-right>:nth-child(3){animation-delay:calc(var(--d0) + .7s)}
+@media(max-width:520px){.cover-meta-row{grid-template-columns:1fr}.snap-row{grid-template-columns:84px 1fr 62px}}
+@media(prefers-reduced-motion:reduce){.snap-bar i{animation:none;width:var(--w)}}
+@media print{.snap-bar i{width:var(--w)!important}}
+
+/* literature cards */
+.lit-grid{margin-top:1.6rem}
+.lit{display:flex;flex-direction:column;gap:.7rem;padding:1.3rem 1.4rem}
+.lit-top{display:flex;justify-content:space-between;align-items:center;gap:.6rem}
+.lit-n{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.04em;color:var(--lc,var(--accent));opacity:.85}
+.lit-chip{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .7rem;border-radius:999px;color:var(--ink2);background:var(--g-fill-2);border:1px solid var(--g-edge)}
+.lit-title{font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:-.02em;color:var(--ink)}
+.lit-list{list-style:none;display:grid;gap:.75rem;padding:0}
+.lit-list li{font-size:.88rem;line-height:1.65;color:var(--ink3);padding-left:.9rem;border-left:2px solid color-mix(in srgb,var(--lc,var(--accent)) 70%,transparent)}
+.lit-list b{display:block;font-size:.78rem;letter-spacing:.02em;color:var(--ink)}
+/* dark-mode readability */
+[data-theme=dark]{--muted:#a9ddba;--ink3:#d4f5dd}
+[data-theme=dark] .mc-val[style*="#2563eb"],[data-theme=dark] .lit[style*="#2563eb"] .lit-n{color:#60a5fa!important}
+[data-theme=dark] .mc-val[style*="#d97706"],[data-theme=dark] .lit[style*="#d97706"] .lit-n{color:#fbbf24!important}
+[data-theme=dark] .lit[style*="#7c3aed"] .lit-n{color:#a78bfa!important}
+[data-theme=dark] .mc[style*="#2563eb"]{border-top-color:#60a5fa!important}[data-theme=dark] .mc[style*="#d97706"]{border-top-color:#fbbf24!important}
+[data-theme=dark] .lit[style*="#2563eb"]{--lc:#60a5fa}[data-theme=dark] .lit[style*="#d97706"]{--lc:#fbbf24}[data-theme=dark] .lit[style*="#7c3aed"]{--lc:#a78bfa}[data-theme=dark] .lit[style*="#16a34a"]{--lc:#4ade80}
+[data-theme=dark] .mc-note,[data-theme=dark] .cover-stat-note,[data-theme=dark] .tl-d,[data-theme=dark] .cc-sub,[data-theme=dark] .sbar-lbl,[data-theme=dark] .pq cite{color:var(--muted)}
+[data-theme=dark] .sbar-track{background:rgba(255,255,255,.12)}
+[data-theme=dark] .sbar-fill[style*="d1d5db"]{background:rgba(255,255,255,.4)!important}[data-theme=dark] .sbar-fill[style*="e5e7eb"]{background:rgba(255,255,255,.25)!important}
+[data-theme=light] .sec-tag,[data-theme=light] .kf-tag,[data-theme=light] .kf-eyebrow,[data-theme=light] .mc-val.grn,[data-theme=light] .ip-badge{color:#0f6b34}
+
+/* literature cards: one consistent theme green */
+[data-theme] .lit[style]{--lc:var(--accent)!important}
+html[data-theme] .lit[style] .lit-n{color:var(--accent)!important}
+
+/* ═ DARK MODE: portfolio gradient backdrop, vignette & hero glow ═ */
+[data-theme=dark] body{background:radial-gradient(1200px 700px at 12% -8%,color-mix(in srgb,var(--accent2) 11%,transparent),transparent 60%),radial-gradient(1000px 700px at 100% 108%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 60%),var(--paper);background-attachment:fixed}
+html::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,transparent 56%,rgba(0,0,0,.12) 100%)}
+[data-theme=dark] html::before{background:radial-gradient(ellipse at 50% 40%,transparent 42%,rgba(0,0,0,.5) 100%)}
+[data-theme=dark] .cover{position:relative}
+[data-theme=dark] .cover::after{content:'';position:absolute;right:2%;top:50%;width:min(46vw,640px);aspect-ratio:1;translate:0 -50%;border-radius:50%;pointer-events:none;z-index:-1;filter:blur(60px);opacity:.38;background:conic-gradient(from 0deg,var(--accent2),transparent 25%,var(--accent3),transparent 60%,var(--accent),transparent 85%,var(--accent2));animation:spin 22s linear infinite}
+[data-theme=dark] .cover::before{content:'';position:absolute;top:-10%;right:-6%;width:650px;height:650px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,var(--glow-sm) 0%,transparent 65%)}
+[data-theme=dark] .sec-heading em,[data-theme=dark] .cover-title em{filter:drop-shadow(0 6px 22px var(--glow))}
+[data-theme=dark] .cover-left::before{opacity:.7}
+[data-theme=dark] #cglow{mix-blend-mode:normal;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 12%,transparent),transparent 65%)}
+[data-theme=dark] .kf-card,[data-theme=dark] .snap,[data-theme=dark] .ib,[data-theme=dark] .abs-card{box-shadow:var(--g-rim),0 14px 40px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3)}
+@media(prefers-reduced-motion:reduce){[data-theme=dark] .cover::after{animation:none}}
+@media print{html::before,.cover::before,.cover::after{display:none!important}}
+
+/* ═ DARK MODE: vivid neon-green / lime palette from the portfolio ═ */
+[data-theme=dark]{--accent:#2bff88;--accent2:#00f070;--accent3:#b4ff5c;--glow:rgba(43,255,136,.4);--glow-sm:rgba(43,255,136,.15);--accent-pale:rgba(43,255,136,.1);--paper:#030b06;--paper2:#06130b;--paper3:#0a1c0e;--ink:#fff;--ink2:#e4f7ea;--ink3:#e4f7ea;--muted:#c2f7d6;--border:rgba(43,255,136,.12);--border-dark:rgba(43,255,136,.34);--btn:#12b85a;--btn-h:#0e9a4a;--head-grad:linear-gradient(100deg,var(--accent),var(--accent3) 55%,var(--accent2));--g-fill:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.015) 55%),linear-gradient(rgba(7,20,12,.66),rgba(7,20,12,.66));--g-fill-2:rgba(255,255,255,.06);--g-edge:rgba(255,255,255,.11);--oa:.7;--ob:.6;--oc:.5}
+[data-theme=dark] body{background:radial-gradient(1200px 700px at 12% -8%,color-mix(in srgb,var(--accent2) 18%,transparent),transparent 60%),radial-gradient(1000px 700px at 100% 108%,color-mix(in srgb,var(--accent3) 14%,transparent),transparent 60%),var(--paper);background-attachment:fixed}
+[data-theme=dark] .sec-heading em{background:linear-gradient(110deg,var(--accent),var(--accent3),var(--accent2),var(--accent));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+[data-theme=dark] .sbar-fill[style*="16a34a"],[data-theme=dark] .sbar-fill[style*="4ade80"],[data-theme=dark] .sbar-fill[style*="--green"]{background:linear-gradient(90deg,var(--accent),var(--accent3))!important;box-shadow:0 0 14px var(--glow)}
+[data-theme=dark] .sec-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+[data-theme=dark] .kf-tag,[data-theme=dark] .kf-eyebrow,[data-theme=dark] .ib-l b{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){[data-theme=dark] .sec-heading em{animation:none}}
+
+/* tighter, fuller layout: align with nav/cover edges, less dead space */
+.body{max-width:1800px;width:95%;margin:0 auto;padding:0}
+.sec{padding:3rem 0}
+.abs{padding-top:2rem}
+.lead{max-width:1100px}
+.lead-2{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:.4rem}
+.lead-2 .lead{max-width:none;margin:0}
+@media(max-width:900px){.lead-2{grid-template-columns:1fr;gap:1rem}}
+
+/* chapter header panels + cover fills */
+.sec-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2rem;align-items:end;margin-bottom:1.6rem}
+.sec-head .sh-l .lead{margin-top:.9rem}
+.sh-r{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.sh-t{display:flex;flex-direction:column;gap:.3rem;padding:1.1rem 1.2rem;border-radius:20px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop)}
+.sh-t b{font-family:var(--display);font-weight:800;font-size:1.9rem;letter-spacing:-.04em;line-height:1.05;background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sh-t span{font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--ink3);line-height:1.4}
+.cover-q{margin-top:1.4rem;padding:1rem 1.2rem;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-left:3px solid #4ade80;color:#fff;font-size:.95rem;line-height:1.6;max-width:34rem}
+.cover-q b{display:block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:.25rem}
+.snap-hd b.ok{background:linear-gradient(135deg,var(--btn),var(--accent2))}
+.cover-right>:nth-child(3){animation-delay:calc(var(--d0) + .6s)}.cover-right>:nth-child(4){animation-delay:calc(var(--d0) + .8s)}
+@media(max-width:1000px){.sec-head{grid-template-columns:1fr}}
+@media(max-width:520px){.sh-r{grid-template-columns:1fr 1fr 1fr;gap:.5rem}.sh-t{padding:.8rem}.sh-t b{font-size:1.4rem}}
+
+html{scroll-padding-top:92px}
+.snap-row{grid-template-columns:128px 1fr 64px}
+.snap-hd b.ok{font-size:.7rem;letter-spacing:.08em;padding:.25rem .8rem;color:#04130a}
+@media(max-width:520px){.snap-row{grid-template-columns:100px 1fr 52px}}
+
+/* sticky chapter navigator fills the side gutter */
+.body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:2rem;align-items:start}
+.body-main{min-width:0}
+.sec,.abs,#findings{scroll-margin-top:90px}
+.toc{position:sticky;top:90px;margin-top:2rem;padding:1.1rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);display:grid;gap:.2rem}
+.toc-h{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 .4rem .5rem}
+.toc a{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border-radius:12px;font-size:.84rem;font-weight:600;color:var(--ink3);text-decoration:none;border:1px solid transparent;transition:background .25s,color .25s,border-color .25s}
+.toc a i{font-style:normal;font-family:var(--display);font-size:.7rem;color:var(--accent);width:1.5rem}
+.toc a:hover{background:var(--g-fill-2)}
+.toc a.on{background:var(--glow-sm);border-color:color-mix(in srgb,var(--accent2) 45%,transparent);color:var(--ink);box-shadow:0 0 18px var(--glow-sm)}
+.toc-bar{height:3px;border-radius:99px;background:var(--g-fill-2);margin:.8rem .2rem .2rem;overflow:hidden}.toc-bar i{display:block;height:100%;width:var(--p,0%);background:var(--head-grad)}
+.toc-stats{display:grid;gap:.55rem;margin-top:.9rem}
+.toc-stat{padding:.65rem .85rem;border-radius:14px;background:var(--g-fill-2);border:1px solid var(--g-edge)}
+.toc-stat b{display:block;font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em;color:var(--accent);line-height:1.15}.toc-stat span{font-size:.72rem;color:var(--muted)}
+@media(max-width:1200px){.body{display:block}.toc{display:none}}
+@media print{.toc{display:none!important}.body{display:block}}
+/* restored: gradient section dividers + glowing heading underline */
+.sec{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--border-dark),transparent) 1}
+.sec:first-of-type{border-top-color:transparent;border-image:none}
+.sec-heading::after{display:block;content:'';width:56px;height:4px;border-radius:99px;margin-top:.9rem;background:var(--head-grad);box-shadow:0 0 14px var(--glow)}
+
+/* scale the whole page up on large monitors; no fixed width cap */
+html{font-size:clamp(16px,.55vw + 9px,24px)}
+.body{max-width:none;width:95%;grid-template-columns:15.5rem minmax(0,1fr);gap:2.2rem}
+.toc{top:5.5rem}
+.lead{max-width:72rem}
+.sec-heading{font-size:clamp(2.2rem,3.6vw,3.6rem)}
+.lit-list li{font-size:.92rem}.lit-title{font-size:1.15rem}
+
+/* balanced hero + equal-size intro columns */
+.cover,.cover-left,.cover-right{min-height:0}
+.cover{align-items:stretch}
+.cover-right{justify-content:space-between;gap:1.4rem}
+.cover-left{gap:2rem}
+.lead-2{grid-auto-rows:1fr;align-items:stretch;gap:1.4rem}
+.lead-2 .lead{max-width:none;margin:0;height:100%;padding:1.5rem 1.7rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);font-size:1rem;line-height:1.85;display:flex;flex-direction:column;justify-content:center;position:relative}
+.lead-2 .lead::before{content:attr(data-h);font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+
+/* hero fits the first screen (no cut-off) */
+.cover{padding-top:76px}
+.cover-left{padding:2rem 2.2rem;gap:1rem}
+.cover-right{padding:1.5rem 1.7rem;gap:.9rem}
+.cover-title{font-size:clamp(2.3rem,min(5.2vw,9vh),5rem)}
+.cover-sub{font-size:.95rem;margin-top:.7rem}
+.cover-cta{margin-top:1rem}
+.cover-meta-item{padding:.55rem .85rem}
+.cover-stat-grid{gap:.7rem}.cover-stat{padding:.8rem 1.05rem}
+.cover-stat-val{font-size:clamp(1.7rem,4vh,2.8rem)}
+.cover-right-title{margin-bottom:.6rem}
+.snap{padding:.85rem 1.1rem}.snap-hd{margin-bottom:.6rem}.snap-row{margin-top:.45rem}
+.cover-tag{padding:.25rem .7rem}
+@media(max-height:780px){.cover{padding-top:72px}.cover-title{font-size:clamp(2.2rem,min(4.6vw,8vh),4rem)}.cover-stat-val{font-size:1.6rem}.cover-sub{margin-top:.4rem}.snap-row{margin-top:.35rem}.cover-stat{padding:.65rem .95rem}}
+
+/* Daily Sales card: real liquid-glass like the other cards */
+.snap{position:relative;overflow:hidden;border-radius:20px;background-color:transparent;background-image:radial-gradient(0px circle at var(--mx,50%) var(--my,50%),transparent,transparent),var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);transition:background-image .3s,transform .45s cubic-bezier(.18,.89,.32,1.28),border-color .3s,box-shadow .4s}
+.snap::before{content:'';position:absolute;inset:0 0 auto 0;height:46%;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent);opacity:.5}
+.snap:hover{transform:translateY(-3px);background-image:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--g-spec),transparent 65%),var(--g-fill);border-color:color-mix(in srgb,var(--accent2) 55%,var(--g-edge));box-shadow:var(--g-rim),0 22px 60px var(--glow),var(--g-drop)}
+.snap>*{position:relative}
+.snap-row{grid-template-columns:7.5rem 1fr 5.6rem}.snap-row em{white-space:nowrap}
+.snap-bar{height:12px;background:rgba(10,50,25,.09);box-shadow:inset 0 1px 3px rgba(10,50,25,.18)}
+[data-theme=dark] .snap-bar{background:rgba(255,255,255,.08);box-shadow:inset 0 1px 3px rgba(0,0,0,.55)}
+.snap-bar i{position:relative}.snap-bar i::after{content:'';position:absolute;inset:0 0 50% 0;border-radius:99px;background:linear-gradient(rgba(255,255,255,.5),transparent)}
+@media(max-width:520px){.snap-row{grid-template-columns:5.2rem 1fr 4.6rem}}
 </style>
 </head>
 <body>
 
+<div id="intro" aria-hidden="true"><div class="i-aurora"></div><div class="i-ring"></div><div class="i-ring r2"></div><div class="i-core"><small>Capstone Project</small><h1 id="i-title"></h1><div class="i-line"></div><p>Boycott · Retention · Pakistan</p></div></div>
+<script>try{var _i=document.getElementById('intro');if(!document.documentElement.classList.contains('intro-on')){_i.remove();}else{sessionStorage.setItem('kfc-intro','1');var _t=document.getElementById('i-title'),_w='KFC Boycott Study';for(var k=0;k<_w.length;k++){var sp=document.createElement('span');sp.className='l'+(_w[k]===' '?' sp':(k>=4?' a':''));sp.style.setProperty('--i',k);sp.innerHTML=_w[k]===' '?'&nbsp;':_w[k];_t.appendChild(sp);}var kill=function(){_i.style.transition='opacity .5s';_i.style.opacity=0;setTimeout(function(){_i.remove();},550);};_i.addEventListener('click',kill);addEventListener('keydown',kill,{once:true});setTimeout(function(){if(_i.parentNode)_i.remove();},2900);}}catch(e){}</script>
 <div class="pgbar" id="pgbar"></div>
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
@@ -360,7 +682,7 @@ body::after{
     <div class="nav-wordmark">Capstone <span>· KFC Boycott</span></div>
   </div>
   <div class="nav-right">
-    <div class="dark-btn" onclick="toggleTheme()">
+    <div class="dark-btn" role="switch" tabindex="0" aria-label="Toggle dark mode" onclick="toggleTheme()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTheme();}">
       <div class="dark-knob">
         <span class="ks"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
         <span class="km"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
@@ -375,12 +697,13 @@ body::after{
   <div class="cover-left">
     <div>
 <div class="cover-eyebrow">Final Year Project · BBA · SMI University · 2025</div>
-      <h1 class="cover-title">Boycott &<br>Its Impact<br>on <em>Customer<br>Retention</em></h1>
+      <h1 class="cover-title">Boycott &amp;<br>Its Impact<em class="t2">on Customer Retention</em></h1>
       <p class="cover-sub">A case study of KFC Pakistan — analyzing the reasons behind the boycott and its measurable impact on customer behavior, sales, and local brand emergence.</p>
+      <div class="cover-cta"><a class="cbtn p" href="#s3">Explore Findings <span>&darr;</span></a><a class="cbtn" href="#s1">Read Introduction</a></div>
     </div>
     <div class="cover-meta-row">
       <div class="cover-meta-item"><strong>Author</strong> Abdul Qadir Avadia · BUS-21S-003</div>
-      <div class="cover-meta-item"><strong>Supervisor</strong> Ma'am Quratulain Nazeer</div>
+      <div class="cover-meta-item"><strong>Supervisor</strong> Ms. Quratulain Nazeer</div>
       <div class="cover-meta-item"><strong>Submitted</strong> 21 February 2025</div>
       <div class="cover-meta-item"><strong>Respondents</strong> 105 survey participants</div>
     </div>
@@ -395,6 +718,9 @@ body::after{
         <div class="cover-stat"><div class="cover-stat-val grn">65.7%</div><div class="cover-stat-lbl">Local Preference</div><div class="cover-stat-note">See Kababjees as best KFC alternative</div></div>
       </div>
     </div>
+    <div class="snap"><div class="snap-hd"><span>Daily Sales &middot; KFC Lucky One Mall</span><b>&minus;47%</b></div>
+      <div class="snap-row"><label>Before</label><div class="snap-bar"><i style="--w:100%"></i></div><em>PKR 1.5M</em></div>
+      <div class="snap-row"><label>During boycott</label><div class="snap-bar low"><i style="--w:53.3%"></i></div><em>PKR 800K</em></div></div>
     <div>
       <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:.7rem;">Research Topics</div>
       <div class="cover-tag-row">
@@ -410,36 +736,63 @@ body::after{
   </div>
 </div>
 
+<div class="band" aria-hidden="true"><div class="band-inner"><span class="bi">Switching Intention</span><span class="bi">Boycott Behavior</span><span class="bi">Customer Retention</span><span class="bi">Alternative Attractiveness</span><span class="bi">Perceived Quality</span><span class="bi">Local Brands</span><span class="bi">Social Media Impact</span><span class="bi">Switching Intention</span><span class="bi">Boycott Behavior</span><span class="bi">Customer Retention</span><span class="bi">Alternative Attractiveness</span><span class="bi">Perceived Quality</span><span class="bi">Local Brands</span><span class="bi">Social Media Impact</span></div></div>
+
 <!-- BODY -->
 <div class="body">
+<aside class="toc" aria-label="Chapters"><div class="toc-h">Chapters</div><a href="#abstract"><i>&middot;</i>Abstract</a><a href="#findings"><i>&middot;</i>Key Findings</a><a href="#s1"><i>01</i>Introduction</a><a href="#s2"><i>02</i>Literature Review</a><a href="#s3"><i>03</i>Survey Results</a><a href="#s4"><i>04</i>Sales Impact</a><a href="#s5"><i>05</i>Local Brands</a><a href="#s6"><i>06</i>Conclusion</a><div class="toc-bar"><i></i></div><div class="toc-stats"><div class="toc-stat"><b>74.3%</b><span>likely to switch from KFC</span></div><div class="toc-stat"><b>&minus;47%</b><span>daily sales, Lucky One Mall</span></div><div class="toc-stat"><b>105</b><span>survey respondents</span></div></div></aside>
+<div class="body-main">
 
 <!-- KEY FINDINGS -->
-<div style="padding-top:3rem;" class="rv">
+<div class="abs rv" id="abstract">
+  <div class="abs-card"><div class="sec-tag">Abstract</div>
+    <p>This study examines how the 2023&ndash;24 boycott movement affected customer retention at KFC Pakistan. Drawing on a survey of 105 respondents and branch-level sales data from KFC Lucky One Mall, Karachi, it assesses switching intention, boycott behaviour, and the perceived quality and attractiveness of local alternatives.</p>
+    <p>Results show that 74.3% of respondents are inclined to switch to local brands, that daily branch sales fell by roughly 47%, and that Kababjees is most often viewed as the leading alternative. The study concludes that cultural relevance, brand ethics and community trust are decisive for retention in Muslim-majority markets, and recommends menu localisation, improved service and transparent communication.</p></div>
+  <div class="g2">
+    <div class="mc"><div class="mc-val">105</div><div class="mc-lbl">Survey Respondents</div><div class="mc-note">Responses recorded on agreement scales</div></div>
+    <div class="mc"><div class="mc-val">1</div><div class="mc-lbl">Branch Sales Dataset</div><div class="mc-note">KFC Lucky One Mall, Karachi</div></div>
+    <div class="mc"><div class="mc-val">4</div><div class="mc-lbl">Constructs Measured</div><div class="mc-note">Switching, boycott intention, perceived quality, alternative attractiveness</div></div>
+    <div class="mc"><div class="mc-val">6</div><div class="mc-lbl">Literature Themes</div><div class="mc-note">Quality, loyalty, location, switching, boycott, alternatives</div></div>
+  </div>
+</div>
+<div style="padding-top:1.5rem;" class="rv" id="findings">
   <div class="kf-wrap">
     <div class="kf-head">
       <div class="kf-head-left">
-        <div class="kf-eyebrow">Summary</div>
-        <div class="kf-title">Key Findings at a Glance</div>
+        <div class="kf-eyebrow">Executive Summary</div>
+        <div class="kf-title">Key Findings</div>
       </div>
       <div class="kf-badge">
         <div class="kf-badge-val">105</div>
         <div class="kf-badge-lbl">Respondents</div>
       </div>
-    </div>
-    <div class="kf-item"><div class="kf-num">01</div><div class="kf-text"><strong>74.3%</strong> of respondents are seriously considering switching from KFC to local fast-food brands because of the boycott movement.</div></div>
-    <div class="kf-item"><div class="kf-num">02</div><div class="kf-text">KFC Lucky One Mall Karachi saw daily sales drop from <strong>PKR 1.5M to PKR 800K</strong> — a ~47% decline — during the boycott period.</div></div>
-    <div class="kf-item"><div class="kf-num">03</div><div class="kf-text"><strong>69.5%</strong> prefer supporting local fast-food brands. Over half feel morally guilty purchasing from KFC during the boycott.</div></div>
-    <div class="kf-item"><div class="kf-num">04</div><div class="kf-text">International brands including KFC and McDonald's faced nearly <strong>40% decline</strong> in sales across Pakistan at the height of the boycott.</div></div>
-    <div class="kf-item"><div class="kf-num">05</div><div class="kf-text">Local brand <strong>Kababjees Fried Chicken</strong> successfully positioned itself as the primary alternative — 65.7% see it as the best KFC replacement.</div></div>
-    <div class="kf-item"><div class="kf-num">06</div><div class="kf-text"><strong>61%</strong> feel guilty purchasing from KFC. 57.1% state they will not support KFC due to its alleged involvement in unethical practices.</div></div>
+    </div><div class="kf-cards">
+<div class="kf-card"><div class="kf-tag">Switching Intention</div><div class="kf-val">74.3%</div><div class="kf-meter"><i style="--w:74.3%"></i></div><p>of respondents are likely to switch from KFC to local fast-food brands because of the boycott (41% strongly agree, 33.3% agree).</p></div>
+<div class="kf-card"><div class="kf-tag">Branch Sales</div><div class="kf-val">&minus;47%</div><div class="kf-meter"><i style="--w:47%"></i></div><p>Daily sales at KFC Lucky One Mall, Karachi fell from <strong>PKR 1.5M to PKR 800K</strong> during the boycott period.</p></div>
+<div class="kf-card"><div class="kf-tag">Local Preference</div><div class="kf-val">69.5%</div><div class="kf-meter"><i style="--w:69.5%"></i></div><p>prefer to support local fast-food brands, and <strong>61%</strong> report feeling guilty about purchasing from KFC.</p></div>
+<div class="kf-card"><div class="kf-tag">Industry Impact</div><div class="kf-val">~40%</div><div class="kf-meter"><i style="--w:40%"></i></div><p>sales decline recorded by international chains, including KFC and McDonald's, across Pakistan at the height of the boycott.</p></div>
+<div class="kf-card"><div class="kf-tag">Leading Alternative</div><div class="kf-val">65.7%</div><div class="kf-meter"><i style="--w:65.7%"></i></div><p>regard <strong>Kababjees Fried Chicken</strong> as the best replacement for KFC, making it the primary local beneficiary.</p></div>
+<div class="kf-card"><div class="kf-tag">Ethical Stance</div><div class="kf-val">57.1%</div><div class="kf-meter"><i style="--w:57.1%"></i></div><p>state they will not support KFC because of its alleged involvement in unethical practices.</p></div>
+</div>
+<div class="kf-take"><strong>Overall reading.</strong> Attitudinal shifts (switching intent, guilt and ethical objection) were matched by an observable commercial decline, and local brands, led by Kababjees, captured much of the displaced demand.</div>
   </div>
 </div>
 
 <!-- 01 INTRODUCTION -->
 <div class="sec rv" id="s1">
-  <div class="sec-tag">01</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 01</div>
   <h2 class="sec-heading">Introduction &<br><em>Background</em></h2>
-  <p class="lead">KFC entered Pakistan in 1997 with its first outlet in Gulshan Iqbal, Karachi. Today, over <strong>120 outlets</strong> operate across the country. In late 2023, the Israel-Palestine conflict triggered a global boycott movement that placed KFC at the center of public backlash in Pakistan.</p>
+  </div><div class="sh-r"><div class="sh-t"><b>1997</b><span>KFC enters Pakistan</span></div><div class="sh-t"><b>120+</b><span>Outlets nationwide</span></div><div class="sh-t"><b>Oct 2023</b><span>Boycott begins</span></div></div></div>
+  <div class="lead-2">
+  <p class="lead" data-h="Background">KFC entered Pakistan in 1997 with its first outlet in Gulshan Iqbal, Karachi, and has since grown to more than <strong>120 outlets</strong> nationwide, becoming one of the country&rsquo;s most recognised international quick-service brands.</p>
+  <p class="lead" data-h="The Boycott">In October 2023, public reaction to the Israel&ndash;Palestine conflict triggered a global consumer boycott movement. In Pakistan, KFC, alongside other multinational brands, became a focal point of that sentiment as consumers linked its parent company, Yum! Brands, to alleged Israeli ties. The campaign spread through social media, street protests and, in some cases, physical attacks on outlets, and it coincided with a measurable fall in sales.</p>
+  </div>
+  <div class="g3 ib-row">
+    <div class="ib"><div class="ib-h">Market Position</div><p>More than 120 outlets since 1997 gave KFC wide national reach, so any shift in consumer sentiment carried real commercial weight.</p></div>
+    <div class="ib"><div class="ib-h">The Trigger</div><p>From October 2023, boycott campaigns circulated lists of &ldquo;Israel-linked&rdquo; brands, with KFC and McDonald&rsquo;s among the most visible targets.</p></div>
+    <div class="ib"><div class="ib-h">Mobilisation</div><p>Hashtags such as #BoycottKFC and #BoycottPSL spread across Twitter, Facebook, Instagram and TikTok, turning online sentiment into purchasing behaviour.</p></div>
+  </div>
   <div class="g2" style="margin-bottom:1.5rem;">
     <div>
       <div class="tl">
@@ -476,27 +829,46 @@ body::after{
     <p>"KFC, along with McDonald's, Starbucks, and Coca-Cola, became a major target of the boycott movement as consumers linked Yum! Brands to Israeli investments."</p>
     <cite>— Dawn News, 2024</cite>
   </div>
+  <div class="ib wide"><div class="ib-h">Problem Statement</div><p>Despite KFC&rsquo;s long presence and strong brand recognition in Pakistan, the boycott raised a question for management: do attitudinal reactions such as guilt, ethical objection and a preference for local brands translate into lasting customer switching, and how much revenue is at stake? This study addresses that question by combining consumer perceptions from a survey with branch-level sales data.</p></div>
+  <div class="g2 ib-row">
+    <div class="ib"><div class="ib-h">Research Objectives</div><ol class="ib-l">
+      <li>Measure switching intention among KFC customers during the boycott.</li>
+      <li>Quantify the sales impact at KFC Lucky One Mall, Karachi, and relate it to the industry-wide decline.</li>
+      <li>Assess the perceived quality and attractiveness of local alternatives such as Kababjees.</li>
+      <li>Recommend retention strategies for KFC Pakistan.</li></ol></div>
+    <div class="ib"><div class="ib-h">Research Questions</div><ol class="ib-l">
+      <li><b>RQ1.</b> To what extent do consumers intend to switch from KFC to local brands?</li>
+      <li><b>RQ2.</b> How large was the commercial decline during the boycott period?</li>
+      <li><b>RQ3.</b> Which alternatives are consumers turning to, and why?</li></ol></div>
+  </div>
+  <div class="ib wide"><div class="ib-h">Significance &amp; Scope</div><p>The findings are relevant to brand and operations managers of multinational franchises exposed to sentiment-driven demand shocks. The scope is limited to Pakistani consumers (n&nbsp;=&nbsp;105) and sales data from a single branch, so results should be read as indicative rather than nationally representative.</p></div>
 </div>
 
 <!-- 02 LITERATURE REVIEW -->
 <div class="sec rv" id="s2">
-  <div class="sec-tag">02</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 02</div>
   <h2 class="sec-heading">Literature<br><em>Review</em></h2>
-  <div class="g3">
-    <div class="lit" style="--lc:#16a34a;"><div class="lit-title">Food Quality & Consistency</div><div class="lit-body">Meyer et al. (2015) — High-quality ingredients and consistent cooking standards are pivotal. Hassan et al. (2018) — Consistency builds trust and repeat visits.</div></div>
-    <div class="lit" style="--lc:#2563eb;"><div class="lit-title">Customer Satisfaction & Loyalty</div><div class="lit-body">Zeithaml et al. (2000) — Service quality affects satisfaction which influences retention. Parasuraman et al. (1988) — 5 dimensions: tangibles, reliability, responsiveness, assurance, empathy.</div></div>
-    <div class="lit" style="--lc:var(--green);"><div class="lit-title">Location & Accessibility</div><div class="lit-body">Kotler et al. (2015) — Location is critical for foot traffic. Proximity to malls and transport hubs drives KFC's Pakistan expansion strategy.</div></div>
-    <div class="lit" style="--lc:#d97706;"><div class="lit-title">Switching Intention</div><div class="lit-body">Kuk et al. (2010) — Dissatisfaction is the dominant trigger. Bansal et al. (2005) — Push (dissatisfaction), Pull (alternatives), Mooring (switching barriers) framework.</div></div>
-    <div class="lit" style="--lc:#16a34a;"><div class="lit-title">Boycott Intention</div><div class="lit-body">Shim et al. (2021) — Boycott is action to punish ethically irresponsible firms. Romani et al. (2013) — Affects brand image, product perception, and consumer confidence.</div></div>
-    <div class="lit" style="--lc:#7c3aed;"><div class="lit-title">Alternative Attractiveness</div><div class="lit-body">Jones et al. (2000) — Perceived alternatives are a pull factor for switching. Alya E. Sjioen (2018) — Positive significant effect on switching intention.</div></div>
+  <p class="lead">The review is organised around six themes that frame the study&rsquo;s constructs, drawing on 11 studies of service quality, loyalty, switching behaviour and consumer boycotts.</p>
+  </div><div class="sh-r"><div class="sh-t"><b>6</b><span>Themes reviewed</span></div><div class="sh-t"><b>11</b><span>Studies cited</span></div><div class="sh-t"><b>4</b><span>Constructs measured</span></div></div></div>
+  <div class="g3 lit-grid">
+    <div class="lit" style="--lc:#16a34a;"><div class="lit-top"><span class="lit-n">01</span><span class="lit-chip">Perceived Quality</span></div><div class="lit-title">Food Quality &amp; Consistency</div><ul class="lit-list"><li><b>Meyer et al. (2015)</b>High-quality ingredients and consistent cooking standards are pivotal.</li><li><b>Hassan et al. (2018)</b>Consistency builds trust and repeat visits.</li></ul></div>
+    <div class="lit" style="--lc:#2563eb;"><div class="lit-top"><span class="lit-n">02</span><span class="lit-chip">Customer Retention</span></div><div class="lit-title">Customer Satisfaction &amp; Loyalty</div><ul class="lit-list"><li><b>Zeithaml et al. (2000)</b>Service quality affects satisfaction, which in turn influences retention.</li><li><b>Parasuraman et al. (1988)</b>Five service-quality dimensions: tangibles, reliability, responsiveness, assurance and empathy.</li></ul></div>
+    <div class="lit" style="--lc:var(--green);"><div class="lit-top"><span class="lit-n">03</span><span class="lit-chip">Market Context</span></div><div class="lit-title">Location &amp; Accessibility</div><ul class="lit-list"><li><b>Kotler et al. (2015)</b>Location is critical for foot traffic. Proximity to malls and transport hubs drives KFC&rsquo;s expansion strategy in Pakistan.</li></ul></div>
+    <div class="lit" style="--lc:#d97706;"><div class="lit-top"><span class="lit-n">04</span><span class="lit-chip">Switching Intention</span></div><div class="lit-title">Switching Intention</div><ul class="lit-list"><li><b>Kuk et al. (2010)</b>Dissatisfaction is the dominant trigger of switching.</li><li><b>Bansal et al. (2005)</b>Push (dissatisfaction), Pull (alternatives) and Mooring (switching barriers) framework.</li></ul></div>
+    <div class="lit" style="--lc:#16a34a;"><div class="lit-top"><span class="lit-n">05</span><span class="lit-chip">Boycott Behavior</span></div><div class="lit-title">Boycott Intention</div><ul class="lit-list"><li><b>Shim et al. (2021)</b>Boycott is action taken to punish ethically irresponsible firms.</li><li><b>Romani et al. (2013)</b>Boycotts affect brand image, product perception and consumer confidence.</li></ul></div>
+    <div class="lit" style="--lc:#7c3aed;"><div class="lit-top"><span class="lit-n">06</span><span class="lit-chip">Alternative Attractiveness</span></div><div class="lit-title">Alternative Attractiveness</div><ul class="lit-list"><li><b>Jones et al. (2000)</b>Perceived alternatives are a pull factor for switching.</li><li><b>Alya E. Sjioen (2018)</b>Alternative attractiveness has a positive, significant effect on switching intention.</li></ul></div>
   </div>
+  <div class="ib wide" style="margin-top:1.4rem"><div class="ib-h">Synthesis</div><p>Across these themes, the literature identifies dissatisfaction, attractive alternatives and ethical objection as the main drivers of switching and boycott behaviour. This study tests those drivers in the specific context of the 2023&ndash;24 boycott of KFC in Pakistan.</p></div>
 </div>
 
 <!-- 03 SURVEY RESULTS -->
 <div class="sec rv" id="s3">
-  <div class="sec-tag">03</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 03</div>
   <h2 class="sec-heading">Survey Results<br><em>& Interpretation</em></h2>
   <p class="lead">105 respondents participated in the survey to analyze boycott impact on KFC customer retention. Primary data also collected from KFC Lucky One Mall, Karachi branch.</p>
+  </div><div class="sh-r"><div class="sh-t"><b>74.3%</b><span>Likely to switch</span></div><div class="sh-t"><b>69.5%</b><span>Prefer local brands</span></div><div class="sh-t"><b>61%</b><span>Feel guilty</span></div></div></div>
 
   <div class="g2" style="margin-bottom:1rem;">
     <div class="cc">
@@ -566,9 +938,11 @@ body::after{
 
 <!-- 04 SALES IMPACT -->
 <div class="sec rv" id="s4">
-  <div class="sec-tag">04</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 04</div>
   <h2 class="sec-heading">Sales Impact<br><em>Analysis</em></h2>
   <p class="lead">Primary sales data collected from <strong>KFC Lucky One Mall, Karachi</strong> to quantify the direct financial impact of the boycott on daily revenue.</p>
+  </div><div class="sh-r"><div class="sh-t"><b>&minus;47%</b><span>Daily sales</span></div><div class="sh-t"><b>PKR 700K</b><span>Daily revenue gap</span></div><div class="sh-t"><b>~40%</b><span>Industry decline</span></div></div></div>
   <div class="g3" style="margin-bottom:1.2rem;">
     <div class="mc"><div class="mc-val grn">PKR 1.5M</div><div class="mc-lbl">Pre-Boycott Daily Avg</div><div class="mc-note">Weekdays ~PKR 1.2M · Weekends ~PKR 1.8M</div></div>
     <div class="mc"><div class="mc-val red">PKR 800K</div><div class="mc-lbl">During Boycott Daily Avg</div><div class="mc-note">Weekdays ~PKR 500K · Weekends below PKR 1M</div></div>
@@ -583,8 +957,10 @@ body::after{
 
 <!-- 05 LOCAL BRANDS -->
 <div class="sec rv" id="s5">
-  <div class="sec-tag">05</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 05</div>
   <h2 class="sec-heading">Emerging Local<br><em>Brands</em></h2>
+  </div><div class="sh-r"><div class="sh-t"><b>65.7%</b><span>See Kababjees as best alternative</span></div><div class="sh-t"><b>3</b><span>Local brands profiled</span></div><div class="sh-t"><b>62.9%</b><span>Rate its menu diversity</span></div></div></div>
   <div class="g3" style="margin-bottom:1.2rem;">
     <div class="mc" style="border-top:2px solid var(--green);"><div class="mc-val grn" style="font-size:1.4rem;">Kababjees</div><div class="mc-lbl">Primary Challenger</div><div class="mc-note">Aggressive social media campaigns and influencer partnerships positioned it as the #1 local KFC alternative with authentic local flavors.</div></div>
     <div class="mc" style="border-top:2px solid #2563eb;"><div class="mc-val" style="color:#2563eb;font-size:1.4rem;">Krispy 2 Go</div><div class="mc-lbl">Rising Brand</div><div class="mc-note">Rapid popularity growth during boycott period with affordable pricing and convenient locations across major cities.</div></div>
@@ -599,13 +975,16 @@ body::after{
 
 <!-- 06 CONCLUSION -->
 <div class="sec rv" id="s6">
-  <div class="sec-tag">06</div>
+  <div class="sec-head"><div class="sh-l">
+  <div class="sec-tag">Chapter 06</div>
   <h2 class="sec-heading">Conclusion &<br><em>Recommendations</em></h2>
   <p class="lead">The boycott had a profound and measurable impact on KFC's customer retention in Pakistan. Over 74% expressed willingness to switch to local brands, while KFC outlets experienced a ~47% decline in daily sales. The movement permanently reshaped the Pakistani fast-food landscape.</p>
+  </div><div class="sh-r"><div class="sh-t"><b>74%+</b><span>Willing to switch</span></div><div class="sh-t"><b>&minus;47%</b><span>Branch sales</span></div><div class="sh-t"><b>3</b><span>Recommendations</span></div></div></div>
   <div class="pq" style="margin-bottom:1.5rem;">
     <p>"Cultural relevance, brand ethics, and community trust are critical for retention in Muslim-majority markets. KFC's slow and inadequate response aggravated the situation significantly."</p>
     <cite>— Research Conclusion</cite>
   </div>
+  <div class="note"><strong>Scope note.</strong> Survey findings rest on 105 respondents and sales figures on a single branch (KFC Lucky One Mall, Karachi). Results therefore indicate consumer sentiment rather than a statistically representative picture of the national market.</div>
   <div class="g3">
     <div class="rec"><div class="rec-n">01</div><div class="rec-title">Menu Innovation</div><div class="rec-body">Launch new flavors, healthier options, and region-specific dishes that appeal to local Pakistani preferences and dietary habits.</div></div>
     <div class="rec"><div class="rec-n">02</div><div class="rec-title">Improve Customer Service</div><div class="rec-body">Train employees for outstanding service. Establish collaborative community relationships to rebuild trust with local consumers.</div></div>
@@ -613,15 +992,15 @@ body::after{
   </div>
 </div>
 
-</div><!-- /body -->
+</div></div><!-- /body -->
 
 <footer>
-  <div><strong>Boycott & Its Impact on Customer Retention — Case Study of KFC</strong> &nbsp;·&nbsp; Abdul Qadir Avadia · BUS-21S-003 &nbsp;·&nbsp; BBA Final Year · SMI University &nbsp;·&nbsp; Supervisor: Ma'am Quratulain Nazeer</div>
+  <div><strong>Boycott & Its Impact on Customer Retention — Case Study of KFC</strong> &nbsp;·&nbsp; Abdul Qadir Avadia · BUS-21S-003 &nbsp;·&nbsp; BBA Final Year · SMI University &nbsp;·&nbsp; Supervisor: Ms. Quratulain Nazeer</div>
   <div>Submitted: 21 February 2025 &nbsp;·&nbsp; Academic Research</div>
 </footer>
 
 <script>
-function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem('kfc-t',n);rebuildCharts();}
+function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;try{localStorage.setItem('aqt',n);localStorage.setItem('kfc-t',n);}catch(e){}rebuildCharts();}
 var sv=localStorage.getItem('kfc-t');if(sv)document.documentElement.dataset.theme=sv;
 
 window.addEventListener('scroll',function(){
@@ -635,7 +1014,7 @@ document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
 
 /* CURSOR SPOTLIGHT on cards */
 document.addEventListener('mousemove',function(e){
-  var c=e.target.closest('.cover-stat,.rec,.lit,.mc');
+  var c=e.target.closest('.cover-stat,.rec,.lit,.mc,.cc,.ip,.kf-wrap,.pq,.snap');
   if(!c)return;
   var r=c.getBoundingClientRect();
   c.style.setProperty('--mx',(e.clientX-r.left)+'px');
@@ -643,22 +1022,36 @@ document.addEventListener('mousemove',function(e){
 },{passive:true});
 
 function isDark(){return document.documentElement.dataset.theme==='dark';}
-function tc(){return isDark()?'#b0b0a8':'#6b6b6b';}
-function gc(){return isDark()?'rgba(255,255,255,.05)':'rgba(0,0,0,.06)';}
+function tc(){return isDark()?'#c4f0d0':'#365443';}
+function gc(){return isDark()?'rgba(106,207,138,.1)':'rgba(21,90,50,.12)';}
 var C={};
-function buildCharts(){
+function buildCharts(){var T=Chart.defaults.plugins.tooltip;Chart.defaults.font.family="'DM Sans',sans-serif";T.backgroundColor=isDark()?'rgba(6,18,9,.94)':'rgba(255,255,255,.96)';T.titleColor=T.bodyColor=isDark()?'#edfff2':'#08170d';T.borderColor='rgba(34,197,94,.4)';T.borderWidth=1;T.cornerRadius=12;
   var el,RED='#e63327',GREEN='#16a34a',AMB='#d97706',GRAY='#d1d5db';
   el=document.getElementById('c-sw');
-  if(el){if(C.sw)C.sw.destroy();C.sw=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[41,33.3,16.2,9.5],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#1a1a18':'#f7f7f5'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'Inter',size:9},boxWidth:8,padding:6}}}}});}
+  if(el){if(C.sw)C.sw.destroy();C.sw=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[41,33.3,16.2,9.5],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#061209':'#e9f3ed'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'DM Sans',size:9},boxWidth:8,padding:6}}}}});}
   el=document.getElementById('c-by');
-  if(el){if(C.by)C.by.destroy();C.by=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[29.5,27.6,22.9,20],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#1a1a18':'#f7f7f5'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'Inter',size:9},boxWidth:8,padding:6}}}}});}
+  if(el){if(C.by)C.by.destroy();C.by=new Chart(el.getContext('2d'),{type:'doughnut',data:{labels:['Strongly Agree','Agree','Neutral','Disagree'],datasets:[{data:[29.5,27.6,22.9,20],backgroundColor:[GREEN,'#4ade80',GRAY,'#e5e7eb'],borderWidth:3,borderColor:isDark()?'#061209':'#e9f3ed'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'right',labels:{color:tc(),font:{family:'DM Sans',size:9},boxWidth:8,padding:6}}}}});}
   el=document.getElementById('c-sales');
-  if(el){if(C.sa)C.sa.destroy();C.sa=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Weekday','Weekend','Daily Average'],datasets:[{label:'Before Boycott (PKR)',data:[1200000,1800000,1500000],backgroundColor:GREEN+'cc',borderColor:GREEN,borderWidth:2,borderRadius:5},{label:'During Boycott (PKR)',data:[500000,950000,800000],backgroundColor:RED+'cc',borderColor:RED,borderWidth:2,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{family:'Inter',size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:10}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return 'PKR '+(v/1000000).toFixed(1)+'M';}},grid:{color:gc()}}}}});}
+  if(el){if(C.sa)C.sa.destroy();C.sa=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Weekday','Weekend','Daily Average'],datasets:[{label:'Before Boycott (PKR)',data:[1200000,1800000,1500000],backgroundColor:GREEN+'cc',borderColor:GREEN,borderWidth:2,borderRadius:5},{label:'During Boycott (PKR)',data:[500000,950000,800000],backgroundColor:RED+'cc',borderColor:RED,borderWidth:2,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{family:'DM Sans',size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:10}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return 'PKR '+(v/1000000).toFixed(1)+'M';}},grid:{color:gc()}}}}});}
   el=document.getElementById('c-cmp');
   if(el){if(C.cm)C.cm.destroy();C.cm=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['Similar Price & Quality','Best KFC Alternative','Support Boycott via Brand','Service Quality Good','Menu Diverse & Appealing'],datasets:[{label:'% Agree',data:[60.9,65.7,65.7,59.1,62.9],backgroundColor:GREEN+'cc',borderColor:GREEN,borderWidth:2,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'%';}},grid:{color:gc()},max:100},y:{ticks:{color:tc(),font:{size:9}},grid:{display:false}}}}});}
 }
 function rebuildCharts(){buildCharts();}
 document.addEventListener('DOMContentLoaded',buildCharts);
+
+/* cursor glow, stars, magnetic buttons */
+(function(){var g=document.createElement('div');g.id='cglow';document.body.appendChild(g);var st=document.createElement('div');st.id='stars';document.body.appendChild(st);
+if(matchMedia('(pointer:fine)').matches){var gx=0,gy=0,tx=0,ty=0,on=false;
+addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;if(!on){on=true;g.style.opacity=.55;}},{passive:true});
+document.addEventListener('mouseleave',function(){g.style.opacity=0;on=false;});
+(function loop(){gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;g.style.transform='translate3d('+gx+'px,'+gy+'px,0)';requestAnimationFrame(loop);})();
+var mag='.print-btn,.nav-back,.btt';
+document.addEventListener('pointermove',function(e){var b=e.target.closest&&e.target.closest(mag);if(!b)return;var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.18)+'px '+((e.clientY-r.top-r.height/2)*.28)+'px';},{passive:true});
+document.addEventListener('pointerout',function(e){var b=e.target.closest&&e.target.closest(mag);if(b)b.style.translate='';});}})();
+/* chapter scroll-spy */
+(function(){var L=[].slice.call(document.querySelectorAll('.toc a'));if(!L.length)return;var T=L.map(function(a){return document.querySelector(a.getAttribute('href'))});var bar=document.querySelector('.toc-bar');
+function f(){var y=innerHeight*.4,c=0;T.forEach(function(t,i){if(t&&t.getBoundingClientRect().top<y)c=i});L.forEach(function(a,i){a.classList.toggle('on',i===c)});var d=document.documentElement,m=d.scrollHeight-innerHeight;bar.style.setProperty('--p',(m>0?Math.min(100,scrollY/m*100):0)+'%');}
+addEventListener('scroll',f,{passive:true});f();})();
 </script>
 </body>
 </html>

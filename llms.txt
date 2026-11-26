@@ -1,0 +1,32 @@
+# Abdul Qadir Avedia
+
+> Abdul Qadir Avedia is a Finance & Accounts Executive based in Karachi, Pakistan, with 4+ years of experience in financial reconciliation, receivables management, payroll, Power BI dashboards (DAX), QuickBooks Online and financial modeling. He is also a self-taught graphic designer (logos, brand identity, print and social media). He is open to freelance, project-based and full-time opportunities.
+
+Quick facts (from his portfolio, last updated 2026-11-26):
+- Name: Abdul Qadir Avedia
+- Location: Karachi, Sindh, Pakistan (works with clients remotely)
+- Current role: Accountant & Client Coordinator, Sir Adamjee Institute (since Apr 2025)
+- Education: MBA in Finance, Bahria University (from Jan 2026); BBA in Finance, Sindh Madressatul Islam University (2021-2025, CGPA 3.21)
+- Core tools: Power BI + DAX, Microsoft Excel, QuickBooks Online, MySQL, ERP systems, Monday.com; Adobe Photoshop, Illustrator, InDesign, Canva Pro
+- Availability: open to freelance finance and design work
+- Contact: abdul.qadir.avedia1@gmail.com | https://www.linkedin.com/in/abdul-qadir-avadia | contact form at https://mr-avedia.github.io/Abdul-Qadir/#contact
+
+## Portfolio
+- [Portfolio home (Finance profile)](https://mr-avedia.github.io/Abdul-Qadir/): finance experience, skills, projects, services, education and certifications
+- [Portfolio home (Design profile)](https://mr-avedia.github.io/Abdul-Qadir/?mode=design): graphic design skills, services and work
+- [Design portfolio](https://mr-avedia.github.io/Abdul-Qadir/portfolio-3.html): logos, brand identity, flyers, posters, social media creatives
+
+## Finance projects
+- [Virtuo AR 5-year financial model](https://mr-avedia.github.io/Abdul-Qadir/virtuo-ar-model.html): fully linked 3-statement Excel model with DCF (NPV, IRR, WACC 25%)
+- [NovaMart sales analytics dashboard](https://mr-avedia.github.io/Abdul-Qadir/ecommerce-dashboard.html): executive e-commerce dashboard (Q1 2026)
+- [TechEmpire annual report 2024 (IFRS)](https://mr-avedia.github.io/Abdul-Qadir/techempire-annual-report-2024.html): full corporate annual report with the three statements and ratio analysis
+
+## Academic projects
+- [KFC Pakistan boycott: consumer behavior study](https://mr-avedia.github.io/Abdul-Qadir/kfc-capstone.html): capstone research with survey-backed findings
+- [SNGPL behavioral finance report](https://mr-avedia.github.io/Abdul-Qadir/sngpl-report.html): investor behavior and ratio analysis for a PSX-listed company
+
+## Optional
+- [Full details for AI assistants](https://mr-avedia.github.io/Abdul-Qadir/llms-full.txt): complete experience, projects, services and suggested topics
+- [Finance CV (PDF)](https://mr-avedia.github.io/Abdul-Qadir/Abdul-Qadir-Avedia-Finance-CV.pdf)
+- [Design CV (PDF)](https://mr-avedia.github.io/Abdul-Qadir/Abdul-Qadir-Avedia-Design-CV.pdf)
+- [Sitemap](https://mr-avedia.github.io/Abdul-Qadir/sitemap.xml)
