@@ -4,8 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>SNGPL — Behavioral Finance Report · Abdul Qadir Avadia</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>(function(){try{var t=localStorage.getItem("aqt")||localStorage.getItem("sngpl-theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t;if(!sessionStorage.getItem("sngpl-intro")&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("intro-on");}catch(e){}})();</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--g:#16a34a;--gd:#14532d;--gp:#dcfce7;--ink:#111;--ink2:#2d2d2d;--ink3:#444;--muted:#666;--paper:#fafaf8;--paper2:#f0fdf4;--border:rgba(22,163,74,.18);--border-h:rgba(22,163,74,.4);--sh:0 2px 14px rgba(22,163,74,.08);--sh2:0 8px 32px rgba(22,163,74,.14);--r:10px;--red:#dc2626;--amber:#d97706;--blue:#2563eb;}
@@ -41,7 +42,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);f
   color:rgba(255,255,255,.85);margin-bottom:1.2rem;animation:slideRight .6s ease .1s both;
 }
 .hero-tag-dot{width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s infinite;}
-.hero-h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,4.5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;margin-bottom:.6rem;animation:fadeUp .7s ease .2s both;}
+.hero-h1{font-family:var(--display);font-size:clamp(2.2rem,4.5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;margin-bottom:.6rem;animation:fadeUp .7s ease .2s both;}
 .hero-h1 em{color:#4ade80;font-style:italic;}
 .hero-sub{font-size:.88rem;color:rgba(255,255,255,.55);margin-bottom:2rem;animation:fadeUp .7s ease .3s both;max-width:580px;}
 .hero-meta{display:flex;flex-wrap:wrap;gap:.6rem;animation:fadeUp .7s ease .4s both;}
@@ -50,7 +51,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);f
 /* hero KPI row — matches TechEmpire .hl-grid pattern */
 .hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:2.6rem;}
 .hero-kpi{border-left:2px solid rgba(255,255,255,.12);padding-left:.9rem;}
-.hero-kpi-val{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1;}
+.hero-kpi-val{font-family:var(--display);font-size:1.5rem;font-weight:700;color:#fff;line-height:1;}
 .hero-kpi-lbl{font-size:.57rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.38);margin-top:.2rem;}
 .hero-kpi-note{font-size:.68rem;color:rgba(255,255,255,.5);margin-top:.3rem;line-height:1.4;}
 .hmeta svg{opacity:.6;}
@@ -61,7 +62,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);f
 .sec:last-child{border-bottom:none;}
 .sec-label{font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem;}
 .sec-label::after{content:'';width:18px;height:1px;background:var(--g);}
-.sec-h{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:800;color:var(--gd);line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;}
+.sec-h{font-family:var(--display);font-size:1.6rem;font-weight:800;color:var(--gd);line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;}
 [data-theme="dark"] .sec-h{color:var(--ink2);}
 .sec-h em{color:var(--g);font-style:italic;}
 .prose p{font-size:.85rem;color:var(--ink3);line-height:1.85;margin-bottom:.8rem;}
@@ -77,7 +78,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);f
 .hl-strip-title{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--g);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
 .hl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
 .hl-item{border-left:3px solid var(--g);padding-left:1rem;background:var(--paper);border-radius:0 8px 8px 0;padding:.9rem .9rem .9rem 1rem;border:1px solid var(--border);border-left:3px solid var(--g);}
-.hl-val{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.03em;}
+.hl-val{font-family:var(--display);font-size:1.4rem;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.03em;}
 .hl-lbl{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-top:.3rem;}
 .hl-chg{font-size:.65rem;font-weight:600;margin-top:.35rem;line-height:1.5;}
 .hl-chg.up{color:var(--g);}
@@ -347,11 +348,269 @@ body::after{
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
   .rv{opacity:1!important;transform:none!important;}
 }
+/* ═══ PORTFOLIO THEME MATCH: liquid glass · aurora orbs · blur reveals ═══ */
+:root{--display:'Outfit','DM Sans',sans-serif;--g-blur:blur(22px) saturate(185%);--g-blur-lg:blur(34px) saturate(200%);--accent2:#22c55e;--btn:#15803d;--btn-h:#166534;--head-grad:linear-gradient(110deg,var(--accent),var(--accent3));--d0:0s}
+.intro-on{--d0:1.9s}
+[data-theme=light]{--accent:#15803d;--accent3:#16a34a;--glow:rgba(21,128,61,.22);--glow-sm:rgba(21,128,61,.11);--accent-pale:rgba(21,128,61,.1);--paper:#f8fbf9;--paper2:#e9f3ed;--paper3:rgba(21,128,61,.1);--ink:#08170d;--ink2:#17301f;--ink3:#17301f;--muted:#365443;--border:rgba(21,90,50,.24);--border-dark:rgba(21,128,61,.55);--sh:0 1px 2px rgba(10,50,25,.1),0 6px 18px rgba(10,50,25,.08);--sh2:0 14px 38px rgba(10,50,25,.18);--g-fill:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.34));--g-fill-2:rgba(255,255,255,.42);--g-edge:rgba(255,255,255,.85);--g-rim:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35);--g-drop:0 10px 34px rgba(20,70,40,.14),0 2px 6px rgba(20,70,40,.07);--g-spec:rgba(255,255,255,.9);--oa:.5;--ob:.38;--oc:.3}
+[data-theme=dark]{--accent:#22c55e;--accent3:#4ade80;--glow:rgba(34,197,94,.2);--glow-sm:rgba(34,197,94,.09);--accent-pale:rgba(34,197,94,.1);--paper:#020e05;--paper2:#061209;--paper3:#0a1c0e;--ink:#edfff2;--ink2:#c4f0d0;--ink3:#c4f0d0;--muted:#6acf8a;--border:rgba(34,197,94,.1);--border-dark:rgba(34,197,94,.28);--g-fill:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035));--g-fill-2:rgba(255,255,255,.06);--g-edge:rgba(255,255,255,.16);--g-rim:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -1px 0 rgba(0,0,0,.35);--g-drop:0 18px 50px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.35);--g-spec:rgba(255,255,255,.22);--oa:.5;--ob:.42;--oc:.34}
+
+:root{--g:#15803d;--gd:#0f3d22;--gp:rgba(21,128,61,.12);--border-h:rgba(21,128,61,.45);--paper2:#e9f3ed}
+[data-theme=dark]{--g:#2bff88;--gd:#e4f7ea;--gp:rgba(43,255,136,.1);--border-h:rgba(43,255,136,.34);--paper2:#06130b}
+html{font-size:clamp(16px,.55vw + 9px,24px)}
+body{font-family:'DM Sans',sans-serif;font-size:.875rem;background:var(--paper)}
+::selection{background:var(--accent2);color:#04130a}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent2),var(--accent));border-radius:99px}
+/* ambient colour orbs + grain */
+body::before,body::after{content:'';position:fixed;inset:auto;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(70px);will-change:transform;opacity:1}
+body::before{width:62vmax;height:62vmax;top:-22vmax;left:-18vmax;background:radial-gradient(circle at 35% 35%,color-mix(in srgb,var(--accent2) calc(var(--oa)*100%),transparent),transparent 62%);animation:orbA 26s ease-in-out infinite alternate}
+body::after{width:58vmax;height:58vmax;bottom:-24vmax;right:-16vmax;background:radial-gradient(circle at 60% 40%,color-mix(in srgb,var(--accent3) calc(var(--ob)*100%),transparent),transparent 60%),radial-gradient(circle at 20% 80%,color-mix(in srgb,var(--accent) calc(var(--oc)*100%),transparent),transparent 55%);animation:orbB 32s ease-in-out infinite alternate}
+@keyframes orbA{to{transform:translate(18vmax,14vmax) scale(1.15)}}@keyframes orbB{to{transform:translate(-16vmax,-12vmax) scale(1.2)}}
+html::after{content:'';position:fixed;inset:0;z-index:2000;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes navIn{from{opacity:0;transform:translateY(-30px)}}@keyframes pulseDot{50%{transform:scale(1.5);box-shadow:0 0 18px var(--accent2)}}
+@keyframes neon{50%{box-shadow:var(--g-rim),0 0 0 1px var(--accent2),0 26px 70px var(--glow),var(--g-drop)}}
+@keyframes up{from{opacity:0;transform:translateY(26px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+/* glass surfaces */
+.card,.chart-card,.hl-strip,.ratio-card,.ann-card,.bias-box,.strat-card,.risk-item,.price-mini,.tbl-wrap,.findings-banner-inner{background-color:transparent;background-image:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);border-radius:22px}
+.card,.chart-card,.ratio-card,.ann-card,.bias-box,.strat-card,.risk-item,.price-mini,.hl-strip{background-image:radial-gradient(0px circle at var(--mx,50%) var(--my,50%),transparent,transparent),var(--g-fill);transition:background-image .3s,transform .45s cubic-bezier(.18,.89,.32,1.28),border-color .3s,box-shadow .4s}
+.card:hover,.chart-card:hover,.ratio-card:hover,.ann-card:hover,.bias-box:hover,.strat-card:hover,.risk-item:hover,.price-mini:hover,.hl-strip:hover{background-image:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),var(--g-spec),transparent 65%),var(--g-fill);border-color:color-mix(in srgb,var(--accent2) 55%,var(--g-edge));box-shadow:var(--g-rim),0 22px 60px var(--glow),var(--g-drop);animation:neon 2.2s ease-in-out infinite}
+.card::after,.chart-card::after{display:none}
+.tbl-wrap{overflow-x:auto}
+tbody tr:hover td{background:var(--glow-sm)}
+/* floating glass nav */
+[data-theme] .nav{position:fixed;top:10px;left:2.5%;right:2.5%;height:58px;padding:0 1.1rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur-lg);backdrop-filter:var(--g-blur-lg);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);z-index:1000;animation:navIn .9s cubic-bezier(.2,.7,.2,1) both}
+.nav-title{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.nav-title::before{content:'';width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--accent3),var(--accent));box-shadow:0 0 12px var(--accent2)}
+.nav-title span{color:var(--accent)}
+.nav-back{border-radius:999px;background:var(--g-fill-2);border-color:var(--g-edge)}
+.dark-btn{width:48px;height:26px;background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.dark-knob{top:3px;left:3px;width:18px;height:18px;background:linear-gradient(145deg,var(--accent3),var(--accent));box-shadow:0 2px 10px var(--glow),inset 0 1px 0 rgba(255,255,255,.6)}
+[data-theme=dark] .dark-knob{transform:translateX(22px)}
+/* glossy liquid buttons */
+.print-btn,.btt{border-radius:999px;background:linear-gradient(160deg,color-mix(in srgb,var(--accent2) 92%,#fff),var(--btn) 70%);border:1px solid rgba(255,255,255,.35);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -6px 12px rgba(0,0,0,.14),0 8px 24px var(--glow);position:relative;overflow:hidden}
+.print-btn{padding:.5rem 1.1rem;text-shadow:0 1px 2px rgba(0,0,0,.22);animation:breathe 3.2s ease-in-out infinite}
+.print-btn:hover{background:linear-gradient(160deg,color-mix(in srgb,var(--accent3) 85%,#fff),var(--btn-h))}
+.print-btn::before{content:'';position:absolute;top:0;bottom:0;left:-60%;width:40%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg)}
+.print-btn:hover::before{animation:sweep .8s ease}
+@keyframes sweep{to{left:130%}}
+@keyframes breathe{50%{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),inset 0 -6px 12px rgba(0,0,0,.14),0 10px 40px var(--glow),0 0 0 6px var(--glow-sm)}}
+
+/* hero */
+.hero{margin:76px 2.5% 0;border-radius:28px;padding:2.6rem 2.8rem;min-height:0;border:1px solid var(--g-edge);box-shadow:var(--g-drop);background:linear-gradient(145deg,#06150a,#0b3a1c 58%,#14803d)}
+.hero::before{content:'';position:absolute;inset:-30%;width:auto;height:auto;border-radius:0;filter:blur(70px);opacity:.5;pointer-events:none;background:conic-gradient(from 0deg,rgba(34,197,94,.55),transparent 25%,rgba(74,222,128,.5) 48%,transparent 70%,rgba(22,163,74,.5) 90%,rgba(34,197,94,.55));animation:spin 32s linear infinite}
+.hero::after{display:none}.hero>*{position:relative;z-index:1}
+.hero-h1{font-family:var(--display);font-weight:800;letter-spacing:-.05em;line-height:.95;font-size:clamp(2.4rem,min(5vw,9vh),4.6rem)}
+.hero-h1 em{font-style:normal;background:linear-gradient(110deg,#4ade80,#b4ff5c,#4ade80);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;padding-bottom:.12em;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.72);max-width:44rem}
+.hmeta{color:rgba(255,255,255,.8);background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.hero-kpis{gap:1rem;margin-top:1.8rem}
+.hero-kpi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1rem 1.15rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2);transition:transform .45s cubic-bezier(.18,.89,.32,1.28),background .3s}
+.hero-kpi:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+.hero-kpi-val{font-family:var(--display);font-weight:800;font-size:2.1rem;letter-spacing:-.04em;background:linear-gradient(110deg,#fff,#b4ff5c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-kpi-lbl{color:rgba(255,255,255,.62)}.hero-kpi-note{color:rgba(255,255,255,.72)}
+.hero-tag,.hero-h1,.hero-sub,.hero-meta,.hero-kpi{animation-delay:calc(var(--d0) + .15s)}
+.hero-kpi{animation:up .9s cubic-bezier(.2,.7,.2,1) calc(var(--d0) + .5s) both}
+/* marquee band */
+.band{margin-top:1.4rem;padding:1rem 0;overflow:hidden;background:linear-gradient(100deg,var(--btn),var(--accent2),var(--btn));border-block:1px solid rgba(255,255,255,.25);box-shadow:inset 0 1px 0 rgba(255,255,255,.35);-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.band-inner{display:flex;width:max-content;animation:bscroll 28s linear infinite}.band-inner:hover{animation-play-state:paused}
+.bi{display:flex;align-items:center;gap:3.2rem;padding-left:3.2rem;font-family:var(--display);font-weight:700;font-size:.9rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.bi::after{content:'';width:7px;height:7px;rotate:45deg;background:rgba(255,255,255,.6)}
+@keyframes bscroll{to{transform:translateX(-50%)}}
+
+/* section type */
+.body{max-width:none;width:95%;margin:0 auto;padding:0}
+.sec{border-bottom:0;border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--border-dark),transparent) 1;padding:3rem 0}
+.sec-label{display:inline-flex;align-items:center;gap:.5rem;padding:.38rem .95rem;border-radius:999px;background:var(--g-fill-2);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-edge);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);letter-spacing:.18em;color:var(--accent);margin-bottom:.9rem}
+.sec-label::after{display:none}
+.sec-label::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);animation:pulseDot 2s ease-in-out infinite}
+.sec-h{font-family:var(--display);font-weight:800;letter-spacing:-.045em;line-height:1.04;font-size:clamp(2rem,3.4vw,3.4rem);color:var(--ink)}
+.sec-h::after{display:block;content:'';width:56px;height:4px;border-radius:99px;margin-top:.9rem;background:var(--head-grad);box-shadow:0 0 14px var(--glow)}
+.sec-h em{font-style:normal;font-weight:800;background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;padding:0 .14em .18em 0;margin:0 -.14em -.18em 0}
+.prose p{color:var(--ink3);line-height:1.85}
+/* findings banner */
+.findings-banner-inner{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:26px}
+.findings-banner-hd{grid-column:1/-1}
+[data-theme] .findings-banner-hd,[data-theme] .findings-text-cell{background:transparent}
+[data-theme] .findings-num-cell{background:var(--glow-sm);color:var(--accent)}
+.findings-item{border-color:var(--g-edge)}.findings-item:nth-of-type(even){border-right:1px solid var(--g-edge)}
+.findings-heading{font-family:var(--display);font-weight:800;letter-spacing:-.03em;color:var(--ink)}
+.findings-eyebrow{color:var(--accent);letter-spacing:.18em}
+.findings-badge{background:linear-gradient(160deg,color-mix(in srgb,var(--accent2) 92%,#fff),var(--btn) 70%);border:1px solid rgba(255,255,255,.35);border-radius:16px;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),0 8px 24px var(--glow)}
+.findings-badge-val{font-family:var(--display)}
+@media(max-width:900px){.findings-banner-inner{grid-template-columns:1fr}}
+/* blur-in reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}.rv.on{opacity:1;transform:none}
+.rv .sec-label,.rv .sec-h{opacity:0;filter:blur(14px);translate:0 18px;transition:opacity 1s cubic-bezier(.16,1,.3,1),filter 1s cubic-bezier(.16,1,.3,1),translate 1s cubic-bezier(.16,1,.3,1)}
+.rv.on .sec-label,.rv.on .sec-h{opacity:1;filter:none;translate:0}.rv.on .sec-h{transition-delay:.1s}
+.freq-track{background:var(--g-fill-2)}.freq-fill{box-shadow:0 0 12px var(--glow)}
+/* progress, cursor glow, stars, footer */
+.pgbar{height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3),var(--accent2));box-shadow:0 0 14px var(--accent2);z-index:3000;transition:none}
+#cglow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;z-index:0;pointer-events:none;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:0;transition:opacity .4s;will-change:transform}
+[data-theme=dark] #cglow{mix-blend-mode:screen}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s;background-image:radial-gradient(1.6px 1.6px at 12% 20%,#fff,transparent),radial-gradient(1.2px 1.2px at 74% 12%,#fff,transparent),radial-gradient(1.8px 1.8px at 38% 66%,#fff,transparent),radial-gradient(1.2px 1.2px at 88% 58%,#fff,transparent),radial-gradient(1.4px 1.4px at 55% 38%,#fff,transparent),radial-gradient(1.2px 1.2px at 22% 86%,#fff,transparent);background-size:420px 420px;animation:twinkle 4.5s ease-in-out infinite alternate}
+[data-theme=dark] #stars{opacity:.4}@keyframes twinkle{from{filter:brightness(.5)}to{filter:brightness(1.5)}}
+[data-theme] footer{margin:4rem 2.5% 1.2rem;border-radius:22px;padding:1.4rem 1.6rem;color:var(--muted)}[data-theme] footer strong{color:var(--accent)}
+
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent3),var(--accent2));box-shadow:0 0 14px var(--accent2);z-index:3000}
+/* intro splash */
+#intro{position:fixed;inset:0;height:100dvh;z-index:5000;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background:radial-gradient(ellipse at 50% 50%,color-mix(in srgb,var(--accent2) 16%,var(--paper)) 0%,var(--paper) 72%);animation:iOut 2.7s cubic-bezier(.7,0,.2,1) forwards}
+#intro .i-aurora{position:absolute;inset:-25%;filter:blur(70px);opacity:.8;pointer-events:none;background:conic-gradient(from 0deg,color-mix(in srgb,var(--accent2) 55%,transparent),transparent 22%,color-mix(in srgb,var(--accent3) 50%,transparent) 45%,transparent 68%,color-mix(in srgb,var(--accent) 50%,transparent) 88%,color-mix(in srgb,var(--accent2) 55%,transparent));animation:spin 14s linear infinite}
+#intro .i-ring{position:absolute;left:50%;top:50%;width:46vmin;height:46vmin;margin:-23vmin 0 0 -23vmin;border-radius:50%;border:1px solid var(--accent2);opacity:0;animation:iRing 2.6s .3s cubic-bezier(.2,.7,.2,1) infinite}#intro .r2{animation-delay:1s}
+#intro .i-core{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;padding:0 5%}
+#intro small{font-size:.8rem;font-weight:700;letter-spacing:.5em;text-transform:uppercase;color:var(--accent);opacity:0;animation:iIn 1s .2s cubic-bezier(.16,1,.3,1) forwards}
+#intro h1{font-family:var(--display);font-size:clamp(2.1rem,8.4vw,5.6rem);font-weight:800;letter-spacing:-.045em;line-height:1.05;color:var(--ink);perspective:700px;white-space:nowrap}
+#intro h1 .l{display:inline-block;opacity:0;transform:translateY(70px) rotateX(-70deg);filter:blur(16px);animation:iLetter 1s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(.35s + var(--i)*.05s)}
+#intro h1 .sp{width:.28em}#intro h1 .a{background:var(--head-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#intro .i-line{height:2px;width:0;background:linear-gradient(90deg,transparent,var(--accent3),var(--accent2),transparent);animation:iGrow 1.2s .9s cubic-bezier(.16,1,.3,1) forwards}
+#intro p{font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:0;animation:iIn 1s 1.1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes iRing{0%{transform:scale(.5);opacity:.7}100%{transform:scale(2.3);opacity:0}}
+@keyframes iIn{from{opacity:0;transform:translateY(22px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+@keyframes iLetter{to{opacity:1;transform:none;filter:none}}@keyframes iGrow{to{width:min(52vw,380px)}}
+@keyframes iOut{0%,72%{opacity:1;visibility:visible;transform:none;filter:none}100%{opacity:0;visibility:hidden;transform:scale(1.35);filter:blur(22px)}}
+/* sticky chapter navigator fills the side gutter */
+.body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:2rem;align-items:start}
+.body-main{min-width:0}
+.sec,.abs,#findings{scroll-margin-top:90px}
+.toc{position:sticky;top:90px;margin-top:2rem;padding:1.1rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);display:grid;gap:.2rem}
+.toc-h{font-size:.64rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 .4rem .5rem}
+.toc a{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem;border-radius:12px;font-size:.84rem;font-weight:600;color:var(--ink3);text-decoration:none;border:1px solid transparent;transition:background .25s,color .25s,border-color .25s}
+.toc a i{font-style:normal;font-family:var(--display);font-size:.7rem;color:var(--accent);width:1.5rem}
+.toc a:hover{background:var(--g-fill-2)}
+.toc a.on{background:var(--glow-sm);border-color:color-mix(in srgb,var(--accent2) 45%,transparent);color:var(--ink);box-shadow:0 0 18px var(--glow-sm)}
+.toc-bar{height:3px;border-radius:99px;background:var(--g-fill-2);margin:.8rem .2rem .2rem;overflow:hidden}.toc-bar i{display:block;height:100%;width:var(--p,0%);background:var(--head-grad)}
+.toc-stats{display:grid;gap:.55rem;margin-top:.9rem}
+.toc-stat{padding:.65rem .85rem;border-radius:14px;background:var(--g-fill-2);border:1px solid var(--g-edge)}
+.toc-stat b{display:block;font-family:var(--display);font-size:1.35rem;letter-spacing:-.03em;color:var(--accent);line-height:1.15}.toc-stat span{font-size:.72rem;color:var(--muted)}
+@media(max-width:1200px){.body{display:block}.toc{display:none}}
+@media print{.toc{display:none!important}.body{display:block}}
+
+.hero,.sec,.findings-banner{scroll-margin-top:90px}
+/* ═ DARK MODE: portfolio gradient backdrop, vignette & hero glow ═ */
+[data-theme=dark] body{background:radial-gradient(1200px 700px at 12% -8%,color-mix(in srgb,var(--accent2) 11%,transparent),transparent 60%),radial-gradient(1000px 700px at 100% 108%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 60%),var(--paper);background-attachment:fixed}
+html::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,transparent 56%,rgba(0,0,0,.12) 100%)}
+[data-theme=dark] html::before{background:radial-gradient(ellipse at 50% 40%,transparent 42%,rgba(0,0,0,.5) 100%)}
+[data-theme=dark] .hero{position:relative}
+[data-theme=dark] .hero::after{content:'';position:absolute;right:2%;top:50%;width:min(46vw,640px);aspect-ratio:1;translate:0 -50%;border-radius:50%;pointer-events:none;z-index:-1;filter:blur(60px);opacity:.38;background:conic-gradient(from 0deg,var(--accent2),transparent 25%,var(--accent3),transparent 60%,var(--accent),transparent 85%,var(--accent2));animation:spin 22s linear infinite}
+[data-theme=dark] .hero::before{content:'';position:absolute;top:-10%;right:-6%;width:650px;height:650px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,var(--glow-sm) 0%,transparent 65%)}
+[data-theme=dark] .sec-heading em,[data-theme=dark] .hero-title em{filter:drop-shadow(0 6px 22px var(--glow))}
+[data-theme=dark] .hero-left::before{opacity:.7}
+[data-theme=dark] #cglow{mix-blend-mode:normal;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 12%,transparent),transparent 65%)}
+[data-theme=dark] .kf-card,[data-theme=dark] .snap,[data-theme=dark] .ib,[data-theme=dark] .abs-card{box-shadow:var(--g-rim),0 14px 40px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3)}
+@media(prefers-reduced-motion:reduce){[data-theme=dark] .hero::after{animation:none}}
+@media print{html::before,.hero::before,.hero::after{display:none!important}}
+
+/* ═ DARK MODE: vivid neon-green / lime palette from the portfolio ═ */
+[data-theme=dark]{--accent:#2bff88;--accent2:#00f070;--accent3:#b4ff5c;--glow:rgba(43,255,136,.4);--glow-sm:rgba(43,255,136,.15);--accent-pale:rgba(43,255,136,.1);--paper:#030b06;--paper2:#06130b;--paper3:#0a1c0e;--ink:#fff;--ink2:#e4f7ea;--ink3:#e4f7ea;--muted:#c2f7d6;--border:rgba(43,255,136,.12);--border-dark:rgba(43,255,136,.34);--btn:#12b85a;--btn-h:#0e9a4a;--head-grad:linear-gradient(100deg,var(--accent),var(--accent3) 55%,var(--accent2));--g-fill:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.015) 55%),linear-gradient(rgba(7,20,12,.66),rgba(7,20,12,.66));--g-fill-2:rgba(255,255,255,.06);--g-edge:rgba(255,255,255,.11);--oa:.7;--ob:.6;--oc:.5}
+[data-theme=dark] body{background:radial-gradient(1200px 700px at 12% -8%,color-mix(in srgb,var(--accent2) 18%,transparent),transparent 60%),radial-gradient(1000px 700px at 100% 108%,color-mix(in srgb,var(--accent3) 14%,transparent),transparent 60%),var(--paper);background-attachment:fixed}
+[data-theme=dark] .sec-h em{background:linear-gradient(110deg,var(--accent),var(--accent3),var(--accent2),var(--accent));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+[data-theme=dark] .sbar-fill[style*="16a34a"],[data-theme=dark] .sbar-fill[style*="4ade80"],[data-theme=dark] .sbar-fill[style*="--green"]{background:linear-gradient(90deg,var(--accent),var(--accent3))!important;box-shadow:0 0 14px var(--glow)}
+[data-theme=dark] .sec-tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+[data-theme=dark] .kf-tag,[data-theme=dark] .kf-eyebrow,[data-theme=dark] .ib-l b{color:var(--accent)}
+
+[data-theme=dark] .hero{background:linear-gradient(145deg,#031208,#07311a 58%,#0f6a35)}
+@media(max-width:640px){#cglow{display:none}[data-theme] .nav{left:3%;right:3%;border-radius:18px}.hero{padding:1.8rem 1.4rem}.hero-kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.nav-title span{display:none}}
+@media(prefers-reduced-motion:reduce){#intro{display:none}body::before,body::after,.hero::before,#stars{animation:none}.rv .sec-label,.rv .sec-h{filter:none;translate:0;opacity:1}.hero-kpi,.hero-h1 em{animation:none}}
+@media print{#intro,#cglow,#stars,.progress-bar,.btt,.nav,.band,.toc,html::after,body::before,body::after{display:none!important}.hero{margin-top:0}.rv,.rv *{opacity:1!important;filter:none!important;transform:none!important;translate:none!important}*{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;animation:none!important}.body{display:block}}
+
+/* fix: solid black/white blocks in dark mode, sidebar overflow */
+thead th,.ratio-head{background:linear-gradient(135deg,#0f6b34,#16a34a);color:#fff}
+[data-theme=dark] thead th,[data-theme=dark] .ratio-head{background:linear-gradient(135deg,rgba(10,90,44,.92),rgba(18,150,74,.7));color:#fff}
+tr.tot{background:linear-gradient(90deg,#0f6b34,#16a34a)!important}
+[data-theme=dark] tr.tot{background:linear-gradient(90deg,rgba(10,90,44,.95),rgba(18,150,74,.75))!important}
+.note-tip{background:#0f3d22;color:#fff}.note-tip::after{border-left-color:#0f3d22}
+.hl-item{background:var(--g-fill-2);border:1px solid var(--g-edge);border-left:3px solid var(--accent);border-radius:16px;box-shadow:inset 0 1px 0 var(--g-edge)}
+tr.grp td{background:var(--glow-sm)}
+tbody tr{border-bottom-color:var(--g-edge)}
+.chg-badge.neu,.sentiment.neu{background:var(--g-fill-2);border:1px solid var(--g-edge)}
+[data-theme] footer{background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop);color:var(--muted)}
+.btt:hover{background:linear-gradient(160deg,var(--accent3),var(--btn-h))}
+.toc{max-height:calc(100vh - 7rem);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;align-content:start}
+.toc a{font-size:.8rem;line-height:1.3;padding:.45rem .65rem}
+@media(max-height:900px){.toc-stats{display:none}}
+
+/* vision / mission cards */
+.vm{display:grid;gap:1rem;align-content:start}
+.vm-card{display:flex;gap:1rem;align-items:flex-start;padding:1.3rem 1.5rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);border-left:4px solid var(--accent);box-shadow:var(--g-rim),var(--g-drop)}
+.vm-ic{flex:none;width:2.8rem;height:2.8rem;border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--accent);background:var(--glow-sm);border:1px solid var(--g-edge)}
+.vm-h{font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--accent);margin-bottom:.35rem}
+.vm-card p{font-size:1rem;line-height:1.75;color:var(--ink);margin:0}
+.bias-icon svg{width:1.15rem;height:1.15rem}[data-theme=dark] .bias-icon svg{filter:brightness(1.7)}
+.print-btn{display:inline-flex;align-items:center;gap:.4rem}
+/* readability: larger text everywhere */
+.hero-kpi-lbl,.hl-lbl,.hl-strip-title,.card-title,.ann-date,.ratio-head,thead th,tr.grp td,.pm-lbl,.findings-eyebrow,.findings-badge-lbl,.chart-title,.toc-h,.sec-label,.risk-pill,.bias-tag,.freq-label,.ann-filter{font-size:.74rem;letter-spacing:.1em}
+.hero-kpi-note,.hmeta,.hl-chg,.chart-sub,.td-note,.toc-stat span{font-size:.84rem}
+.hero-kpi-val{font-size:2.3rem}.hl-val{font-size:1.9rem}
+table,td{font-size:.92rem}td{padding:.7rem .95rem}thead th{padding:.75rem .95rem}tr.grp td{padding:.5rem .95rem}
+.ratio-row,.ratio-name,.ratio-val,.chg-badge{font-size:.9rem}
+.ratio-row{grid-template-columns:1fr 84px 84px 104px}
+.ann-title,.strat-title,.risk-title,.bias-name{font-size:1.02rem}
+.ann-body,.bias-desc,.strat-desc,.risk-desc,.ann-impact,.pm-val{font-size:.92rem;line-height:1.7}
+.card div[style*="font-size:.7rem"],.card div[style*="font-size:.68rem"]{font-size:.85rem!important}
+.findings-text-cell{font-size:.98rem;line-height:1.75}
+.prose p{font-size:1rem}
+.toc a{font-size:.88rem}
+[data-theme=dark] .ann-body,[data-theme=dark] .bias-desc,[data-theme=dark] .strat-desc,[data-theme=dark] .risk-desc,[data-theme=dark] td{color:var(--ink2)}
+[data-theme=dark] .hl-lbl,[data-theme=dark] .hero-kpi-lbl,[data-theme=dark] .chart-sub{color:var(--muted)}
+
+/* announcements: grid, tidy price strip, readable tags */
+.ann-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,30rem),1fr));gap:1rem;margin-top:1.2rem}
+.ann-card{display:flex;flex-direction:column;padding:1.3rem 1.5rem 1.3rem 1.7rem}
+.ann-card .ann-biases{margin-top:.2rem}
+.ann-card .price-mini,.ann-card .price-mini:hover{margin-top:auto;padding:.7rem 1rem;gap:1.1rem;flex-wrap:wrap;justify-content:flex-start;background-image:none;background-color:var(--g-fill-2);border:1px solid var(--g-edge);border-radius:14px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none;transform:none}
+.price-mini .pm-val{font-size:1.05rem}.price-mini .pm-lbl{font-size:.72rem}.price-mini span{font-size:.82rem}
+.ann-impact{margin-top:.6rem}
+.bias-tag{font-size:.72rem;padding:.22rem .6rem;border-radius:8px;letter-spacing:.02em}
+[data-theme=dark] .bias-tag{background:rgba(255,255,255,.07)}
+[data-theme=dark] .bias-tag.ov{color:#93c5fd}[data-theme=dark] .bias-tag.hr{color:#c4b5fd}[data-theme=dark] .bias-tag.la{color:#fca5a5}[data-theme=dark] .bias-tag.rc{color:#fcd34d}[data-theme=dark] .bias-tag.cf{color:#86efac}[data-theme=dark] .bias-tag.an{color:#5eead4}[data-theme=dark] .bias-tag.oc{color:#d8b4fe}[data-theme=dark] .bias-tag.sq{color:#cbd5e1}[data-theme=dark] .bias-tag.av{color:#fdba74}
+/* company intro: balanced columns */
+#s1 .g2{align-items:stretch}
+#s1 .g2>.prose{display:flex;flex-direction:column;justify-content:center;gap:1rem;padding:1.6rem 1.8rem;border-radius:22px;background:var(--g-fill);-webkit-backdrop-filter:var(--g-blur);backdrop-filter:var(--g-blur);border:1px solid var(--g-edge);box-shadow:var(--g-rim),var(--g-drop)}
+#s1 .prose p{font-size:1.05rem;line-height:1.85;margin:0}
+.vm{grid-auto-rows:1fr;align-content:stretch}
+/* sidebar: fits, or becomes a chip bar on narrow screens */
+@media(max-height:1150px){.toc-stats{display:none}}
+@media(min-width:1001px) and (max-width:1200px){.body{display:grid;grid-template-columns:13rem minmax(0,1fr)}.toc{display:grid}}
+@media(max-width:1000px){.body{display:block}.toc{display:flex;position:sticky;top:4.9rem;z-index:50;max-height:none;overflow-x:auto;overflow-y:hidden;margin:0 0 1.2rem;padding:.45rem;border-radius:999px;gap:.3rem;scrollbar-width:none}.toc::-webkit-scrollbar{display:none}.toc-h,.toc-bar,.toc-stats{display:none}.toc a{white-space:nowrap;flex:none;border-radius:999px;padding:.45rem .9rem}}
+
+[data-theme=dark] .price-mini [style*="--red"],[data-theme=dark] .price-mini [style*="#dc2626"],[data-theme=dark] .pm-val.neg,[data-theme=dark] .hl-chg.dn,[data-theme=dark] td.neg,[data-theme=dark] .ratio-val.neg{color:#ff7b7b!important}
+[data-theme=dark] .price-mini [style*="--g)"],[data-theme=dark] .price-mini [style*="#16a34a"]{color:var(--accent)!important}
+
+/* sidebar alignment/overflow fix */
+.toc{overflow-x:hidden}
+.toc a{align-items:flex-start;gap:.55rem;padding:.45rem .6rem;min-width:0;overflow-wrap:anywhere}
+.toc a i{flex:none;width:1.5rem;margin-top:.12rem;text-align:left}
+@media(max-width:1000px){.toc a{align-items:center;overflow-wrap:normal}}
+/* announcements: smaller heading + denser cards */
+#s6 .sec-h{font-size:clamp(1.6rem,2.5vw,2.6rem)}
+.ann-list{grid-template-columns:repeat(auto-fill,minmax(min(100%,26rem),1fr));gap:.9rem}
+.ann-card{padding:1.1rem 1.25rem 1.1rem 1.5rem}
+.ann-title{font-size:.98rem}.ann-body{font-size:.88rem;line-height:1.65}
+.ann-date{font-size:.7rem}
+
+/* behavioral biases: one theme colour, larger headings */
+.bias-box-title{color:var(--accent)!important;font-size:.9rem;letter-spacing:.14em;margin-bottom:.9rem}
+.bias-icon{background:var(--glow-sm)!important;color:var(--accent)!important;border:1px solid var(--g-edge);width:2.4rem;height:2.4rem;border-radius:12px}
+.bias-icon svg{width:1.3rem;height:1.3rem}[data-theme=dark] .bias-icon svg{filter:none}
+.bias-name{font-size:1.25rem;font-weight:800;letter-spacing:-.02em}
+.bias-item{gap:.9rem}
+
+/* sidebar: smaller text, no mid-word breaks, no scrollbar */
+.toc{scrollbar-width:none;padding:1rem .9rem}.toc::-webkit-scrollbar{display:none}
+.toc a{font-size:.78rem;line-height:1.3;padding:.4rem .55rem;gap:.5rem;overflow-wrap:normal;word-break:normal;hyphens:none}
+.toc a i{font-size:.66rem;width:1.3rem}
+.toc-h{font-size:.66rem}
+@media(min-width:1201px){.body{grid-template-columns:16rem minmax(0,1fr)}}
+@media(max-width:1000px){.toc a{font-size:.8rem}}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
+<div id="intro" aria-hidden="true"><div class="i-aurora"></div><div class="i-ring"></div><div class="i-ring r2"></div><div class="i-core"><small>Behavioral Finance Report</small><h1 id="i-title"></h1><div class="i-line"></div><p>BBA 6B &middot; SMI University</p></div></div>
+<script>try{var _i=document.getElementById('intro');if(!document.documentElement.classList.contains('intro-on')){_i.remove();}else{sessionStorage.setItem('sngpl-intro','1');var _t=document.getElementById('i-title'),_w='SNGPL Report';for(var k=0;k<_w.length;k++){var sp=document.createElement('span');sp.className='l'+(_w[k]===' '?' sp':(k>=5?' a':''));sp.style.setProperty('--i',k);sp.innerHTML=_w[k]===' '?'&nbsp;':_w[k];_t.appendChild(sp);}var kill=function(){_i.style.transition='opacity .5s';_i.style.opacity=0;setTimeout(function(){_i.remove();},550);};_i.addEventListener('click',kill);addEventListener('keydown',kill,{once:true});setTimeout(function(){if(_i.parentNode)_i.remove();},2900);}}catch(e){}</script>
 <div class="progress-bar" id="pgbar"></div>
 <button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <nav class="nav">
@@ -360,13 +619,13 @@ body::after{
     <div class="nav-title">SNGPL <span>· Behavioral Finance</span></div>
   </div>
   <div class="nav-right">
-    <div class="dark-btn" onclick="toggleTheme()">
+    <div class="dark-btn" role="switch" tabindex="0" aria-label="Toggle dark mode" onclick="toggleTheme()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleTheme();}">
       <div class="dark-knob">
         <span class="ks"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></span>
         <span class="km"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
       </div>
     </div>
-  <button class="print-btn" onclick="window.print()">⎙ Print</button>
+  <button class="print-btn" onclick="window.print()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M7 15h10v6H7z"/></svg> Print</button>
   </div>
 </nav>
 
@@ -408,10 +667,14 @@ body::after{
 </div>
 
 
+<div class="band" aria-hidden="true"><div class="band-inner"><span class="bi">Loss Aversion</span><span class="bi">Overreaction</span><span class="bi">Herding Behavior</span><span class="bi">Status Quo Bias</span><span class="bi">Confirmation Bias</span><span class="bi">Anchoring</span><span class="bi">Overconfidence</span><span class="bi">Recency Bias</span><span class="bi">Regret Aversion</span><span class="bi">PSX Announcements</span><span class="bi">Loss Aversion</span><span class="bi">Overreaction</span><span class="bi">Herding Behavior</span><span class="bi">Status Quo Bias</span><span class="bi">Confirmation Bias</span><span class="bi">Anchoring</span><span class="bi">Overconfidence</span><span class="bi">Recency Bias</span><span class="bi">Regret Aversion</span><span class="bi">PSX Announcements</span></div></div>
+
 <div class="body" style="padding-top:2.5rem;">
+<aside class="toc" aria-label="Sections"><div class="toc-h">Sections</div><a href="#findings"><i>&middot;</i>Key Findings</a><a href="#s1"><i>01</i>Company Introduction</a><a href="#s2"><i>02</i>Balance Sheet</a><a href="#s3"><i>03</i>Profit &amp; Loss</a><a href="#s4"><i>04</i>Ratio Analysis</a><a href="#s5"><i>05</i>Behavioral Biases</a><a href="#s6"><i>06</i>PSX Announcements</a><a href="#s7"><i>07</i>Share Price</a><a href="#s8"><i>08</i>Investment Strategies</a><a href="#s9"><i>09</i>Risk Analysis</a><a href="#s10"><i>10</i>Recent CSR Activities</a><div class="toc-bar"><i></i></div><div class="toc-stats"><div class="toc-stat"><b>~29%</b><span>share price decline</span></div><div class="toc-stat"><b>9 / 13</b><span>announcements: loss aversion</span></div><div class="toc-stat"><b>+61.8%</b><span>gross profit growth</span></div></div></aside>
+<div class="body-main">
 
 <!-- 01 — COMPANY INTRO -->
-<div class="findings-banner rv">
+<div class="findings-banner rv" id="findings">
   <div class="findings-banner-inner">
     <div class="findings-banner-hd">
       <div>
@@ -450,29 +713,26 @@ body::after{
   </div>
 </div>
 <div class="sec rv" id="s1">
-  <div class="sec-label">01</div>
+  <div class="sec-label">Section 01</div>
   <h2 class="sec-h">Company<br><em>Introduction</em></h2>
   <div class="g2" style="margin-bottom:1.2rem;">
     <div class="prose">
       <p>Sui Northern Gas Pipelines Limited (SNGPL), established in 1963 as a private limited company, became a public limited company in January 1964 under the Indian Companies Act 1913. SNGPL is the largest gas company in northern Pakistan, serving over <strong>7.2 million consumers</strong> across Punjab, Khyber Pakhtunkhwa, and Azad Jammu & Kashmir.</p>
       <p>SNGPL supplies gas through two sources: <strong>System Gas</strong> — extracting 750–800 million cubic feet from local sources — and <strong>RLNG</strong> (Re-gasified Liquified Natural Gas) imported in liquid form, totaling approximately 100 million cubic feet.</p>
     </div>
-    <div class="prose">
-      <p><strong>Vision:</strong> To be the leading integrated natural gas provider, improving quality of life and achieving maximum benefit for stakeholders through uninterrupted, environment-friendly energy.</p>
-      <p><strong>Mission:</strong> Deliver natural gas to all doorsteps through continuous expansion of the network, optimally employing technological, human, and organizational resources with high ethical standards.</p>
-    </div>
+    <div class="vm"><div class="vm-card"><div class="vm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><div><div class="vm-h">Vision</div><p>To be the leading integrated natural gas provider, improving quality of life and achieving maximum benefit for stakeholders through uninterrupted, environment-friendly energy.</p></div></div><div class="vm-card"><div class="vm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><div><div class="vm-h">Mission</div><p>Deliver natural gas to all doorsteps through continuous expansion of the network, optimally employing technological, human, and organizational resources with high ethical standards.</p></div></div></div>
   </div>
   <div class="g4">
-    <div class="card"><div class="card-title">Founded</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">1963</div><div style="font-size:.7rem;color:var(--muted);">Public Ltd. since 1964</div></div>
-    <div class="card"><div class="card-title">Consumers</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">7.2M+</div><div style="font-size:.7rem;color:var(--muted);">Residential, commercial & industrial</div></div>
-    <div class="card"><div class="card-title">System Gas</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">800 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Local extraction daily</div></div>
-    <div class="card"><div class="card-title">RLNG Import</div><div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;color:var(--g);">100 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Imported re-gasified LNG</div></div>
+    <div class="card"><div class="card-title">Founded</div><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--g);">1963</div><div style="font-size:.7rem;color:var(--muted);">Public Ltd. since 1964</div></div>
+    <div class="card"><div class="card-title">Consumers</div><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--g);">7.2M+</div><div style="font-size:.7rem;color:var(--muted);">Residential, commercial & industrial</div></div>
+    <div class="card"><div class="card-title">System Gas</div><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--g);">800 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Local extraction daily</div></div>
+    <div class="card"><div class="card-title">RLNG Import</div><div style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--g);">100 MMCF</div><div style="font-size:.7rem;color:var(--muted);">Imported re-gasified LNG</div></div>
   </div>
 </div>
 
 <!-- 02 — BALANCE SHEET -->
 <div class="sec rv" id="s2">
-  <div class="sec-label">02</div>
+  <div class="sec-label">Section 02</div>
   <h2 class="sec-h">Balance Sheet<br><em>Analysis</em></h2>
   <div class="hl-strip" style="margin-bottom:1.2rem;">
     <div class="hl-strip-title">Key Balance Sheet Movements · FY 2021 → FY 2022 · PKR (Rupees in Thousands)</div>
@@ -549,7 +809,7 @@ body::after{
 
 <!-- 03 — P&L -->
 <div class="sec rv" id="s3">
-  <div class="sec-label">03</div>
+  <div class="sec-label">Section 03</div>
   <h2 class="sec-h">Statement of Profit & Loss<br><em>Analysis</em></h2>
   <div class="tbl-wrap" style="margin-bottom:1.2rem;">
     <table>
@@ -583,7 +843,7 @@ body::after{
 
 <!-- 04 — RATIO ANALYSIS -->
 <div class="sec rv" id="s4">
-  <div class="sec-label">04</div>
+  <div class="sec-label">Section 04</div>
   <h2 class="sec-h">Ratio<br><em>Analysis</em></h2>
   <div class="g2" style="margin-bottom:1rem;">
     <!-- Profitability -->
@@ -629,35 +889,35 @@ body::after{
 
 <!-- 05 — BEHAVIORAL BIASES SUMMARY -->
 <div class="sec rv" id="s5">
-  <div class="sec-label">05</div>
+  <div class="sec-label">Section 05</div>
   <h2 class="sec-h">Behavioral Biases<br><em>Identified</em></h2>
   <div class="g3" style="margin-bottom:1.2rem;">
     <div class="bias-box">
       <div class="bias-box-title" style="color:var(--blue);">Cognitive Biases</div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(37,99,235,.08);">🔁</div><div><div class="bias-name">Overreaction Bias</div><div class="bias-desc">Investors overreact to announcements — sharp price spikes followed by corrections. Seen on July 5, Aug 27, Nov 22.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.08);">📌</div><div><div class="bias-name">Anchoring Bias</div><div class="bias-desc">Past dividend of PKR 7 anchored expectations; PKR 4 announcement caused disappointment and sell-off.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(22,163,74,.08);">✅</div><div><div class="bias-name">Confirmation Bias</div><div class="bias-desc">Investors focused on dividend news while ignoring auditor's investigation allegation on July 29, 2021.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(37,99,235,.14);color:rgb(37,99,235);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0115-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 01-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></div><div><div class="bias-name">Overreaction Bias</div><div class="bias-desc">Investors overreact to announcements — sharp price spikes followed by corrections. Seen on July 5, Aug 27, Nov 22.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.14);color:rgb(217,119,6);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 12H2a10 10 0 0020 0h-3"/></svg></div><div><div class="bias-name">Anchoring Bias</div><div class="bias-desc">Past dividend of PKR 7 anchored expectations; PKR 4 announcement caused disappointment and sell-off.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(22,163,74,.14);color:rgb(22,163,74);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg></div><div><div class="bias-name">Confirmation Bias</div><div class="bias-desc">Investors focused on dividend news while ignoring auditor's investigation allegation on July 29, 2021.</div></div></div>
     </div>
     <div class="bias-box">
       <div class="bias-box-title" style="color:#7c3aed;">Social Biases</div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(124,58,237,.08);">🐑</div><div><div class="bias-name">Herding Behavior</div><div class="bias-desc">Trade volume jumped from 2.1M to 21.4M on July 5 as investors followed early buyers without independent analysis.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(147,51,234,.08);">💭</div><div><div class="bias-name">Overconfidence Bias</div><div class="bias-desc">After AGM notice (July 7) and court win (July 19), investors overestimated ability to predict outcomes.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(100,116,139,.08);">⏸️</div><div><div class="bias-name">Status Quo Bias</div><div class="bias-desc">Repeated AGM extension requests led investors to hold positions and wait, evidenced by reduced trade volume.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(124,58,237,.14);color:rgb(124,58,237);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></div><div><div class="bias-name">Herding Behavior</div><div class="bias-desc">Trade volume jumped from 2.1M to 21.4M on July 5 as investors followed early buyers without independent analysis.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(147,51,234,.14);color:rgb(147,51,234);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><div><div class="bias-name">Overconfidence Bias</div><div class="bias-desc">After AGM notice (July 7) and court win (July 19), investors overestimated ability to predict outcomes.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(100,116,139,.14);color:rgb(100,116,139);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg></div><div><div class="bias-name">Status Quo Bias</div><div class="bias-desc">Repeated AGM extension requests led investors to hold positions and wait, evidenced by reduced trade volume.</div></div></div>
     </div>
     <div class="bias-box">
       <div class="bias-box-title" style="color:var(--red);">Emotional Biases</div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(220,38,38,.08);">😨</div><div><div class="bias-name">Loss Aversion</div><div class="bias-desc">Investors sold on declining prices to avoid greater losses — even at a loss — during Aug–Oct 2021 downtrend.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.08);">🕒</div><div><div class="bias-name">Recency Bias</div><div class="bias-desc">Most recent announcements (dividend, quarterly EPS) weighted heavily over longer historical performance.</div></div></div>
-      <div class="bias-item"><div class="bias-icon" style="background:rgba(180,83,0,.08);">😬</div><div><div class="bias-name">Regret Aversion</div><div class="bias-desc">Before June 2022 board meeting, investors avoided selling fearing the price would recover after they sold.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(220,38,38,.14);color:rgb(220,38,38);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M14 17h7v-7"/></svg></div><div><div class="bias-name">Loss Aversion</div><div class="bias-desc">Investors sold on declining prices to avoid greater losses — even at a loss — during Aug–Oct 2021 downtrend.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(217,119,6,.14);color:rgb(217,119,6);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><div class="bias-name">Recency Bias</div><div class="bias-desc">Most recent announcements (dividend, quarterly EPS) weighted heavily over longer historical performance.</div></div></div>
+      <div class="bias-item"><div class="bias-icon" style="background:rgba(180,83,0,.14);color:rgb(180,83,0);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg></div><div><div class="bias-name">Regret Aversion</div><div class="bias-desc">Before June 2022 board meeting, investors avoided selling fearing the price would recover after they sold.</div></div></div>
     </div>
   </div>
 </div>
 
 <!-- 06 — PSX ANNOUNCEMENTS -->
 <div class="sec rv" id="s6">
-  <div class="sec-label">06</div>
-  <h2 class="sec-h">PSX Announcements &<br><em>Market Reactions</em></h2>
-  <div style="display:flex;flex-direction:column;gap:.7rem;">
+  <div class="sec-label">Section 06</div>
+  <h2 class="sec-h">PSX Announcements &amp; <em>Market Reactions</em></h2>
+  <div class="ann-list">
 
     <div class="ann-card" style="--ann-color:#16a34a;">
       <div class="ann-date">July 2 & 5, 2021</div>
@@ -844,7 +1104,7 @@ body::after{
 
 <!-- 07 — SHARE PRICE CHART -->
 <div class="sec rv" id="s7">
-  <div class="sec-label">07</div>
+  <div class="sec-label">Section 07</div>
   <h2 class="sec-h">Share Price<br><em>Journey</em></h2>
   <div class="chart-card">
     <div class="chart-title">SNGPL Share Price — July 2021 to June 2022</div>
@@ -880,7 +1140,7 @@ body::after{
 
 <!-- 08 — INVESTMENT STRATEGIES -->
 <div class="sec rv" id="s8">
-  <div class="sec-label">08</div>
+  <div class="sec-label">Section 08</div>
   <h2 class="sec-h">Investment<br><em>Strategies</em></h2>
   <div class="g2" style="margin-bottom:.8rem;">
     <div class="strat-card" style="--sc:#16a34a;">
@@ -908,7 +1168,7 @@ body::after{
 
 <!-- 09 — RISK ANALYSIS -->
 <div class="sec rv" id="s9">
-  <div class="sec-label">09</div>
+  <div class="sec-label">Section 09</div>
   <h2 class="sec-h">Risk<br><em>Analysis</em></h2>
   <div class="g3" style="margin-bottom:1.2rem;">
     <div class="risk-item">
@@ -933,7 +1193,7 @@ body::after{
 
 <!-- 10 — CSR -->
 <div class="sec rv" id="s10">
-  <div class="sec-label">10</div>
+  <div class="sec-label">Section 10</div>
   <h2 class="sec-h">Recent CSR<br><em>Activities</em></h2>
   <div class="g3">
     <div class="card"><div class="card-title">Ration Distribution — Ramadan 2023</div><div style="font-size:.76rem;color:var(--muted);line-height:1.7;margin-top:.3rem;">10,000 ration bags worth <strong>PKR 100 million</strong> distributed across 15 regions. Implemented in collaboration with Akhuwat, Alkhidmat Foundation, and Saylani Welfare Trust.</div></div>
@@ -942,7 +1202,7 @@ body::after{
   </div>
 </div>
 
-</div><!-- /body -->
+</div></div><!-- /body -->
 
 <footer>
   <div><strong>Behavioral Finance Report — SNGPL</strong> &nbsp;·&nbsp; Abdul Qadir Avadia · BUS-21S-003 &nbsp;·&nbsp; BBA 6B · SMI University &nbsp;·&nbsp; Submitted to Sir Raza Ali</div>
@@ -986,7 +1246,7 @@ document.addEventListener('DOMContentLoaded',function(){
     labels:['Loss Aversion','Overreaction','Herding','Status Quo','Confirmation','Anchoring','Overconfidence','Recency','Regret'],
     datasets:[{data:[9,6,6,5,4,3,2,2,1],
       backgroundColor:['#dc2626','#2563eb','#7c3aed','#64748b','#16a34a','#0f766e','#9333ea','#d97706','#b45309'],
-      borderWidth:2,borderColor:document.documentElement.dataset.theme==='dark'?'#071008':'#f4f4f0'}]
+      borderWidth:2,borderColor:document.documentElement.dataset.theme==='dark'?'#061209':'#e9f3ed'}]
   },options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
     plugins:{legend:{position:'right',labels:{color:tc(),font:{family:"'DM Sans',sans-serif",size:9},boxWidth:8,padding:6}}}}});}
 });
@@ -1010,8 +1270,8 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 
 // Theme
-function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;localStorage.setItem('sngpl-theme',n);rebuildCharts();}
-var saved=localStorage.getItem('sngpl-theme');if(saved)document.documentElement.dataset.theme=saved;
+function toggleTheme(){var h=document.documentElement,n=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=n;try{localStorage.setItem('aqt',n);localStorage.setItem('sngpl-theme',n);}catch(e){}rebuildCharts();}
+
 
 // Scroll reveal
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.05});
@@ -1019,7 +1279,7 @@ document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});
 
 /* CURSOR SPOTLIGHT on cards */
 document.addEventListener('mousemove',function(e){
-  var c=e.target.closest('.card,.chart-card');
+  var c=e.target.closest('.card,.chart-card,.ratio-card,.ann-card,.bias-box,.strat-card,.risk-item,.price-mini,.hl-strip');
   if(!c)return;
   var r=c.getBoundingClientRect();
   c.style.setProperty('--mx',(e.clientX-r.left)+'px');
@@ -1027,12 +1287,12 @@ document.addEventListener('mousemove',function(e){
 },{passive:true});
 
 // Chart helpers
-function tc(){return document.documentElement.dataset.theme==='dark'?'#4ade80':'#4a7360';}
-function gc(){return document.documentElement.dataset.theme==='dark'?'rgba(34,197,94,.07)':'rgba(22,163,74,.07)';}
+function tc(){return document.documentElement.dataset.theme==='dark'?'#c2f7d6':'#365443';}
+function gc(){return document.documentElement.dataset.theme==='dark'?'rgba(106,207,138,.1)':'rgba(21,90,50,.12)';}
 var G='#16a34a',R='#dc2626',B='#2563eb',A='#d97706';
 
 var C={};
-function buildCharts(){
+function buildCharts(){var D=document.documentElement.dataset.theme==='dark',TT=Chart.defaults.plugins.tooltip;Chart.defaults.font.family="'DM Sans',sans-serif";TT.backgroundColor=D?'rgba(6,18,9,.94)':'rgba(255,255,255,.96)';TT.titleColor=TT.bodyColor=D?'#edfff2':'#08170d';TT.borderColor='rgba(34,197,94,.4)';TT.borderWidth=1;TT.cornerRadius=12;
   // P&L chart
   var el=document.getElementById('c-pl');
   if(el){if(C.pl)C.pl.destroy();C.pl=new Chart(el.getContext('2d'),{type:'bar',data:{labels:['FY 2021','FY 2022'],datasets:[{label:'Net Sales (B)',data:[757.6,1293.7],backgroundColor:'rgba(22,163,74,.55)',borderColor:G,borderWidth:2,borderRadius:4},{label:'Gross Profit (B)',data:[52.9,85.5],backgroundColor:'rgba(22,163,74,.85)',borderColor:'#14532d',borderWidth:2,borderRadius:4},{label:'Net Profit (B)',data:[11.0,10.4],backgroundColor:'rgba(217,119,6,.75)',borderColor:A,borderWidth:2,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:900,easing:'easeOutQuart'},plugins:{legend:{labels:{color:tc(),font:{size:10},boxWidth:9,padding:10}}},scales:{x:{ticks:{color:tc(),font:{size:10}},grid:{display:false}},y:{ticks:{color:tc(),font:{size:9},callback:function(v){return v+'B'}},grid:{color:gc()}}}}});}
@@ -1050,6 +1310,15 @@ function buildCharts(){
 }
 function rebuildCharts(){buildCharts();}
 document.addEventListener('DOMContentLoaded',buildCharts);
+/* cursor glow, stars, magnetic buttons, section navigator */
+(function(){var g=document.createElement('div');g.id='cglow';document.body.appendChild(g);var st=document.createElement('div');st.id='stars';document.body.appendChild(st);
+if(matchMedia('(pointer:fine)').matches){var gx=0,gy=0,tx=0,ty=0,on=false;addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;if(!on){on=true;g.style.opacity=.55;}},{passive:true});document.addEventListener('mouseleave',function(){g.style.opacity=0;on=false;});
+(function loop(){gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;g.style.transform='translate3d('+gx+'px,'+gy+'px,0)';requestAnimationFrame(loop);})();
+var mag='.print-btn,.nav-back,.btt';document.addEventListener('pointermove',function(e){var b=e.target.closest&&e.target.closest(mag);if(!b)return;var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*.18)+'px '+((e.clientY-r.top-r.height/2)*.28)+'px';},{passive:true});
+document.addEventListener('pointerout',function(e){var b=e.target.closest&&e.target.closest(mag);if(b)b.style.translate='';});}
+var L=[].slice.call(document.querySelectorAll('.toc a'));if(L.length){var T=L.map(function(a){return document.querySelector(a.getAttribute('href'))}),bar=document.querySelector('.toc-bar');
+function f(){var y=innerHeight*.4,c=0;T.forEach(function(t,i){if(t&&t.getBoundingClientRect().top<y)c=i});L.forEach(function(a,i){a.classList.toggle('on',i===c)});if(c!==window._tc){window._tc=c;if(innerWidth<=1000&&L[c])L[c].scrollIntoView({inline:'center',block:'nearest'});}var d=document.documentElement,m=d.scrollHeight-innerHeight;bar.style.setProperty('--p',(m>0?Math.min(100,scrollY/m*100):0)+'%');}
+addEventListener('scroll',f,{passive:true});f();}})();
 </script>
 </body>
 </html>
